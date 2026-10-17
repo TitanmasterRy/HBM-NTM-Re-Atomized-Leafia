@@ -48,9 +48,9 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
  * fluoride is below, it loses 1,000 mB a tick and raises the radiation below to what it is above.
  * That is upstream's sequence, kept as it is (D-3012): the fluoride is placed for nothing, the
  * drain is a flat 1,000 mB each tick it sees fluoride there (the block it placed, or one already
- * there, with the placement tick included), and a plug holding less than a bucket still places a
- * whole one. {@code LeafiaFF.pour} would drain a bucket per placement and refuse less than one, so it
- * is not used. The block is the FLiBe's world fluid, the addon's fluoride; with {@code worldFluids}
+ * there, with the placement tick included). A plug holding less than a bucket places nothing (D-3076:
+ * upstream placed a whole bucket of fluoride for any amount, which made fluid from nothing).
+ * {@code LeafiaFF.pour} is not used. The block is the FLiBe's world fluid, the addon's fluoride; with {@code worldFluids}
  * off there is none, and a molten plug only empties into ducts.
  *
  * <p>Its tank is sent to nearby clients each tick with the molten flag under key 0, and its set
@@ -180,7 +180,8 @@ public class MSRPlugTE extends MSRTEBase implements IFFReceiver, IFFProvider {
 			BlockPos below = worldPosition.below();
 			BlockState belowState = level.getBlockState(below);
 			BlockState fluoride = fluorideBlock();
-			if(molten && fluoride != null && belowState.canBeReplaced() && !belowState.liquid()) {
+			// a bucket of fluoride is paid for with a bucket of salt: a plug with less holds the spill back (D-3076; upstream placed a whole bucket for nothing)
+			if(molten && fluoride != null && tank.getFluidAmount() >= 1000 && belowState.canBeReplaced() && !belowState.liquid()) {
 				level.playSound(null, worldPosition, SoundEvents.GENERIC_SPLASH, SoundSource.BLOCKS, 3.0F, 0.5F);
 				level.setBlockAndUpdate(below, fluoride);
 			}

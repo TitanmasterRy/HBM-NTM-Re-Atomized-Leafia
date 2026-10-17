@@ -89,8 +89,8 @@ import net.neoforged.neoforge.client.model.data.ModelData;
  *
  * <ul>
  * <li>A rod group whose rods are not all at one height draws its bar faint. Upstream's test compares the
- *     <em>running sum</em> of positions with the first rod's position, so any group of two or more rods
- *     reads "not all equal" unless the later rods are all at zero. Kept and flagged (D-3010).</li>
+ *     <em>running sum</em> of positions with the first rod's, so any group of two or more rods read
+ *     "not all equal" unless the later rods were all at zero; each rod is compared with the first now (D-3076).</li>
  * <li>A projected position outside the grid's range closes the screen; so does the core going away.</li>
  * <li>The glow over a raised rod is drawn twice, once with the background and once over the finished
  *     screen.</li>
@@ -630,7 +630,7 @@ public class PWRTerminalScreen extends LCEGuiInfoContainer<PWRTerminalMenu> {
 					number++;
 					position += control.position;
 					if(lastPosition != null) {
-						if(position != lastPosition) isAllEqual = false; // upstream compares the running sum (class note)
+						if(control.position != lastPosition) isAllEqual = false; // D-3076: this rod against the first (upstream compared the running sum)
 					} else lastPosition = control.position;
 				}
 			}

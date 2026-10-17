@@ -1062,7 +1062,7 @@ public final class LeafiaBlocks {
 			 * The numbers come from the REGISTRATION, not the class: LinedAsphaltBlock's
 			 * constructor says setResistance(CONCRETE.v) and the registration says
 			 * setResistance(CONCRETE.half()), and in 1.12.2 the later call wins. Reading only
-			 * the constructor would have doubled every one of these.
+			 * the constructor would have doubled every one of these (rule 7).
 			 *
 			 * CONCRETE is 84, and the enum multiplies by 5/3 precisely so 1.12.2's own 3/5 gives
 			 * the number back - so half() is 42 explosion resistance here, exactly 84/2.

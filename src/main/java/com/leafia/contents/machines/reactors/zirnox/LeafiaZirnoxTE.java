@@ -245,11 +245,16 @@ public class LeafiaZirnoxTE extends BlockEntityReactorZirnox implements LeafiaPa
 		void visit(int slot, double divisor);
 	}
 
+	/** The first and last slot of each of the lattice's seven rows (3, 4, 3, 4, 3, 4, 3 channels). */
+	private static final int[] ROW_START = { 0, 3, 7, 10, 14, 17, 21 };
+	private static final int[] ROW_END = { 2, 6, 9, 13, 16, 20, 23 };
+
 	/**
 	 * Upstream's neighbour walk, in upstream's order: straight up and down the 7-wide layout halving with
-	 * each step, along the row halving with each step, and the four diagonals at a half. Transcribed
-	 * literally, including its two oddities (the diagonal guards are {@code > 0}, so slot 0 is never reached
-	 * that way, and the row bounds are the absolute 0-2 and 3-7, so the lower rows read along row two).
+	 * each step, along the row halving with each step, and the diagonals at a half. D-3076 fixes its two
+	 * slips: the row bounds were the absolute 0-2 and 3-7, so every row below the second read back along
+	 * the wrong slots (slot 10 read 9, 8, 7 ... 3 and met 3 and 7 twice); they are the slot's own row now.
+	 * And the diagonal guards were {@code > 0}, so slot 0 was never reached diagonally.
 	 */
 	public static void forEachNeighbour(int slot, NeighbourVisitor visitor) {
 		for(int offset = 1; slot - offset * 7 >= 0; offset += 1) {
@@ -258,37 +263,35 @@ public class LeafiaZirnoxTE extends BlockEntityReactorZirnox implements LeafiaPa
 		for(int offset = 1; slot + offset * 7 < 24; offset += 1) {
 			visitor.visit(slot + offset * 7, Math.pow(2, offset - 1));
 		}
+		int row = 0;
+		while(row < 6 && slot > ROW_END[row]) row++;
+		int rowStart = ROW_START[row];
+		int rowEnd = ROW_END[row];
 		int smod = Math.floorMod(slot, 7);
+		for(int offset = 1; slot - offset >= rowStart; offset += 1) {
+			visitor.visit(slot - offset, Math.pow(2, offset - 1));
+		}
+		for(int offset = 1; slot + offset <= rowEnd; offset += 1) {
+			visitor.visit(slot + offset, Math.pow(2, offset - 1));
+		}
 		if(smod <= 2) {
-			for(int offset = 1; slot - offset >= 0; offset += 1) {
-				visitor.visit(slot - offset, Math.pow(2, offset - 1));
-			}
-			for(int offset = 1; slot + offset <= 2; offset += 1) {
-				visitor.visit(slot + offset, Math.pow(2, offset - 1));
-			}
-			if(slot - 4 > 0)
+			if(slot - 4 >= 0)
 				visitor.visit(slot - 4, 2);
-			if(slot - 3 > 0)
+			if(slot - 3 >= 0)
 				visitor.visit(slot - 3, 2);
 			if(slot + 4 < 24)
 				visitor.visit(slot + 4, 2);
 			if(slot + 3 < 24)
 				visitor.visit(slot + 3, 2);
 		} else {
-			for(int offset = 1; slot - offset >= 3; offset += 1) {
-				visitor.visit(slot - offset, Math.pow(2, offset - 1));
-			}
-			for(int offset = 1; slot + offset <= 7; offset += 1) {
-				visitor.visit(slot + offset, Math.pow(2, offset - 1));
-			}
 			if(smod != 3) {
-				if(slot - 4 > 0)
+				if(slot - 4 >= 0)
 					visitor.visit(slot - 4, 2);
 				if(slot + 3 < 24)
 					visitor.visit(slot + 3, 2);
 			}
 			if(smod != 6) {
-				if(slot - 3 > 0)
+				if(slot - 3 >= 0)
 					visitor.visit(slot - 3, 2);
 				if(slot + 4 < 24)
 					visitor.visit(slot + 4, 2);
@@ -539,18 +542,15 @@ public class LeafiaZirnoxTE extends BlockEntityReactorZirnox implements LeafiaPa
 			level.setBlockAndUpdate(cell, Blocks.AIR.defaultBlockState());
 		level.playSound(null, x, worldPosition.getY() + 2.5, z, NtmSounds.BLOCK_RBMK_EXPLOSION.get(), SoundSource.BLOCKS, 50.0F, 1.0F);
 
-		boolean nope = true;
 		if(prevStack != null && prevStack.getItem() instanceof LeafiaRodItem rod) {
-			nope = false;
 			rod.resetDetonate();
 			rod.detonateRadius = ROD_DETONATE_RADIUS;
 			rod.detonateVisualsOnly = true;
 			rod.detonate(level, worldPosition);
 		}
-		if(nope) {
-			ExplosionNukeGeneric.waste(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), MELTDOWN_WASTE);
-			ChunkRadiationManager.incrementRad(level, worldPosition, MELTDOWN_RAD, MELTDOWN_RAD_MAX);
-		}
+		// D-3076: the fallout and the radiation come with every meltdown (upstream skipped them when an addon rod was inside, whose blast is visuals only)
+		ExplosionNukeGeneric.waste(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), MELTDOWN_WASTE);
+		ChunkRadiationManager.incrementRad(level, worldPosition, MELTDOWN_RAD, MELTDOWN_RAD_MAX);
 
 		replaceWithWreck();
 

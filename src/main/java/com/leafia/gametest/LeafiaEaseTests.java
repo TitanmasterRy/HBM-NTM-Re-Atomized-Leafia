@@ -18,7 +18,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
  * it lists all five. The tests below assert the <b>buggy</b> results on purpose, so that:
  *
  * <ul>
- *   <li>a later contributor cannot "clean up" the easing call and silently change how every particle,
+ *   <li>a later porter cannot "clean up" the easing call and silently change how every particle,
  *       camera shake and cloud in the addon moves; and</li>
  *   <li>if the decision is ever taken to fix them, exactly these assertions fail, which makes
  *       the blast radius of the fix visible before it ships.</li>

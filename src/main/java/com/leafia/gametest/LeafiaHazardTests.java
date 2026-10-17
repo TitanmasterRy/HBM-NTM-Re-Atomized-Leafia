@@ -675,7 +675,11 @@ public class LeafiaHazardTests {
 
 		Player stack = survivor(helper);
 		carryForATick(stack, new ItemStack(item, 5));
-		near(helper, HbmLivingProps.getDigamma(stack), 0.01, "the base mod's type scales with the stack size (D-2287)");
+		// What a stack does is the base mod's digamma type's business, not the addon's: hbm-src ignores the stack size and the
+		// base mod multiplies by it since D-2287. So the carried stack is held to what that type itself gives the same stack.
+		Player probe = survivor(helper);
+		HazardRegistry.DIGAMMA.onUpdate(probe, 0.04F, new ItemStack(item, 5));
+		near(helper, HbmLivingProps.getDigamma(stack), HbmLivingProps.getDigamma(probe), "a carried stack gets what the base mod's digamma type gives it");
 
 		Player creative = helper.makeMockPlayer(GameType.CREATIVE);
 		creative.tickCount = 400;

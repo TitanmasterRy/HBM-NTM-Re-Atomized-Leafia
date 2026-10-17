@@ -162,7 +162,7 @@ public class APRMBUI extends GuiScreenLeafia {
 		if(item.field != null) {
 			if(isHoveringOnField(item.field, mouseX, mouseY)) {
 				if(item.errorType != null)
-					g.renderTooltip(font, Component.literal(I18nUtil.resolveKey("desc.leafia_apr_mb.error." + item.errorType.name())), mouseX, mouseY);
+					g.renderTooltip(font, Component.literal(I18nUtil.resolveKey("desc.leafia.apr_mb.error." + item.errorType.name().toLowerCase(java.util.Locale.ROOT))), mouseX, mouseY);
 			}
 			if(item.deleteOrAdd.isMouseIn(mouseX, mouseY))
 				g.renderTooltip(font, Component.literal(I18nUtil.resolveKey("desc.leafia.apr_mb.delete")), mouseX, mouseY);

@@ -34,23 +34,28 @@ import net.neoforged.api.distmarker.OnlyIn;
  *     {@code LeafiaClient}, because a baked quad draws from the block atlas.</li>
  * <li><b>The ball</b> is drawn when the core has a colour, which is when it is generating. Centred
  *     5.5 blocks above the core, at {@code 0.5 + (fuelA / capacity + fuelB / capacity) x 2.25}
- *     blocks across, it is a black sphere at 1.1 times that size and then six shells of the base
+ *     blocks across, it is a black sphere at 0.45 times that size and then six shells of the base
  *     mod's icosphere at 0.5, 0.6, 0.7, 0.8, 0.9 and 1.0 times it, in the core's colour, added
  *     together and full-bright, spinning in alternate directions at three degrees every tenth of
  *     a second.</li>
  * </ul>
  *
- * <p><b>The black sphere is in front, which is upstream's.</b> Upstream's comment says it used to
+ * <p><b>The black sphere is a core inside the shells (D-3076).</b> Upstream's comment says it used to
  * be {@code sphere_iuv} - the same icosphere with its faces turned inward - and that its author did
- * not know what that was. With the faces turned in, the sphere is a dark backdrop behind the
- * shells; turned out, as upstream now has it, it is the largest thing drawn and the depth test
- * hides every shell behind it, so the core reads as a plain black ball (D-3002).
+ * not know what that was: with the faces turned in, the sphere is a dark backdrop behind the glowing
+ * shells. Turned out, as upstream drew it, it is the largest thing drawn and the depth test hides
+ * every shell behind it, so the core read as a plain black ball (D-3002). It is drawn here at
+ * {@link #BACKDROP} of the ball, inside the smallest shell, which is the backdrop's effect from every angle
+ * without a render type that culls.
  *
  * <p>The spin is upstream's {@code (int) ((nanoTime / 100000000) % 360) * 3}: whole degrees,
  * ten times a second, and so a visible step rather than a smooth turn.
  */
 @OnlyIn(Dist.CLIENT)
 public class AMSBaseRender implements BlockEntityRenderer<AMSBaseTE> {
+
+	/** The black sphere's size against the ball: under the smallest shell's 0.5, so every shell is drawn in front of it. */
+	public static final float BACKDROP = 0.45F;
 
 	public static final ModelResourceLocation MODEL = standalone("block/ams_base");
 	public static final ModelResourceLocation MODEL_BALEFIRE = standalone("block/ams_base_balefire");
@@ -106,7 +111,7 @@ public class AMSBaseRender implements BlockEntityRenderer<AMSBaseTE> {
 		matrix.mulPose(Axis.YP.rotationDegrees(180F));
 		matrix.scale(scale, scale, scale);
 		matrix.mulPose(Axis.YP.rotationDegrees(rot));
-		matrix.scale(1.1F, 1.1F, 1.1F);
+		matrix.scale(BACKDROP, BACKDROP, BACKDROP);
 		sphere(buffers.getBuffer(RenderType.leash()), matrix.last(), 0F, 0F, 0F, 1F, full);
 		matrix.popPose();
 

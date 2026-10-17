@@ -27,11 +27,9 @@ import net.neoforged.api.distmarker.OnlyIn;
  * it is the one that sends them when it closes.
  *
  * <p>There are two tracks, so three rows and a maximum scroll of {@code 2 - 9 = -7}: the scroll
- * bar is drawn in its disabled frame and nothing can scroll. The scroll arithmetic is upstream's
- * all the same, <b>including a latent defect</b>: a row's hover and click area is computed at
- * {@code guiTop + 17 + i * 18} without the scroll offset the row is drawn at, so with more than
- * nine tracks a scrolled list would highlight and select the wrong row. Unreachable with two
- * tracks. Flagged in D-1088, not fixed.
+ * bar is drawn in its disabled frame and nothing can scroll. A row's hover and click area is where the
+ * row is drawn, scroll offset included (D-3076; upstream left the offset out, so a list of more than
+ * nine tracks would have selected the wrong row).
  *
  * <p>Not upstream's: closing this screen by some other route (the player dies, the connection
  * drops) sends the choices directly. Upstream's {@code onGuiClosed} opens a new main screen for
@@ -92,7 +90,7 @@ public class EvRadioUIList extends GuiScreenLeafia {
 			for(int i = scroll; i <= scroll + 8; i++) {
 				if(i < ElevatorMusic.values().length + 1) {
 					int x = guiLeft + 8;
-					int y = guiTop + 17 + i * 18;
+					int y = guiTop + 17 + (i - scroll) * 18; // where the row is drawn (D-3076; upstream left the scroll out)
 					boolean isHovered = mouseX >= x && mouseY >= y && mouseX < x + 223 && mouseY < y + 18;
 					if(isHovered) {
 						if(target == 0)
@@ -167,15 +165,15 @@ public class EvRadioUIList extends GuiScreenLeafia {
 		for(int i = scroll; i <= scroll + 8; i++) {
 			if(i < ElevatorMusic.values().length + 1) {
 				int x = guiLeft + 8;
-				int y = guiTop + 17 + i * 18;
+				int y = guiTop + 17 + (i - scroll) * 18;
 				String s = "None";
 				if(i >= 1) {
 					ElevatorMusic element = ElevatorMusic.values()[i - 1];
 					s = element.artist + " - " + element.title;
 				}
 				boolean isHovered = mouseX >= x && mouseY >= y && mouseX < x + 223 && mouseY < y + 18;
-				graphics.blit(TEXTURE, x, y - scroll * 18, 0, isHovered ? 202 : 184, 223, 18);
-				graphics.drawString(font, s, x + 5, y + 5 - scroll * 18, 0xFFFFFF, true);
+				graphics.blit(TEXTURE, x, y, 0, isHovered ? 202 : 184, 223, 18);
+				graphics.drawString(font, s, x + 5, y + 5, 0xFFFFFF, true);
 			}
 		}
 	}

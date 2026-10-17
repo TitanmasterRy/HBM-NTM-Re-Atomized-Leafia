@@ -14,6 +14,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -26,25 +27,26 @@ import net.minecraft.world.item.ItemStack;
  * identifier slot (7, 17) with its take-only partner (7, 53); the inventory at 121 and the hotbar at 179. Without nuclear
  * mode there are only the first three.
  *
- * <h2>Upstream's shift-click, kept (D-021): it never reaches the ingredients</h2>
+ * <h2>The shift-click (D-3076)</h2>
  *
  * <pre>
- *   LeafiaItemTransfer(3 + 10 + 8): a click in slots 0 to 20 -&gt; the inventory (slots 21 up), from the far end;
- *                                    a click from slot 20 on     -&gt; slots 0 to 2, then (non-nuclear) 3 to 12,
- *                                                                  or (nuclear) 13 to 20.
+ *   LeafiaItemTransfer(machine slots): a click in the machine -&gt; the inventory, from the far end;
+ *                                      a click in the inventory -&gt; (nuclear, a fuel nugget) the ingredient slots,
+ *                                                                 then the battery and the two upgrade slots.
  * </pre>
  *
- * Upstream counts the machine as <b>21 slots</b> - its inventory has 23 - but the menu holds only the slots
- * it added: 13 in nuclear mode (and only 3 without it), with the player's 36 after them. So 21 is a slot of the player's
- * inventory, "13 to 20" are eight more of them, and a stack shift-clicked from the inventory goes to slots 0 to 2 (a battery
- * slot and two upgrade slots, which take anything) and otherwise shuffles inside the inventory. A click in the first eight
- * inventory slots is treated as a click in the machine and goes to the rest of the inventory. The ingredients, the identifier
- * and the salt slot are filled by hand. The numbers are the whole of the chain, so they are kept, and pinned.
+ * Upstream counted the machine as <b>21 slots</b> - its inventory has 23 - but the menu holds only the slots it added: 13 in
+ * nuclear mode (and only 3 without it). So "13 to 20" were eight of the player's own slots and a shift-click never reached an
+ * ingredient; the count is the menu's own now, and a fuel nugget goes to the ingredients before the battery slot (which takes anything).
  *
  * <p>The client builds the same menu from the position the server sent; where it cannot find the vat it opens on an empty
  * container.
  */
 public class MixingVatMenu extends LeafiaItemTransferable {
+
+	/** The six ingredient slots, in this menu's own numbering. */
+	public static final int INGREDIENTS_FROM = 5;
+	public static final int INGREDIENTS_TO = 10;
 
 	/** The block entity the screen reads, or null if the client could not find it. */
 	@Nullable
@@ -101,19 +103,17 @@ public class MixingVatMenu extends LeafiaItemTransferable {
 
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
-		LeafiaItemTransfer transfer = new LeafiaItemTransfer(3 + 10 + 8)._selected(index);
+		boolean nuclear = vat == null || vat.nuclearMode;
+		LeafiaItemTransfer transfer = new LeafiaItemTransfer(nuclear ? 13 : 3)._selected(index);
 		transfer.__forSlots(0, 9999)
 				.__tryMoveToInventory(true)
 
-				.__forInventory()
-
-				.__tryMoveToSlot(0, 2, false);
-		if(vat != null && !vat.nuclearMode)
-			return transfer.__tryMoveToSlot(3, 12, false)
-					.__getReturn();
-		else
-			return transfer.__tryMoveToSlot(13, transfer.__maxIndex, false)
-					.__getReturn();
+				.__forInventory();
+		Slot clicked = index >= 0 && index < this.slots.size() ? this.slots.get(index) : null;
+		if(nuclear && clicked != null && MixingVatTE.getFuelType(clicked.getItem()) != null)
+			transfer.__tryMoveToSlot(INGREDIENTS_FROM, INGREDIENTS_TO, false);
+		return transfer.__tryMoveToSlot(0, 2, false)
+				.__getReturn();
 	}
 
 	@Override

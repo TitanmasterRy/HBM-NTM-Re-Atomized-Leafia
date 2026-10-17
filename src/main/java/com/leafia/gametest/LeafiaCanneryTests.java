@@ -633,6 +633,8 @@ public class LeafiaCanneryTests {
 		helper.assertTrue(vat.rotation() == 358F, "twenty-seven ticks in it has reached 358: " + vat.rotation());
 		vat.updateActor(32, data);
 		helper.assertTrue(vat.rotation() == 7F && vat.previousRotation() == -2F, "the next wraps it to 7, and its last tick's copy with it to -2: " + vat.rotation() + " / " + vat.previousRotation());
+		vat.updateActor(0, new CompoundTag());
+		helper.assertTrue(vat.rotation() == 115F && vat.previousRotation() == 115F, "a rewound scene starts the blade again at 115 (D-3076): " + vat.rotation());
 		helper.succeed();
 	}
 

@@ -625,6 +625,7 @@
   "cannery.leafia.pwr.c": "It also moderates neutrons that passes through, significantly boosting fission reaction.",
   "cannery.leafia.pwr.d": "Graphite blocks also can be used to moderate neutrons.",
   "cannery.leafia.pwr.e": "PWR Fuel Rods can be stacked to increase fuel efficiency.",
+  "cannery.test": "Cannery Test",
   "chat.detonated": "Detonated",
   "chat.posbadrror": "[Error]: Target can not be detonated.",
   "chat.postoofarerror": "[Error]: Target incompatible or too far away.",

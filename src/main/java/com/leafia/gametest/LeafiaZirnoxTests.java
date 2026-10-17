@@ -277,6 +277,13 @@ public class LeafiaZirnoxTests {
 
 	// ---- upstream's walk and meltdown ------------------------------------------------------
 
+	private static int rowOf(int slot) {
+		int[] ends = { 2, 6, 9, 13, 16, 20, 23 };
+		int row = 0;
+		while(slot > ends[row]) row++;
+		return row;
+	}
+
 	private static List<String> walk(int slot) {
 		List<String> out = new ArrayList<>();
 		LeafiaZirnoxTE.forEachNeighbour(slot, (s, d) -> out.add(s + "/" + (int) d));
@@ -284,15 +291,23 @@ public class LeafiaZirnoxTests {
 	}
 
 	@GameTest(template = EMPTY)
-	public static void theNeighbourWalkIsUpstreamsIncludingItsRowBounds(GameTestHelper helper) {
+	public static void theNeighbourWalkStaysInItsRowBounds(GameTestHelper helper) {
 		// slot 0: down its column at 1, 2, 4; along its row at 1, 2; the two diagonals that exist, at 2
 		helper.assertTrue(walk(0).equals(List.of("7/1", "14/2", "21/4", "1/1", "2/2", "4/2", "3/2")), "slot 0: " + walk(0));
-		// slot 10 is in a row of four, whose walk is bounded by the absolute 3..7: it reads back to slot 3 and
-		// meets slots 3 and 7 twice each
-		helper.assertTrue(walk(10).equals(List.of("3/1", "17/1", "9/1", "8/2", "7/4", "6/8", "5/16", "4/32", "3/64", "7/2", "14/2")),
+		// slot 10 starts the fourth row (10..13): the row is its own bound (D-3076; upstream's absolute 3..7 made it read back
+		// along 9, 8, 7 ... 3 and meet 3 and 7 twice), and it has no diagonal on its left
+		helper.assertTrue(walk(10).equals(List.of("3/1", "17/1", "11/1", "12/2", "13/4", "7/2", "14/2")),
 				"slot 10: " + walk(10));
-		// slot 4: the diagonal to slot 0 is guarded by "> 0", so it is never read
-		helper.assertTrue(!walk(4).contains("0/2"), "slot 4 never reads slot 0 diagonally: " + walk(4));
+		// slot 4: the diagonal to slot 0 is guarded by ">= 0" now (upstream's "> 0" never read it)
+		helper.assertTrue(walk(4).contains("0/2"), "slot 4 reads slot 0 diagonally: " + walk(4));
+		// every channel's neighbours are in its own row, in the rows beside it, or in its column
+		for(int slot = 0; slot < 24; slot++) {
+			final int s = slot;
+			LeafiaZirnoxTE.forEachNeighbour(slot, (n, d) -> {
+				int rowS = rowOf(s), rowN = rowOf(n);
+				helper.assertTrue(rowS == rowN || Math.abs(rowS - rowN) == 1 || (n - s) % 7 == 0, "slot " + s + " reads " + n + " out of its reach");
+			});
+		}
 		helper.succeed();
 	}
 

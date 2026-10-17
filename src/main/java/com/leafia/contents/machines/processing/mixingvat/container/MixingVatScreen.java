@@ -33,12 +33,10 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
  * <li>The void button is at (156, 39), 8 by 8; its tooltip reads "Void Contents", and a left click sends key 0.</li>
  * </ul>
  *
- * <h2>An upstream slip, kept: both tank tooltips show the output tank</h2>
+ * <h2>An upstream slip, fixed (D-3076): both tank tooltips showed the output tank</h2>
  *
- * Upstream calls {@code renderTankInfo} twice with {@code vat.tankNc1} - once at the input's rectangle (offset by one
- * pixel to the right, 27 rather than 26) and once at the output's. So hovering the input tank names the <b>output</b>'s
- * contents and amount. Nothing is lost - the tank itself is drawn right, and a hover over a full input and an empty
- * output reads empty - but it misleads, and it is kept ({@link MixingVatTE#tooltipTank}) and flagged, not corrected (D-021).
+ * Upstream called {@code renderTankInfo} twice with {@code vat.tankNc1}, so hovering the input tank named the <b>output</b>'s
+ * contents and amount. Each tooltip names its own tank now ({@link MixingVatTE#tooltipTank}).
  */
 @OnlyIn(Dist.CLIENT)
 public class MixingVatScreen extends LCEGuiInfoContainer<MixingVatMenu> {

@@ -113,12 +113,10 @@ import net.neoforged.neoforge.event.level.BlockEvent.NeighborNotifyEvent;
  *
  * <h2>Upstream's oddities, kept</h2>
  * <ol>
- * <li><b>A rejected chamber list empties the reactor's.</b> {@link #setChambers} clears the list before it checks
- *     the request, and on an intersection it returns without adding anything back, so the structure map is rebuilt
- *     from nothing. The editor marks intersections in red, but still sends them on close.</li>
- * <li><b>The damage only falls while the hottest chamber is under 500</b>, and "hottest" is computed as
- *     {@code max(highest, temperature)} where {@code highest} is the hottest from <em>before</em> this tick's heating
- *     - so a chamber that cooled through 500 this tick is read as still hot.</li>
+ * <li>(Fixed, D-3076) <b>A rejected chamber list emptied the reactor's</b>: {@link #setChambers} cleared the list before it
+ *     checked the request; a rejected one now leaves the old list in place. The editor marks intersections in red, but still sends them on close.</li>
+ * <li>(Fixed, D-3076) <b>The damage only falls while the hottest chamber is under 500</b>, and "hottest" is this tick's; upstream
+ *     folded in the hottest from <em>before</em> the tick's heating.</li>
  * <li>Funnel and void share packet id 5: the client reads it as the funnel, the server as the void button.</li>
  * <li>A void request empties every particle above the last whole thousand - {@code particles = 0} - and pays one
  *     empty capsule per thousand it takes out of the player's inventory, stopping silently at the first it cannot
@@ -663,7 +661,6 @@ public class APRCoreTE extends BlockEntityMachineBase implements LeafiaPacketRec
 
 	/** Upstream's: clamps each radius to 1 to 32, sorts, and with {@code canReject} gives up on any two within 3. */
 	public void setChambers(Object received, boolean canReject) {
-		this.chambers.clear();
 		List<Integer> chambers = new ArrayList<>();
 		if(received instanceof int[] radii) {
 			for(int r : radii)
@@ -676,6 +673,8 @@ public class APRCoreTE extends BlockEntityMachineBase implements LeafiaPacketRec
 				return;
 			lastR = r;
 		}
+		// D-3076: the old list is replaced only by an accepted one (upstream cleared it first, so a rejected request emptied the reactor's chambers)
+		this.chambers.clear();
 		this.chambers.addAll(chambers);
 		rebuildMBRequirement();
 	}
@@ -991,7 +990,7 @@ public class APRCoreTE extends BlockEntityMachineBase implements LeafiaPacketRec
 				}
 				data.blanketTemp = (data.blanketTemp - 20) * 0.998 + 20;
 				curPage++;
-				highestTemp = Math.max(highest, data.blanketTemp);
+				highestTemp = Math.max(highestTemp, data.blanketTemp); // D-3076: this tick's hottest (upstream folded in the hull's pre-heating one)
 				if(data.blanketTemp > BLANKET_MELT)
 					damaging = true;
 			}

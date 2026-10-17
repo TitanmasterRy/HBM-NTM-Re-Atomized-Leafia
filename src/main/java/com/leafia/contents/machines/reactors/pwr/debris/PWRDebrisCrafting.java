@@ -19,9 +19,9 @@ import net.minecraft.world.level.Level;
  * (a generator script writes it). As upstream:
  *
  * <ul>
- * <li>All nine slots must hold the same stack - same item, same tag <b>and same count</b> (1.12.2's
- *     {@code areItemStacksEqual}, {@link ItemStack#matches} here) - of a debris item that may be crafted
- *     back (not the shard) and that carries a tag. So it needs a 3x3 grid.</li>
+ * <li>All nine slots must hold the same item with the same tag - the count is ignored (D-3076; upstream's
+ *     {@code areItemStacksEqual} also compared counts, so nine debris of 3,3,3,3,3,3,3,3,2 would not craft) - of a
+ *     debris item that may be crafted back (not the shard) and that carries a tag. So it needs a 3x3 grid.</li>
  * <li>The result is one plain item of the named block: the block's state is not carried, as upstream's
  *     {@code new ItemStack(block)} dropped the metadata. A name no block has gives nothing.</li>
  * </ul>
@@ -41,7 +41,7 @@ public class PWRDebrisCrafting extends CustomRecipe {
 		for(int i = 0; i < 9; i++) {
 			ItemStack stack = inv.getItem(i);
 			if(oneStack == null) oneStack = stack;
-			if(!ItemStack.matches(oneStack, stack)) return false;
+			if(!ItemStack.isSameItemSameComponents(oneStack, stack)) return false;
 		}
 		if(oneStack.isEmpty()) return false;
 		if(oneStack.getItem() instanceof PWRDebrisItem item)

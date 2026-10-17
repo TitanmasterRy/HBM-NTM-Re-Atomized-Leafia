@@ -246,6 +246,9 @@ public final class PWRMeltdown {
 	 */
 	public static Plan plan(PWRData data, PWRExplosion boom, RayLookup rays, RandomSource rand) {
 		Level world = boom.world;
+		// centerPoint is the mean of the members' lower corners, so the middle of the reactor is centerPoint + 0.5; a ray is a member's
+		// middle less that middle, i.e. its corner less the mean (D-3076: upstream measured from the member's middle to the mean corner,
+		// pushing every ray half a block toward +x/+y/+z and making the meltdown lopsided)
 		Vec3 centerPoint = boom.centerPoint;
 		Plan plan = new Plan();
 		plan.members.addAll(data.members);
@@ -253,7 +256,7 @@ public final class PWRMeltdown {
 		int n = plan.members.size();
 		Vec3 pressure = Vec3.ZERO;
 		for(BlockPos member : plan.members) {
-			Vec3 ray = Vec3.atLowerCornerOf(member).add(0.5, 0.5, 0.5).subtract(centerPoint);
+			Vec3 ray = Vec3.atLowerCornerOf(member).subtract(centerPoint);
 			BlockState state = world.getBlockState(member);
 			if(!state.isSolid()) {
 				pressure = pressure.add(ray.scale(2d / n));
@@ -270,7 +273,7 @@ public final class PWRMeltdown {
 			int counter = 0;
 			int threshold = 7 + rand.nextInt(3);
 			for(double s = 0; s <= 2; s += 0.2) {
-				BlockPos rayHit = BlockPos.containing(centerPoint.add(ray.scale(Math.pow(s, 1.5) + 1)));
+				BlockPos rayHit = BlockPos.containing(centerPoint.add(0.5, 0.5, 0.5).add(ray.scale(Math.pow(s, 1.5) + 1)));
 				if(rays.open(rayHit) || memberSet.contains(rayHit)) {
 					if(++counter >= threshold) {
 						plan.vaporized.add(member);
@@ -364,7 +367,7 @@ public final class PWRMeltdown {
 				if(!(state.getBlock() instanceof LiquidBlock) && LeafiaUtil.isSolidVisibleCube(state, world, pos)) {
 					if(state.getDestroySpeed(world, pos) >= 1) {
 						for(int i = 0; i < debrisPerBlock; i++) {
-							Vec3 ray = Vec3.atLowerCornerOf(pos).add(0.5, 0.5, 0.5).subtract(centerPoint);
+							Vec3 ray = Vec3.atLowerCornerOf(pos).subtract(centerPoint);
 							PWRDebrisEntity debris = new PWRDebrisEntity(world, pos.getX() + 0.5D, pos.getY() + 0.5, pos.getZ() + 0.5D, state);
 							double mx = PWRData.signedPow(ray.x, 1) / reactorSize * (1 + rand.nextDouble() * 4) + PWRData.signedPow(pressure.x, 0.8) / 2;
 							double my = PWRData.signedPow(ray.y, 1) / reactorSize * (1 + rand.nextDouble() * 4) + PWRData.signedPow(pressure.y, 0.8) / 2;
@@ -449,7 +452,7 @@ public final class PWRMeltdown {
 			Set<BlockPos> placeWrecks, Set<BlockPos> antiPlaceSet, RandomSource rand) {
 		BlockState state = lv3(member, placeMap, world);
 		Block block = state.getBlock();
-		Vec3 ray = Vec3.atLowerCornerOf(member).add(0.5, 0.5, 0.5).subtract(centerPoint);
+		Vec3 ray = Vec3.atLowerCornerOf(member).subtract(centerPoint);
 
 		if(block instanceof PWRControlBlock) {
 			world.setBlockAndUpdate(member, ModBlocks.block_electrical_scrap.get().defaultBlockState());

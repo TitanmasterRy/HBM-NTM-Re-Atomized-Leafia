@@ -147,8 +147,13 @@ public class PWRElementTE extends BlockEntityLoadedBase implements PWRComponentE
 		super(type, pos, state);
 	}
 
-	/** Upstream's {@code isRadResistant(world, pos)} test for the trace: implements the interface (CE's default answers true). */
+	/**
+	 * Upstream's {@code isRadResistant(world, pos)} test for the trace: implements the interface (CE's default answers true).
+	 * D-3076: the addon's own shielding blocks answer by their flag, so the cracked and broken dark concrete, which do not shield
+	 * radiation, no longer stop the neutrons either (upstream never overrode the default for them).
+	 */
 	public static boolean stopsNeutrons(BlockState state) {
+		if(state.getBlock() instanceof com.leafia.dev.blocks.blockbase.AddonRadResistantBlockBaked b) return b.isRadResistant();
 		return state.getBlock() instanceof IRadResistantBlock;
 	}
 
@@ -758,7 +763,7 @@ public class PWRElementTE extends BlockEntityLoadedBase implements PWRComponentE
 			} else if(data.getInt("spillage") > 100) {
 				if(gathered != null && gathered.tankTypes[1].hasTrait(FT_Gaseous.class)) {
 					for(int i = 0; i < height; i++)
-						level.setBlockAndUpdate(worldPosition.below(height), rod.corium().defaultBlockState());
+						level.setBlockAndUpdate(worldPosition.below(i), rod.corium().defaultBlockState()); // D-3076: down the column (upstream wrote the block under it, height times)
 					gathered.explode(level, stack, null, 0);
 				} else {
 					BlockPos pos = this.worldPosition.below(height);

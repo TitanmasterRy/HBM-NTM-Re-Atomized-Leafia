@@ -128,13 +128,18 @@ public class LeafiaRodFuelTests {
 	}
 
 	@GameTest(template = BIG)
-	public static void theReactorAndTheDrumTakeARodInAnySlot(GameTestHelper helper) {
+	public static void theReactorTakesARodInSlotZeroOnlyAndTheDrumInAnySlot(GameTestHelper helper) {
 
 		if(!on()) { helper.succeed(); return; }
 
 		BlockEntityReactorResearch reactor = reactor(helper);
 		ItemStack rod = stack("nu");
-		helper.assertTrue(reactor.canPlaceItem(0, rod) && reactor.canPlaceItem(1, rod) && reactor.canPlaceItem(11, rod), "any of the twelve slots, as the base mod's fixed guard has it (D-2286)");
+		// Which slots take fuel is the base reactor's guard (slot 0 only upstream, all twelve since the base mod's D-2286); the
+		// addon's rod must simply be taken wherever the reactor's own plate fuel is.
+		ItemStack plate = new ItemStack(com.hbm.items.ModItems.plate_fuel_u235.get());
+		helper.assertTrue(reactor.canPlaceItem(0, rod), "slot 0 takes the rod");
+		for(int slot : new int[] { 1, 11 })
+			helper.assertTrue(reactor.canPlaceItem(slot, rod) == reactor.canPlaceItem(slot, plate), "slot " + slot + " treats the rod as it treats plate fuel");
 
 		helper.setBlock(new BlockPos(2, 2, 2), ModBlocks.machine_waste_drum.get());
 		BlockEntityWasteDrum drum = (BlockEntityWasteDrum) helper.getBlockEntity(new BlockPos(2, 2, 2));

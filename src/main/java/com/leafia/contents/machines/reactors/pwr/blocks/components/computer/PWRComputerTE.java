@@ -43,9 +43,9 @@ import net.minecraft.world.level.block.state.BlockState;
  * {@link #queryValues()} keeps the ten values under their names as floats. Whatever integration lands
  * later (a computer mod, or the control panel if it is ever adopted) calls these.
  *
- * <p><b>Upstream's bug, kept:</b> {@link #getTankCapacities()} answers the three tank <em>fills</em>,
- * the same as {@link #getTankFills()}; its doc says capacities. {@link #queryValues()}'s
- * {@code capacity_*} values are the real capacities.
+ * <p>{@link #getTankCapacities()} answers the three tank capacities (D-3076: upstream's body answered the
+ * <em>fills</em>, the same as {@link #getTankFills()}, whatever its doc said); {@link #queryValues()}'s
+ * {@code capacity_*} values are the same numbers.
  */
 public class PWRComputerTE extends PWRAssignableEntity implements IControllable {
 
@@ -115,10 +115,10 @@ public class PWRComputerTE extends PWRAssignableEntity implements IControllable 
 		return new int[] {0, 0, 0};
 	}
 
-	/** Upstream's doc says capacities; upstream's body answers fills. Kept (class doc). */
+	/** The three tanks' capacities (D-3076: upstream's body answered the fills, whatever its doc said). */
 	public int[] getTankCapacities() {
 		PWRData core = getCoreByCorePos();
-		if(core != null) return new int[] {core.tanks[0].getFill(), core.tanks[1].getFill(), core.tanks[2].getFill()};
+		if(core != null) return new int[] {core.tanks[0].getMaxFill(), core.tanks[1].getMaxFill(), core.tanks[2].getMaxFill()};
 		return new int[] {0, 0, 0};
 	}
 

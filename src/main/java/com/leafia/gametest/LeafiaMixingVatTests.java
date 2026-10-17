@@ -558,12 +558,12 @@ public class LeafiaMixingVatTests {
 	}
 
 	/**
-	 * Upstream counts the machine as 21 slots in {@code LeafiaItemTransfer} and builds a menu of 13, so its "slots 13 to
-	 * 20" are the first eight of the player's own inventory. Nothing a shift-click does reaches an ingredient slot, the
-	 * identifier or the salt slot.
+	 * Upstream counted the machine as 21 slots in {@code LeafiaItemTransfer} and built a menu of 13, so a shift-click
+	 * never reached an ingredient slot. The count is the menu's own now (D-3076): a fuel nugget goes to the ingredients,
+	 * anything else to the battery and upgrade slots, and nothing is shuffled inside the inventory.
 	 */
 	@GameTest(template = EMPTY)
-	public static void theShiftClickNeverReachesTheIngredients(GameTestHelper helper) {
+	public static void theShiftClickReachesTheIngredients(GameTestHelper helper) {
 		if(!on()) { helper.succeed(); return; }
 		MixingVatTE vat = core(helper);
 		ServerPlayer player = mockPlayer(helper);
@@ -577,29 +577,39 @@ public class LeafiaMixingVatTests {
 		helper.assertTrue(vat.slots[13].isEmpty() && inventory.getItem(8).is(Items.COBBLESTONE) && inventory.getItem(8).getCount() == 10, "from the machine, to the far end");
 		inventory.clearContent();
 
-		// so does a click in the first eight inventory slots: upstream counts them as the machine's
+		// a click in the first inventory slot is an inventory click now: cobblestone goes to the battery slot, not within the inventory
 		inventory.setItem(9, new ItemStack(Items.COBBLESTONE, 10));
 		menu.quickMoveStack(player, 13);
-		helper.assertTrue(inventory.getItem(9).isEmpty() && inventory.getItem(8).is(Items.COBBLESTONE), "a click in inventory slot 9 goes to the far end");
+		helper.assertTrue(inventory.getItem(9).isEmpty() && vat.slots[0].is(Items.COBBLESTONE), "an inventory click goes to the machine's first slot: " + vat.slots[0]);
+		vat.slots[0] = ItemStack.EMPTY;
 		inventory.clearContent();
 
-		// a click further on goes to the battery slot first, which takes anything
+		// a stack that is not a fuel nugget goes to slot 0 first, which takes anything
 		inventory.setItem(20, new ItemStack(Items.COBBLESTONE, 10));
 		menu.quickMoveStack(player, 13 + 11);
 		helper.assertTrue(vat.slots[0].is(Items.COBBLESTONE) && vat.slots[0].getCount() == 10, "to slot 0");
 		for(int i = 3; i < MixingVatTE.SLOTS; i++)
 			helper.assertTrue(vat.slots[i].isEmpty(), "and none to container slot " + i);
 
-		// with slots 0 to 2 full of something else, it lands in the player's own slots 13 to 20: a shuffle
+		// with slots 0 to 2 full of something else, nothing moves at all
 		inventory.clearContent();
 		vat.slots[0] = new ItemStack(Items.STONE);
 		vat.slots[1] = new ItemStack(Items.STONE);
 		vat.slots[2] = new ItemStack(Items.STONE);
 		inventory.setItem(30, new ItemStack(Items.COBBLESTONE, 10));
 		menu.quickMoveStack(player, 13 + 21);
-		helper.assertTrue(inventory.getItem(30).isEmpty() && inventory.getItem(9).is(Items.COBBLESTONE), "into the first inventory slot, as a shuffle");
-		for(int i = 3; i < MixingVatTE.SLOTS; i++)
-			helper.assertTrue(vat.slots[i].isEmpty(), "and still none to container slot " + i);
+		helper.assertTrue(inventory.getItem(30).getCount() == 10 && inventory.getItem(9).isEmpty(), "nothing is shuffled within the inventory");
+
+		// a fuel nugget goes to the ingredient slots first (tile slots 15 to 20)
+		vat.slots[0] = ItemStack.EMPTY;
+		vat.slots[1] = ItemStack.EMPTY;
+		vat.slots[2] = ItemStack.EMPTY;
+		inventory.clearContent();
+		inventory.setItem(20, new ItemStack(ModItems.nugget_th232.get(), 4));
+		menu.quickMoveStack(player, 13 + 11);
+		boolean landed = false;
+		for(int i = 15; i <= 20; i++) landed |= !vat.slots[i].isEmpty();
+		helper.assertTrue(landed && vat.slots[0].isEmpty(), "a fuel nugget lands in an ingredient slot, not the battery slot (D-3076)");
 		helper.succeed();
 	}
 
@@ -624,8 +634,8 @@ public class LeafiaMixingVatTests {
 		helper.assertTrue(vat.fillLevel() == 1F && white[0] == 1F && white[1] == 1F && white[2] == 1F, "the other mode draws a full, white tank");
 		vat.nuclearMode = true;
 
-		helper.assertTrue(vat.tooltipTank(true) == vat.tankNc1 && vat.tooltipTank(false) == vat.tankNc1,
-				"both tank tooltips read the output tank, as upstream's (D-021)");
+		helper.assertTrue(vat.tooltipTank(true) == vat.tankNc0 && vat.tooltipTank(false) == vat.tankNc1,
+				"each tank tooltip reads its own tank (D-3076; upstream's read the output twice)");
 		helper.succeed();
 	}
 

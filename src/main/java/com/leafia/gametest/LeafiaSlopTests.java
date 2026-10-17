@@ -406,6 +406,22 @@ public class LeafiaSlopTests {
 		helper.succeed();
 	}
 
+	/** A partly built layer costs only the cells it lacks (D-3076; upstream charged 9 - fuel % 9 and wrote all nine). */
+	@GameTest(template = EMPTY)
+	public static void aPartialLayerCostsOnlyWhatItLacks(GameTestHelper helper) {
+
+		Rig rig = build(helper, Direction.NORTH);
+		SlopTE slop = rig.slop;
+		for(int i = 0; i < 5; i++) helper.setBlock(rig.cell(1 + i % 3, -1 + i / 3, 1), toxic()); // five of layer 1's nine
+		slop.setItem(SlopTE.SLOT_FUEL, uranium(3));
+		slop.updateEntity();
+		helper.assertTrue(rig.count(1, ModBlocks.toxic_block.get()) == 5 && slop.getItem(SlopTE.SLOT_FUEL).getCount() == 3, "three ingots do not buy four missing cells");
+		slop.setItem(SlopTE.SLOT_FUEL, uranium(4));
+		slop.updateEntity();
+		helper.assertTrue(rig.count(1, ModBlocks.toxic_block.get()) == 9 && slop.getItem(SlopTE.SLOT_FUEL).isEmpty(), "four ingots complete it");
+		helper.succeed();
+	}
+
 	/**
 	 * Any toxic source block in the core is fuel - a hand-placed one too. Upstream asks for
 	 * {@code level == 0}, and the base mod's {@code toxic_block} now has a level, so flowing fluid
@@ -606,7 +622,8 @@ public class LeafiaSlopTests {
 
 		slop.on = true;
 		helper.setBlock(rig.centre.offset(2, 0, 2), Blocks.AIR); // a frame cell
-		slop.updateEntity();
+		// a formed reactor is re-read every SlopTE.FORM_RECHECK ticks (D-3076)
+		for(int i = 0; i < SlopTE.FORM_RECHECK && slop.formed; i++) slop.updateEntity();
 		helper.assertTrue(!slop.formed && !slop.on, "a broken reactor stayed on: formed " + slop.formed + ", on " + slop.on);
 		helper.succeed();
 	}
@@ -923,7 +940,7 @@ public class LeafiaSlopTests {
 
 			player.setPos(at.x, at.y, at.z);
 			helper.setBlock(rig.centre.offset(2, 2, 2), Blocks.AIR);
-			rig.slop.updateEntity();
+			for(int i = 0; i < SlopTE.FORM_RECHECK && rig.slop.formed; i++) rig.slop.updateEntity(); // re-read every FORM_RECHECK ticks (D-3076)
 			helper.assertTrue(!menu.stillValid(player), "a broken reactor is still valid");
 			menu.removed(player);
 			helper.succeed();

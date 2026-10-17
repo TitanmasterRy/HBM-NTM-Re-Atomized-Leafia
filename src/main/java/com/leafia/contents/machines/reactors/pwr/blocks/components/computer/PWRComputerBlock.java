@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.hbm.blocks.IRadResistantBlock;
 import com.hbm.blocks.ITooltipProvider;
 import com.hbm.handler.radiation.ChunkRadiationManager;
+import com.leafia.contents.machines.reactors.pwr.PWRTicks;
 import com.leafia.contents.machines.reactors.pwr.blocks.components.PWRAssignableEntity;
 import com.leafia.contents.machines.reactors.pwr.blocks.components.PWRComponentBlock;
 import com.leafia.dev.blocks.BlastResistanceTooltip;
@@ -75,6 +76,9 @@ public class PWRComputerBlock extends Block implements ITooltipProvider, PWRComp
 	protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
 		if(!oldState.is(state.getBlock())) ChunkRadiationManager.markSectionForRebuild(level, pos);
 		super.onPlace(state, level, pos, oldState, movedByPiston);
+		// D-3076: every other component starts a diagnosis when placed; the control port did not, so it joined a reactor only when something else was touched
+		if(!level.isClientSide && !oldState.is(state.getBlock()))
+			PWRTicks.queueFunction(() -> beginDiagnosis(level, pos, pos));
 	}
 
 	@Override

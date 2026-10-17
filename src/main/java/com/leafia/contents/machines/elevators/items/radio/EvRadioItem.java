@@ -152,6 +152,14 @@ public class EvRadioItem extends Item {
 		stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
 	}
 
+	/** The radio the player is holding: the main hand's, else the off hand's (D-3076; upstream asked the main hand only, so an off-hand radio's screen never loaded). */
+	@Nullable
+	public static ItemStack heldRadio(Player player) {
+		if(player.getMainHandItem().getItem() instanceof EvRadioItem) return player.getMainHandItem();
+		if(player.getOffhandItem().getItem() instanceof EvRadioItem) return player.getOffhandItem();
+		return null;
+	}
+
 	/**
 	 * Opens the screen on the client; the server does nothing. Both hands succeed, as upstream's
 	 * does - see the class note for what that means for the off hand.
@@ -187,8 +195,8 @@ public class EvRadioItem extends Item {
 			return ctx -> {
 				if(ctx.flow() != PacketFlow.SERVERBOUND) return;
 				Player player = ctx.player();
-				ItemStack stack = player.getMainHandItem();
-				if(stack.getItem() instanceof EvRadioItem) {
+				ItemStack stack = heldRadio(player);
+				if(stack != null) {
 					Selection selection = read(stack);
 					EvRadioUIPacket packet = new EvRadioUIPacket();
 					packet.upOrdinal = selection.up();
@@ -236,9 +244,9 @@ public class EvRadioItem extends Item {
 					if(FMLEnvironment.dist.isClient()) ClientOnly.handleLocal(up, down, idle);
 				} else {
 					Player player = ctx.player();
-					ItemStack stack = player.getMainHandItem();
-					if(!(stack.getItem() instanceof EvRadioItem)) {
-						PacketGuard.reject("EvRadioUIPacket", player, "no radio in the main hand");
+					ItemStack stack = heldRadio(player);
+					if(stack == null) {
+						PacketGuard.reject("EvRadioUIPacket", player, "no radio in either hand");
 						return;
 					}
 					// D-1094: an ordinal is -1 (none) or a track that exists. Upstream folded anything else

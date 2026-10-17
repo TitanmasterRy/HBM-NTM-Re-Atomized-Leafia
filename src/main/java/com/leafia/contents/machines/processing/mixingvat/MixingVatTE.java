@@ -207,11 +207,11 @@ public class MixingVatTE extends BlockEntityMachineBase implements LeafiaPacketR
 	}
 
 	/**
-	 * The tank whose contents the tooltip over the input ({@code left}) or the output shows: <b>the output, for both</b>.
-	 * Upstream's screen calls {@code renderTankInfo} twice with {@code tankNc1} (D-021, kept; {@code MixingVatScreen}).
+	 * The tank whose contents the tooltip over the input ({@code left}) or the output shows. D-3076: upstream's screen
+	 * called {@code renderTankInfo} twice with {@code tankNc1}, so hovering the input read the output's contents.
 	 */
 	public FluidTank tooltipTank(boolean left) {
-		return tankNc1;
+		return left ? tankNc0 : tankNc1;
 	}
 
 	// ---- the fuels -------------------------------------------------------------------------
