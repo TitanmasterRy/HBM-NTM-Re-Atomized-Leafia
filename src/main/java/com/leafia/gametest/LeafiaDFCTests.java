@@ -279,7 +279,7 @@ public class LeafiaDFCTests {
 	}
 
 	@GameTest(template = BIG)
-	public static void aCollapsingCoreTakesTheSurvivalCrucifixButNeverTheFixTool(GameTestHelper helper) {
+	public static void aCollapsingCoreTakesBothCrucifixes(GameTestHelper helper) {
 		// The 16-high template: the line of sight is taken from six blocks above the core (D-967), and
 		// the 5-high one's ceiling is in the way.
 		BlockPos at = new BlockPos(8, 1, 8);
@@ -288,7 +288,7 @@ public class LeafiaDFCTests {
 		core.tanks[1].setFill(1000);
 		BlockPos abs = helper.absolutePos(at);
 
-		// fix_tool first: upstream's loop skips it before the branch that names it.
+		// fix_tool first: D-3075, upstream's loop skipped it before the branch that names it.
 		ItemEntity tool = new ItemEntity(helper.getLevel(), abs.getX() + 1.5, abs.getY() + 0.5, abs.getZ() + 0.5, new ItemStack(LeafiaItems.fix_tool.get()));
 		tool.setNoGravity(true);
 		helper.getLevel().addFreshEntity(tool);
@@ -296,9 +296,11 @@ public class LeafiaDFCTests {
 		core.setDFCCollapsing(0.1);
 		core.setDFCStabilizers(8); // 80 - 8 x 10 = 0: the survival crucifix cannot fail
 		core.updateEntity();
-		helper.assertTrue(tool.isAlive(), "upstream's fix_tool is skipped and survives");
-		helper.assertTrue(core.getDFCTemperature() > 0 && core.tanks[0].getFill() == 1000, "and fixes nothing");
+		helper.assertTrue(!tool.isAlive(), "the fix_tool is consumed (D-3075)");
+		helper.assertTrue(core.getDFCTemperature() == 0 && core.tanks[0].getFill() == 0, "and resets the core");
 		tool.discard();
+		core.tanks[0].setFill(1000);
+		core.tanks[1].setFill(1000);
 
 		ItemEntity survival = new ItemEntity(helper.getLevel(), abs.getX() + 1.5, abs.getY() + 0.5, abs.getZ() + 0.5, new ItemStack(LeafiaItems.fix_survival.get()));
 		survival.setNoGravity(true);
@@ -319,7 +321,7 @@ public class LeafiaDFCTests {
 
 	@GameTest(template = EMPTY)
 	public static void theDetonationRadiusIsUpstreamsTable(GameTestHelper helper) {
-		int[] expected = {0, 0, 130, 260, 390, 430, 590, 750, 910, 1170, 1430};
+		int[] expected = {0, 0, 130, 260, 390, 520, 650, 780, 910, 1170, 1430};
 		for(int p = 0; p <= 10; p++)
 			helper.assertTrue(LeafiaCoreTE.detonationRadius(p) == expected[p], p + " detonators: " + LeafiaCoreTE.detonationRadius(p) + ", expected " + expected[p]);
 		helper.assertTrue(CoreDetonatorTE.consumption == 5_000_000_000_000L, "five trillion HE a tick");

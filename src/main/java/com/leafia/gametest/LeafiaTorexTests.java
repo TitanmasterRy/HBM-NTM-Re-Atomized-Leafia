@@ -161,7 +161,7 @@ public class LeafiaTorexTests {
 	public static void theSimulationClock(GameTestHelper helper) {
 		// scale 1: boost from 4/3 down to 1 over ten seconds, flat to thirty, then down to a quarter, then the wind-down
 		assertClose(helper, 4.0 / 3, TorexMath.simulationSpeed(0, 0, 900, 1), 1e-12, "t=0 is the boost's full height");
-		assertClose(helper, 7.0 / 6, TorexMath.simulationSpeed(100, 100, 900, 1), 1e-12, "t=100 is half way down it");
+		assertClose(helper, 4.0 / 3 - (1.0 / 3) * (1 - Math.pow(2, -5)), TorexMath.simulationSpeed(100, 100, 900, 1), 1e-12, "t=100 is expo-out of the way down it (D-3075)");
 		assertClose(helper, 1.0, TorexMath.simulationSpeed(200, 200, 900, 1), 1e-12, "t=200 is 1");
 		assertClose(helper, 1.0, TorexMath.simulationSpeed(201, 201, 900, 1), 1e-12, "and stays 1");
 		assertClose(helper, 1.0, TorexMath.simulationSpeed(600, 600, 900, 1), 1e-12, "until thirty seconds");
@@ -171,7 +171,7 @@ public class LeafiaTorexTests {
 
 		// the biggest cloud boosts to twice: (5 - 0.5) * 2 / 3 + 1 = 4, clamped to 2
 		assertClose(helper, 2.0, TorexMath.simulationSpeed(0, 0, 4500, 5), 1e-12, "scale 5 starts at 2");
-		assertClose(helper, 1.5, TorexMath.simulationSpeed(100, 100, 4500, 5), 1e-12, "and is at 1.5 after 100");
+		assertClose(helper, 2 - (1 - Math.pow(2, -5)), TorexMath.simulationSpeed(100, 100, 4500, 5), 1e-12, "and is at 1.03125 after 100 (D-3075)");
 		assertClose(helper, (1 - 625.0 / 1125) * (1 - 0.75 * 3400 / 3600), TorexMath.simulationSpeed(4000, 4000, 4500, 5), 1e-6, "winding down at 4000");
 
 		helper.assertTrue(TorexMath.pauseTick(900) == 225 && TorexMath.slowTick(900) == 675, "a quarter and three quarters of 900");
@@ -427,22 +427,22 @@ public class LeafiaTorexTests {
 	}
 
 	/**
-	 * Upstream's quirk: the scale multiplies the heights once when the packet is read and again on the
-	 * first tick, so at scale 2 the core is {@code 3 * 2 * 2} plus the first tick's step, not
-	 * {@code 3 * 2}. Pinned so nobody fixes it without meaning to.
+	 * D-3075: the scale multiplies the heights once, when the packet is read (upstream applied it again on
+	 * the first tick, so the core was {@code 3 * 2 * 2}); at scale 2 the core is {@code 3 * 2} plus the first
+	 * tick's step.
 	 */
 	@GameTest(template = EMPTY)
-	public static void scaleAppliesTwiceToTheHeights(GameTestHelper helper) {
+	public static void scaleAppliesOnceToTheHeights(GameTestHelper helper) {
 		LCETorex t = client(helper, 2F, TorexMath.TYPE_NUKE);
 		try {
 			assertClose(helper, 6.0, t.coreHeight, 1e-12, "read from the packet: 3 * 2");
 			assertClose(helper, 6.0, t.torusWidth, 1e-12, "the torus too");
 			helper.assertTrue(t.maxAge == 1800, "and the age");
 			tick(t, 1);
-			assertClose(helper, 12.0 + 0.15, t.coreHeight, 1e-12, "after one tick: 3 * 2 * 2 + 0.15");
-			assertClose(helper, 12.0 + 0.05, t.torusWidth, 1e-12, "torus: 3 * 4 + 0.05");
-			assertClose(helper, (12.0 + 0.05) * 0.35, t.rollerSize, 1e-12, "the roller is 0.35 of the torus");
-			assertClose(helper, 12.15 + (12.05 * 0.35), t.convectionHeight, 1e-12, "convection is core plus roller");
+			assertClose(helper, 6.0 + 0.15, t.coreHeight, 1e-12, "after one tick: 3 * 2 + 0.15");
+			assertClose(helper, 6.0 + 0.05, t.torusWidth, 1e-12, "torus: 3 * 2 + 0.05");
+			assertClose(helper, (6.0 + 0.05) * 0.35, t.rollerSize, 1e-12, "the roller is 0.35 of the torus");
+			assertClose(helper, 6.15 + (6.05 * 0.35), t.convectionHeight, 1e-12, "convection is core plus roller");
 			helper.assertTrue(t.maxAge == 1800, "the age is unchanged by the second application");
 			helper.succeed();
 		} finally {
@@ -851,13 +851,13 @@ public class LeafiaTorexTests {
 		assertClose(helper, 7.5, s.getCalculatedIntensity(25), 1e-12, "a linear one");
 
 		helper.assertTrue(s.getTimeMultiplier(0) == 1, "full at the start");
-		assertClose(helper, 0.5, s.getTimeMultiplier(2.5), 1e-12, "half at half the duration");
+		assertClose(helper, 1 - new LeafiaEase(s.ease, s.direction).get(0.5), s.getTimeMultiplier(2.5), 1e-12, "half at half the duration follows the shake's own ease (D-3075)");
 		assertClose(helper, 0.0, s.getTimeMultiplier(5), 1e-12, "none at the end");
 		assertClose(helper, 0.0, s.getTimeMultiplier(50), 1e-12, "and clamped there");
-		// the ease is inert, which is upstream's (D-1004): any curve gives the same
+		// the ease is live since D-3075 (upstream's was inert, D-1004)
 		s.ease = Ease.QUAD;
 		s.direction = Direction.I;
-		assertClose(helper, 0.5, s.getTimeMultiplier(2.5), 1e-12, "a quad-in ease changes nothing");
+		assertClose(helper, 0.75, s.getTimeMultiplier(2.5), 1e-12, "a quad-in ease fades 1 - 0.5^2");
 		s.easeInstance = null;
 		helper.assertTrue(s.getTimeMultiplier(4.9) == 1, "without an ease it never fades");
 
@@ -876,7 +876,7 @@ public class LeafiaTorexTests {
 		s.tick(); // jitter is drawn, one tick old
 		ShakeFrame frame = new ShakeFrame();
 		double n = s.render(0, frame);
-		double fade = 1 - (1 / 20.0) / 5;
+		double fade = s.getTimeMultiplier(1 / 20.0);
 		assertClose(helper, 10 * fade * 4, n, 1e-9, "returns intensity * fade * 4");
 		Vector3d t = frame.translation();
 		helper.assertTrue(Math.abs(t.x) <= 0.04 * 0.5 * 10 * fade * 2 + 1e-9 && Math.abs(t.y) <= 0.04 * 0.5 * 10 * fade * 2 + 1e-9,
@@ -900,7 +900,7 @@ public class LeafiaTorexTests {
 			ShakeFrame frame = new ShakeFrame();
 			double n = s.renderAt(0, frame, t0 + 250);
 			assertClose(helper, 0.25, s.timer, 1e-12, "250 ms later the timer reads a quarter second");
-			double fade = 1 - 0.25 / 5;
+			double fade = s.getTimeMultiplier(0.25);
 			assertClose(helper, 4 * fade * 4, n, 1e-9, "returns intensity * fade * speed");
 
 			SimplexNoise noise = LeafiaShakecam.noise;

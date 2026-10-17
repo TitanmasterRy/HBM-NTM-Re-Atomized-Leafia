@@ -249,6 +249,9 @@ public class StructuralIntegrityHandler {
 	 * is the day its line belongs here.
 	 */
 	public static int getGlue(BlockState state, @Nullable Level level, @Nullable BlockPos pos) {
+		// D-3075: an elevator landing is tested before BlockDummyable (it is one), so its own lines are reached
+		if (state.getBlock() instanceof EvFloor)
+			return 1;
 		if (state.getBlock() instanceof BlockDummyable) {
 			if (state.hasProperty(BlockDummyable.PART) && state.getValue(BlockDummyable.PART) == BlockDummyable.Part.CORE)
 				return 0;
@@ -276,13 +279,9 @@ public class StructuralIntegrityHandler {
 		}
 		if (state.is(ModBlocks.dfc_core.get()))
 			return 0;
-		// Unreachable, as upstream's is: EvFloor is a BlockDummyable and returned above. Kept (D-1086).
-		if (state.getBlock() instanceof EvFloor)
-			return 1;
 		Kind kind = Kind.of(state);
 		int glue = kind.glue;
-		if (kind == Kind.ROCK)
-			return 25;
+		// D-3075: rock no longer returns 25 before the multipliers, so concrete_rebar's x8 is live (25 -> 200)
 		if (state.is(ModBlocks.concrete_rebar.get()))
 			glue *= 8;
 		if (state.is(ModBlocks.steel_scaffold.get()))
@@ -291,15 +290,14 @@ public class StructuralIntegrityHandler {
 	}
 
 	public static int getMass(BlockState state, @Nullable Level level, @Nullable BlockPos pos) {
+		if (state.getBlock() instanceof EvFloor)
+			return 0;
 		if (state.getBlock() instanceof BlockDummyable) {
 			if (state.getBlock() instanceof RBMKBase)
 				return 1;
 			return 10;
 		}
 		if (state.is(ModBlocks.dfc_core.get()))
-			return 0;
-		// Unreachable for the same reason as in getGlue.
-		if (state.getBlock() instanceof EvFloor)
 			return 0;
 		Kind kind = Kind.of(state);
 		if (kind == Kind.ROCK)

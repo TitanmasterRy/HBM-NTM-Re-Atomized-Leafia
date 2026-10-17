@@ -175,14 +175,16 @@ public class MTComponentPortTE extends ModularTurbineComponentTE
 	/**
 	 * Records the shaft position that just received steam.
 	 *
-	 * <p>Note what it records: this port's index in the core's <em>component list</em>, which the
-	 * core then compares against shaft positions. The two agree while every part is one block long
-	 * along the shaft. Upstream's, kept; whether any part is longer is a T4 question (the
-	 * flywheels).
+	 * <p>It records this port's first shaft position from the core's {@code positionToComponentMap}
+	 * (D-3075; upstream used the index into the component list, which is wrong behind a generator).
 	 */
 	void onFill() {
 		if(assembly != null && core != null) {
-			int index = core.components.indexOf(this);
+			// D-3075: shaft position, not index in the component list (upstream's list index was two places
+			// early behind a three-long generator and made a correctly built turbine report a wrong blade).
+			int index = -1;
+			for(var entry : core.positionToComponentMap.entrySet())
+				if(entry.getValue() == this && (index == -1 || entry.getKey() < index)) index = entry.getKey();
 			if(index == -1)
 				core.disassemble();
 			else

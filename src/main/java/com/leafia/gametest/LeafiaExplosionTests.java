@@ -793,7 +793,7 @@ public class LeafiaExplosionTests {
 				"vacuum lengths " + EntityNukeFolkvangr.postEffectTicks(50));
 		helper.assertTrue(Math.abs(EntityNukeFolkvangr.vacuumForce(50) - 0.2215956623727) < 1e-9, "force " + EntityNukeFolkvangr.vacuumForce(50));
 		Vec3 at10 = EntityNukeFolkvangr.pullOn(new Vec3(10, 0, 0), Vec3.ZERO, 10, 6, 18, 0.1);
-		helper.assertTrue(Math.abs(at10.x + 0.1 * 1.75 * (2 / 3D)) < 1e-9 && at10.y == 0 && at10.z == 0, "a third of the way out pulls at two thirds: " + at10);
+		helper.assertTrue(Math.abs(at10.x + 0.1 * 1.75 * Math.pow(2, -10 / 3D)) < 1e-9 && at10.y == 0 && at10.z == 0, "a third of the way out pulls at the expo-out curve (D-3075): " + at10);
 		helper.assertTrue(EntityNukeFolkvangr.pullOn(new Vec3(20, 0, 0), Vec3.ZERO, 20, 6, 18, 0.1).length() == 0, "none past 3r");
 		helper.assertTrue(Math.abs(EntityNukeFolkvangr.pullOn(new Vec3(3, 0, 0), Vec3.ZERO, 3, 6, 18, 0.1).x + 0.175) < 1e-9, "all of it inside r");
 		helper.assertTrue(EntityNukeFolkvangr.vacuumForceMultiplier == 1.75 && EntityNukeFolkvangr.VACUUM_DAMAGE == 3 && EntityNukeFolkvangr.BIND_TIMEOUT == 10

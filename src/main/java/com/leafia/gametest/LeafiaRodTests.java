@@ -886,7 +886,7 @@ public class LeafiaRodTests {
 	}
 
 	@GameTest(template = EMPTY)
-	public static void detonateReturnsAndGrowsItsRadius(GameTestHelper helper) {
+	public static void detonateReturnsItsRadiusWithoutGrowingTheField(GameTestHelper helper) {
 
 		if(!on()) { helper.succeed(); return; }
 
@@ -901,7 +901,8 @@ public class LeafiaRodTests {
 		try {
 			takeAway(helper, EntityNukeTorex.class);
 			float r = bf.detonate(helper.getLevel(), p);
-			helper.assertTrue(r == before * 2.5F, "balefire's radius grows by 2.5: " + r);
+			helper.assertTrue(r == before * 2.5F, "balefire's blast radius is 2.5 times the field: " + r);
+			helper.assertTrue(bf.detonateRadius == before, "the field was grown by the call (D-3075): " + bf.detonateRadius);
 			helper.assertTrue(takeAway(helper, EntityBalefire.class) == 0, "visuals only spawns no blast");
 		} finally {
 			bf.resetDetonate();
@@ -1090,8 +1091,8 @@ public class LeafiaRodTests {
 		t.putDouble("depletion", nu.life * 0.05);
 		LeafiaRodItem.putData(s, t);
 		helper.assertTrue(!LeafiaRodCraftingProbe.match(helper, List.of(s)), "exactly 5% matches no more (>=)");
-		// ...and the result is built with a strict >, so a rod at exactly 5% would yield its base if it got that far
-		helper.assertTrue(!LeafiaRodCraftingProbe.assemble(helper, s).isEmpty(), "at exactly 5% the result step does not refuse (>)");
+		// ...and (D-3075) the result step agrees with the match instead of using a strict >
+		helper.assertTrue(LeafiaRodCraftingProbe.assemble(helper, s).isEmpty(), "at exactly 5% the result step refuses too (>=)");
 		t.putDouble("depletion", nu.life * 0.05 + 1);
 		LeafiaRodItem.putData(s, t);
 		helper.assertTrue(LeafiaRodCraftingProbe.assemble(helper, s).isEmpty(), "past 5% yields nothing");
@@ -1101,9 +1102,9 @@ public class LeafiaRodTests {
 		dt.putDouble("depletion", 1e9);
 		LeafiaRodItem.putData(dep, dt);
 		helper.assertTrue(LeafiaRodCraftingProbe.match(helper, List.of(dep)), "a depleted rod has no life to burn");
-		// a rod with no base item matches and yields nothing
-		helper.assertTrue(LeafiaRodCraftingProbe.match(helper, List.of(stack("blazingbalefire"))) && LeafiaRodCraftingProbe.assemble(helper, stack("blazingbalefire")).isEmpty(),
-				"blazing balefire matches and gives nothing back");
+		// a rod with no base item no longer matches (D-3075; it used to match and yield nothing)
+		helper.assertTrue(!LeafiaRodCraftingProbe.match(helper, List.of(stack("blazingbalefire"))) && LeafiaRodCraftingProbe.assemble(helper, stack("blazingbalefire")).isEmpty(),
+				"blazing balefire must not match the uncrafting recipe");
 		helper.succeed();
 	}
 

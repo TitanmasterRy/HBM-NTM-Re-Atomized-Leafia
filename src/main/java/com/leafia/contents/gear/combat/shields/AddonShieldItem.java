@@ -201,6 +201,9 @@ public class AddonShieldItem extends ShieldItem {
 		if(!kind.charges()) return;
 		if(!(entity instanceof Player player)) return;
 		if(player.getMainHandItem() != stack && player.getOffhandItem() != stack) return;
+		// D-3075: one step per player per tick, however many charging shields they hold (upstream stepped each).
+		if(player.getOffhandItem() == stack && player.getMainHandItem().getItem() instanceof AddonShieldItem main && main.kind.charges())
+			return; // the main hand's shield steps for both
 		chargeStep(player);
 	}
 
@@ -208,10 +211,9 @@ public class AddonShieldItem extends ShieldItem {
 	 * One tick of the charge for one player holding this shield, upstream's body of
 	 * {@code onUpdate} after its guards.
 	 *
-	 * <p>Two upstream quirks are kept. A player holding two charging shields (one in each hand)
-	 * is stepped twice a tick, because the guard is "this stack is held" and both are. And the
-	 * count is only cleared by the else branch, which runs for a held shield, so a count left
-	 * behind by dropping the shield mid-charge waits for the next one held.
+	 * <p>Two upstream quirks were fixed in D-3075: a player holding two charging shields is now
+	 * stepped once a tick (see {@link #inventoryTick}), and a count left behind by dropping the
+	 * shield mid-charge is cleared by the server tick pass.
 	 */
 	public void chargeStep(Player player) {
 		UUID id = player.getUUID();
@@ -321,8 +323,13 @@ public class AddonShieldItem extends ShieldItem {
 		 */
 		@SubscribeEvent
 		public static void onServerTick(ServerTickEvent.Pre event) {
-			for(Player player : event.getServer().getPlayerList().getPlayers())
+			for(Player player : event.getServer().getPlayerList().getPlayers()) {
+				// D-3075: a count left behind by dropping the shield is cleared at once, not at the next one held
+				if(!(player.getMainHandItem().getItem() instanceof AddonShieldItem a && a.kind.charges())
+						&& !(player.getOffhandItem().getItem() instanceof AddonShieldItem b && b.kind.charges()))
+					chargePrepare.remove(player.getUUID());
 				coolDown(player);
+			}
 		}
 
 		/**

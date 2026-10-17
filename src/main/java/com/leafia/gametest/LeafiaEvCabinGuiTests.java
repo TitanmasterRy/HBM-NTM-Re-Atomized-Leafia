@@ -273,14 +273,14 @@ public class LeafiaEvCabinGuiTests {
 	}
 
 	/**
-	 * <b>An upstream defect, pinned so nobody tidies it by accident (D-021).</b> The second of
+	 * <b>An upstream dupe, fixed (D-3075).</b> The second of
 	 * upstream's two moves starts at the highest cabin slot (7) instead of the first player slot
 	 * (8), so with the player's inventory full the radio slot's stack is "moved" into slots 0-7 -
 	 * of which 7 is itself. Vanilla's merge sets the count to the doubled value on the one
 	 * object, and its shift-click loop would repeat that until the stack limit.
 	 */
 	@GameTest(template = EMPTY)
-	public static void shiftClickingTheRadioSlotWithAFullInventoryDoublesIt(GameTestHelper helper) {
+	public static void shiftClickingTheRadioSlotWithAFullInventoryDoesNotDoubleIt(GameTestHelper helper) {
 
 		ElevatorEntity cabin = cabin(helper);
 		ServerPlayer player = mockPlayer(helper);
@@ -293,7 +293,7 @@ public class LeafiaEvCabinGuiTests {
 		menu.quickMoveStack(player, 7);
 
 		int count = cabin.inventory.getStackInSlot(7).getCount();
-		helper.assertTrue(count == 6, "upstream's off-by-one doubles the radio slot's 3 stone to 6, slot 7 holds " + count);
+		helper.assertTrue(count == 3, "the radio slot's 3 stone must stay 3 (D-3075), slot 7 holds " + count);
 		cabin.discard();
 		helper.succeed();
 	}

@@ -297,17 +297,15 @@ public class LeafiaZirnoxTE extends BlockEntityReactorZirnox implements LeafiaPa
 	}
 
 	/**
-	 * The cells upstream's meltdown sets to air before it builds the wreck. Its loop is
-	 * {@code for(oy = 2; ox <= 5; ox++)} inside the {@code ox} and {@code oz} loops - the inner loop runs
-	 * {@code ox} on to 6, which ends both outer loops after one pass - so it clears eight cells in a line,
-	 * two blocks up on the reactor's north-west edge, the last three of them <em>outside</em> the reactor.
-	 * A live upstream bug, kept and flagged (rule 4).
+	 * The cells the meltdown sets to air before it builds the wreck: the 5x5 above the reactor from two to five
+	 * up, as the base ZIRNOX does. Upstream's overhaul wrote {@code for(oy = 2; ox <= 5; ox++)} and so cleared
+	 * eight cells in a line, three of them outside the reactor; fixed in D-3075 (was D-3020 #1).
 	 */
 	public static List<BlockPos> upstreamClearedCells(BlockPos pos) {
 		List<BlockPos> cells = new ArrayList<>();
 		for(int ox = -2; ox <= 2; ox++) {
 			for(int oz = -2; oz <= 2; oz++) {
-				for(int oy = 2; ox <= 5; ox++) {
+				for(int oy = 2; oy <= 5; oy++) {
 					cells.add(pos.offset(ox, oy, oz));
 				}
 			}

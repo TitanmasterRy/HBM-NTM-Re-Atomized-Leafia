@@ -556,11 +556,11 @@ public class LeafiaShieldTests {
 	}
 
 	/**
-	 * Upstream steps a held stack, so a player holding a charging shield in each hand is stepped
-	 * twice a tick and throws on the tenth: kept, and pinned so nobody tidies it.
+	 * Upstream stepped each held stack, so two charging shields charged twice as fast; fixed in D-3075:
+	 * ten ticks of two shields do not throw, twenty do.
 	 */
 	@GameTest(template = EMPTY)
-	public static void twoShieldsInTwoHandsChargeTwiceAsFast(GameTestHelper helper) {
+	public static void twoShieldsInTwoHandsChargeAtTheSingleRate(GameTestHelper helper) {
 
 		Player player = raised(helper, Kind.FISSITE, InteractionHand.OFF_HAND);
 		player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(shield(Kind.MYSTICITE)));
@@ -570,7 +570,13 @@ public class LeafiaShieldTests {
 			player.getMainHandItem().inventoryTick(player.level(), player, 0, true);
 			player.getOffhandItem().inventoryTick(player.level(), player, 40, false);
 		}
-		helper.assertTrue(AddonShieldItem.chargeCooldown.getOrDefault(id, 0) == 60, "ten ticks of two held shields throw, got "
+		helper.assertTrue(AddonShieldItem.chargeCooldown.getOrDefault(id, 0) == 0, "ten ticks of two held shields must not throw (D-3075), got "
+				+ AddonShieldItem.chargeCooldown.get(id));
+		for(int t = 0; t < 10; t++) {
+			player.getMainHandItem().inventoryTick(player.level(), player, 0, true);
+			player.getOffhandItem().inventoryTick(player.level(), player, 40, false);
+		}
+		helper.assertTrue(AddonShieldItem.chargeCooldown.getOrDefault(id, 0) == 60, "twenty ticks throw, got "
 				+ AddonShieldItem.chargeCooldown.get(id));
 		AddonShieldItem.chargeCooldown.remove(id);
 		helper.succeed();

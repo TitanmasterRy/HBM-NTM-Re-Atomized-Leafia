@@ -160,26 +160,24 @@ public class LeafiaStructuralIntegrityTests {
 	/**
 	 * The base mod's blocks are classified by the 1.7.10 Material the generator read, not by
 	 * sound. {@code steel_scaffold} is {@code Material.iron} and sounds like stone: by sound it
-	 * would hold 25, where upstream gives 40 x 4. {@code concrete_rebar} is rock, so upstream's
-	 * x8 for it is never reached.
+	 * would hold 25, where upstream gives 40 x 4. {@code concrete_rebar} is rock with its x8 (D-3075).
 	 */
 	@GameTest(template = EMPTY16)
 	public static void aBaseModBlockIsClassifiedByItsOldMaterial(GameTestHelper helper) {
 		assertTrue(helper, StructuralIntegrityHandler.getGlue(state(ModBlocks.steel_scaffold), null, null) == 160,
 				"steel_scaffold: iron 40 x 4");
-		assertTrue(helper, StructuralIntegrityHandler.getGlue(state(ModBlocks.concrete_rebar), null, null) == 25,
-				"concrete_rebar is rock, and rock returns before the x8 (upstream's dead multiplier)");
+		assertTrue(helper, StructuralIntegrityHandler.getGlue(state(ModBlocks.concrete_rebar), null, null) == 200,
+				"concrete_rebar is rock: 25 x 8 (D-3075; upstream returned 25 before the multiplier)");
 		assertTrue(helper, StructuralIntegrityHandler.getMass(state(ModBlocks.concrete_rebar), null, null) == 5,
 				"concrete_rebar: 1 + (int)144^0.45 / 2");
 		assertTrue(helper, StructuralIntegrityHandler.getGlue(state(ModBlocks.dfc_core), null, null) == 0, "dfc_core holds nothing");
 		assertTrue(helper, StructuralIntegrityHandler.getMass(state(ModBlocks.dfc_core), null, null) == 0, "and weighs nothing");
 		if (LeafiaBlocks.elevator_s6floor != null) {
-			// Upstream tests EvFloor after BlockDummyable, and EvFloor is one, so its own lines
-			// (glue 1, mass 0) are never reached. Kept unreachable; flagged in D-1086.
+			// D-3075: EvFloor is tested before BlockDummyable, so its own lines (glue 1, mass 0) are reached.
 			for (BlockDummyable.Part part : BlockDummyable.Part.values()) {
 				BlockState floor = state(LeafiaBlocks.elevator_s6floor).setValue(BlockDummyable.PART, part);
-				assertTrue(helper, StructuralIntegrityHandler.getGlue(floor, null, null) == 0, "an elevator landing's " + part + " holds nothing");
-				assertTrue(helper, StructuralIntegrityHandler.getMass(floor, null, null) == 10, "and weighs a machine's 10, not the 0 its own line says");
+				assertTrue(helper, StructuralIntegrityHandler.getGlue(floor, null, null) == 1, "an elevator landing's " + part + " holds 1");
+				assertTrue(helper, StructuralIntegrityHandler.getMass(floor, null, null) == 0, "and weighs nothing");
 			}
 		}
 		helper.succeed();
@@ -263,13 +261,6 @@ public class LeafiaStructuralIntegrityTests {
 			assertTrue(helper, collapses(helper, tip), row[0] + ": " + (limit + 1) + " blocks collapses");
 			clear(helper, 1, 0, 8, 15, 3, 8);
 		}
-		// concrete_rebar is a base-mod block of mass 5: 25 / 5 = 5.
-		Block rebar = ModBlocks.concrete_rebar.get();
-		cantilever(helper, rebar, 8, 5);
-		assertTrue(helper, !collapses(helper, new BlockPos(6, BEAM_Y, 8)), "concrete_rebar: 5 blocks holds");
-		clear(helper, 1, 0, 8, 15, 3, 8);
-		cantilever(helper, rebar, 8, 6);
-		assertTrue(helper, collapses(helper, new BlockPos(7, BEAM_Y, 8)), "concrete_rebar: 6 blocks collapses");
 		helper.succeed();
 	}
 

@@ -590,9 +590,9 @@ public class PWRData implements LeafiaPacketReceiver {
 			// directly copied from zirnox port
 			double stress = tanks[2].getFill() / (double) tanks[2].getMaxFill();
 			stressTimer -= Math.pow(stress, 0.9) * 64;
-			// Upstream never resets the timer: once it reaches zero, a stress sound plays every tick
-			// the buffer holds anything. Kept (D-3006).
+			// D-3075: the timer resets after the sound (upstream's never did, so it played every tick once spent).
 			if(stressTimer <= 0) {
+				stressTimer = 300;
 				BlockPos pos = (BlockPos) members.toArray()[world.random.nextInt(members.size())];
 				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
 						LeafiaSounds.stressSounds[world.random.nextInt(7)].get(), SoundSource.BLOCKS,

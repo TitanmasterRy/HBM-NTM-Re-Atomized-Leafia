@@ -11,7 +11,7 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Pins {@link LeafiaEase}, including three live upstream bugs this port deliberately preserves.
+ * Pins {@link LeafiaEase}. The four upstream bugs it once preserved were fixed in D-3075; the tests below assert the corrected curves.
  *
  * <p>Standing rule 4 and D-021: a bug players can reach is flagged for a human, not quietly
  * fixed, because fixing it changes behaviour and balance. D-1004 is that flag, and
@@ -49,7 +49,7 @@ public class LeafiaEaseTests {
 
 		// Every curve except BOUNCE runs 0 to 1 in both the I and O directions.
 		for(Ease ease : Ease.values()) {
-			if(ease == Ease.BOUNCE) continue; // see bounceIsBrokenAcrossItsWholeDomain
+			if(ease == Ease.BOUNCE) continue; // see bounceStaysInTheUnitInterval
 			for(Direction dir : new Direction[] {Direction.I, Direction.O}) {
 				LeafiaEase e = new LeafiaEase(ease, dir);
 				near(helper, e.get(0), 0.0, ease + " " + dir + " at t=0");
@@ -82,7 +82,7 @@ public class LeafiaEaseTests {
 	 * half again as far as it should.
 	 */
 	@GameTest(template = EMPTY)
-	public static void defaultInOutOvershootsByHalf(GameTestHelper helper) {
+	public static void defaultInOutFinishesAtOne(GameTestHelper helper) {
 
 		Ease[] defaulted = {Ease.LINEAR, Ease.QUAD, Ease.CUBE, Ease.QUART, Ease.QUINT,
 				Ease.EXPO, Ease.CIRC, Ease.BACK, Ease.ELASTIC};
@@ -92,8 +92,9 @@ public class LeafiaEaseTests {
 			near(helper, e.get(0), 0.0, ease + " IO still starts at 0");
 			near(helper, e.get(0.5), 0.5, ease + " IO still passes through the midpoint");
 			// If this ever reads 1.0 the bug has been fixed - see D-1004 first.
-			near(helper, e.get(1), 1.5,
-					"BUG (D-1004): " + ease + " IO overshoots to 1.5 instead of finishing at 1");
+			near(helper, e.get(1), 1.0,
+					"D-3075: " + ease + " IO finishes at 1");
+			near(helper, e.get(0.25), new LeafiaEase(ease, Direction.I).get(0.5) / 2, ease + " IO first half is half the in curve");
 		}
 
 		helper.succeed();
@@ -112,17 +113,18 @@ public class LeafiaEaseTests {
 	 * produce it, which is why it is filed as a bug to flag rather than a broken feature.
 	 */
 	@GameTest(template = EMPTY)
-	public static void bounceIsBrokenAcrossItsWholeDomain(GameTestHelper helper) {
+	public static void bounceStaysInTheUnitInterval(GameTestHelper helper) {
 
-		near(helper, new LeafiaEase(Ease.BOUNCE, Direction.O).get(0), 0.0, "bounce out does start at 0");
-		near(helper, new LeafiaEase(Ease.BOUNCE, Direction.O).get(1), 8.246093750,
-				"BUG (D-1004): bounce out ends at 8.25, not 1");
-		near(helper, new LeafiaEase(Ease.BOUNCE, Direction.I).get(1), -7.246093750,
-				"BUG (D-1004): bounce in ends at -7.25, not 1");
-		near(helper, new LeafiaEase(Ease.BOUNCE, Direction.IO).get(0), -3.623046875,
-				"BUG (D-1004): bounce in-out starts at -3.62, not 0");
-		near(helper, new LeafiaEase(Ease.BOUNCE, Direction.IO).get(1), 4.623046875,
-				"BUG (D-1004): bounce in-out ends at 4.62, not 1");
+		for(Direction dir : Direction.values()) {
+			LeafiaEase e = new LeafiaEase(Ease.BOUNCE, dir);
+			near(helper, e.get(0), 0.0, "bounce " + dir + " at t=0");
+			near(helper, e.get(1), 1.0, "bounce " + dir + " at t=1");
+			for(int k = 0; k <= 20; k++) {
+				double v = e.get(k / 20.0);
+				helper.assertTrue(v >= -1e-9 && v <= 1 + 1e-9, "bounce " + dir + " leaves the unit interval at " + k + "/20: " + v);
+			}
+		}
+		near(helper, new LeafiaEase(Ease.BOUNCE, Direction.O).get(0.5), 0.765625, "bounce out at 0.5");
 
 		helper.succeed();
 	}
@@ -135,7 +137,7 @@ public class LeafiaEaseTests {
 	 * linear despite naming a curve.
 	 */
 	@GameTest(template = EMPTY)
-	public static void minMaxOverloadsSilentlyIgnoreTheCurve(GameTestHelper helper) {
+	public static void minMaxOverloadsApplyTheCurve(GameTestHelper helper) {
 
 		LeafiaEase quad = new LeafiaEase(Ease.QUAD, Direction.I);
 
@@ -143,15 +145,12 @@ public class LeafiaEaseTests {
 
 		// If either of these ever reads 0.25, the bug has been fixed - see D-1004 before
 		// updating the number, because six call sites change behaviour with it.
-		near(helper, quad.get(0.5, 0.0, 1.0), 0.5,
-				"BUG (D-1004): the min/max form returns a plain lerp, not the eased value");
-		near(helper, quad.get(0.5, 0.0, 1.0, true), 0.5,
-				"BUG (D-1004): the clamped form is clampedLerp, also unaffected by the curve");
-		near(helper, quad.get(0.5, 0.0, 1.0, false), 0.5,
-				"BUG (D-1004): and the unclamped form delegates to the same plain lerp");
+		near(helper, quad.get(0.5, 0.0, 1.0), 0.25, "D-3075: the min/max form eases");
+		near(helper, quad.get(0.5, 0.0, 1.0, true), 0.25, "D-3075: the clamped form eases");
+		near(helper, quad.get(0.5, 0.0, 1.0, false), 0.25, "D-3075: and the unclamped form too");
 
 		// It does at least interpolate between the bounds it was given.
-		near(helper, quad.get(0.5, 10.0, 20.0), 15.0, "the lerp itself is right");
+		near(helper, quad.get(0.5, 10.0, 20.0), 12.5, "eased lerp");
 		near(helper, quad.get(0.0, 10.0, 20.0), 10.0, "at t=0");
 		near(helper, quad.get(1.0, 10.0, 20.0), 20.0, "at t=1");
 
@@ -176,7 +175,7 @@ public class LeafiaEaseTests {
 	 * bug fails here and has to be taken deliberately.
 	 */
 	@GameTest(template = EMPTY)
-	public static void parseRejectsThirteenOfItsOwnCompletions(GameTestHelper helper) {
+	public static void parseAcceptsAllOfItsOwnCompletions(GameTestHelper helper) {
 
 		String[] offered = LeafiaEase.listEasesForCommands();
 		helper.assertTrue(offered.length == 37,
@@ -192,11 +191,7 @@ public class LeafiaEaseTests {
 				rejected++;
 			}
 		}
-		helper.assertTrue(accepted == 24,
-				"BUG (D-1004): 24 of the offered completions parse, got " + accepted);
-		helper.assertTrue(rejected == 13,
-				"BUG (D-1004): 13 are offered and then rejected - \"linear\" and the twelve "
-						+ "InOut forms - got " + rejected);
+		helper.assertTrue(accepted == 37 && rejected == 0, "D-3075: every completion parses, accepted " + accepted);
 
 		// The two shapes that do work.
 		LeafiaEase in = LeafiaEase.parseEase("quadIn");
@@ -204,19 +199,10 @@ public class LeafiaEaseTests {
 		LeafiaEase out = LeafiaEase.parseEase("sineOut");
 		helper.assertTrue(out.ease == Ease.SINE && out.dir == Direction.O, "sineOut parses");
 
-		// And the two that do not, named individually so the failure message says which bug.
-		//
-		// "linear" has to be built at runtime to show the bug at all. A source literal is
-		// interned to the same object as the literal inside parseEase, so `s == "linear"` is
-		// TRUE for a literal and false for anything a parser assembled - which is exactly why
-		// this survived upstream: it works every time you test it by hand and never in play.
-		assertRejected(helper, new StringBuilder("linear").toString(),
-				"compared with == against a literal, so only an interned string matches");
-		LeafiaEase interned = LeafiaEase.parseEase("linear");
-		helper.assertTrue(interned.ease == Ease.LINEAR && interned.dir == Direction.IO,
-				"BUG (D-1004): the same text as a source literal is accepted, because it is interned");
-
-		assertRejected(helper, "sineInOut", "endsWith(\"Out\") matches before endsWith(\"InOut\")");
+		LeafiaEase io = LeafiaEase.parseEase(new StringBuilder("sineInOut").toString());
+		helper.assertTrue(io.ease == Ease.SINE && io.dir == Direction.IO, "sineInOut parses");
+		LeafiaEase lin = LeafiaEase.parseEase(new StringBuilder("linear").toString());
+		helper.assertTrue(lin.ease == Ease.LINEAR, "a runtime-built linear parses");
 
 		// Genuine nonsense is rejected too, which is the intended behaviour rather than a bug.
 		assertRejected(helper, "nonsenseIn", "not an ease at all");

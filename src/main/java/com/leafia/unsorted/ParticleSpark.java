@@ -30,11 +30,9 @@ import net.neoforged.api.distmarker.OnlyIn;
  *
  * <p>The trail is the last {@code length} positions it was drawn at, a ring, joined by straight beams
  * whose width tapers from {@link #thickness} to nothing; the newest two segments are drawn partway so the
- * head follows the frame. <b>Upstream records a position when the sparks' own clock has caught up with a
- * target that starts at -65,535</b> and then advances by {@code 20 / segmentsPerTick} a <em>frame</em>, so
- * for the first nine thousand frames - longer than any spark lives - it records on every frame, and the
- * {@code segmentsPerTick} that looks like a sampling rate is not one. Kept (rule 4): the trail is the last
- * {@code length} frames.
+ * head follows the frame. A position is recorded every {@code 1 / segmentsPerTick} ticks of the spark's own
+ * clock (D-3075: upstream's clock started at -65,535 and stepped {@code 20 / segmentsPerTick} a frame, so for
+ * the first nine thousand frames it recorded on every frame and {@code segmentsPerTick} was not a sampling rate).
  *
  * <p>Drawn with {@link LCEBeamPronter} through the beam particle type, full-bright and additive, from
  * the camera's frame. Upstream's {@code getFXLayer} 3 (its own layer) is the particle type here.
@@ -42,8 +40,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ParticleSpark extends Particle {
 
-	/** Where the trail begins its clock: far enough back that a frame always passes the test. */
-	public static final double FIRST_TARGET = -65535;
+	/** Where the trail begins its clock (D-3075; upstream started far back, at -65,535). */
+	public static final double FIRST_TARGET = 0;
 
 	final Vec3[] positions;
 	final int length;
@@ -95,7 +93,7 @@ public class ParticleSpark extends Particle {
 		Vec3 cam = camera.getPosition();
 
 		double curTime = (level.getGameTime() - startTick) + partialTicks;
-		double targetTime = lastTick + 20 / segmentsPerTick;
+		double targetTime = lastTick + 1 / segmentsPerTick;
 		if(curTime >= targetTime) {
 			lastTick = targetTime;
 			positions[curIndex] = new Vec3(

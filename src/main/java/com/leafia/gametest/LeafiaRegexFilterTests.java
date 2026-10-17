@@ -142,6 +142,33 @@ public class LeafiaRegexFilterTests {
 		helper.succeed();
 	}
 
+	/** D-3075: a catastrophic pattern is abandoned quickly instead of hanging the server thread, and an ordinary one still matches. */
+	@GameTest(template = EMPTY)
+	public static void aCatastrophicPatternIsAbandonedAndMatchesNothing(GameTestHelper helper) {
+		long start = System.nanoTime();
+		boolean got = LeafiaUtil.matchesRegex("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", "(a+)+$");
+		long ms = (System.nanoTime() - start) / 1_000_000;
+		helper.assertTrue(!got, "the catastrophic pattern matched");
+		helper.assertTrue(ms < 2000, "it took " + ms + " ms");
+		helper.assertTrue(LeafiaUtil.matchesRegex("minecraft:stone", ".*stone"), "an ordinary pattern stopped matching");
+		helper.succeed();
+	}
+
+	/** D-3075: breaking a filter drops the stack in its slot (it used to be destroyed). */
+	@GameTest(template = EMPTY)
+	public static void breakingAFilterDropsItsStack(GameTestHelper helper) {
+		BlockPos at = new BlockPos(2, 1, 2);
+		RegexFilterTE te = place(helper, at, Direction.EAST);
+		te.inventory.setStackInSlot(0, new ItemStack(Items.STONE, 40));
+		helper.setBlock(at, Blocks.AIR);
+		int n = 0;
+		for(var e : helper.getLevel().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,
+				new net.minecraft.world.phys.AABB(helper.absolutePos(at)).inflate(2)))
+			if(e.getItem().is(Items.STONE)) { n += e.getItem().getCount(); e.discard(); }
+		helper.assertTrue(n == 40, "dropped " + n + " of 40 stone");
+		helper.succeed();
+	}
+
 	// ------------------------------------------------------------------ the filter list
 
 	/** Nothing passes an empty list. */

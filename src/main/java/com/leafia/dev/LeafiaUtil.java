@@ -80,10 +80,37 @@ public final class LeafiaUtil {
 	 */
 	public static boolean matchesRegex(String value, String regex) {
 		try {
-			return value.matches(regex);
-		} catch(PatternSyntaxException ignored) {
+			return Pattern.compile(regex).matcher(new BoundedCharSequence(value, MATCH_STEP_LIMIT)).matches();
+		} catch(PatternSyntaxException | RegexBudgetExceeded ignored) {
+			// D-3075: a catastrophically backtracking pattern is abandoned (and so matches nothing)
+			// instead of tying up the server thread; upstream ran it unbounded (D-1084).
 			return false;
 		}
+	}
+
+	/** How many character reads one match may spend; a sane pattern on a registry id uses well under a thousand. */
+	public static final int MATCH_STEP_LIMIT = 200_000;
+
+	private static final class RegexBudgetExceeded extends RuntimeException {
+		RegexBudgetExceeded() { super(null, null, false, false); }
+	}
+
+	private static final class BoundedCharSequence implements CharSequence {
+		private final CharSequence inner;
+		private final int[] budget;
+
+		BoundedCharSequence(CharSequence inner, int limit) { this(inner, new int[] {limit}); }
+		private BoundedCharSequence(CharSequence inner, int[] budget) { this.inner = inner; this.budget = budget; }
+
+		@Override public int length() { return inner.length(); }
+		@Override public char charAt(int index) {
+			if(--budget[0] < 0) throw new RegexBudgetExceeded();
+			return inner.charAt(index);
+		}
+		@Override public CharSequence subSequence(int start, int end) {
+			return new BoundedCharSequence(inner.subSequence(start, end), budget);
+		}
+		@Override public String toString() { return inner.toString(); }
 	}
 
 	/**

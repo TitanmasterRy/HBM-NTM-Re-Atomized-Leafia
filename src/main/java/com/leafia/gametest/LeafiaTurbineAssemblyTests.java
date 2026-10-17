@@ -668,7 +668,7 @@ public class LeafiaTurbineAssemblyTests {
 	}
 
 	/**
-	 * <b>An upstream bug, pinned rather than fixed (D-021, D-1061).</b> A steam port records where
+	 * <b>An upstream bug, fixed (D-3075, was D-1061).</b> A steam port records where
 	 * steam came in as its index in the core's <em>component list</em>, and the core compares that
 	 * with <em>shaft positions</em>. The two agree until something longer than one block sits ahead
 	 * of the port — and the generator is three long. Then the inlet is recorded two places early,
@@ -679,7 +679,7 @@ public class LeafiaTurbineAssemblyTests {
 	 * through the port, as it would from a pipe, so the real {@code onFill} records it.
 	 */
 	@GameTest(template = ARENA)
-	public static void aGeneratorAheadOfAPortMisplacesTheInlet(GameTestHelper helper) {
+	public static void aGeneratorAheadOfAPortDoesNotMisplaceTheInlet(GameTestHelper helper) {
 
 		if(!LeafiaFeatures.modularTurbine()) { helper.succeed(); return; }
 
@@ -701,16 +701,15 @@ public class LeafiaTurbineAssemblyTests {
 		int behindShaft = behind.assemblies.get(0).positionsInOrder.get(0);
 		helper.assertTrue(plain.assemblies.get(0).receivingPositions.contains(plainShaft),
 				"with nothing long ahead, the inlet is recorded at its shaft position " + plainShaft);
-		helper.assertTrue(!behind.assemblies.get(0).receivingPositions.contains(behindShaft)
-				&& behind.assemblies.get(0).receivingPositions.contains(behindShaft - 2),
-				"behind a generator the inlet is recorded two places early: "
+		helper.assertTrue(behind.assemblies.get(0).receivingPositions.contains(behindShaft),
+				"behind a generator the inlet is still recorded at its shaft position: "
 						+ behind.assemblies.get(0).receivingPositions + ", shaft position " + behindShaft);
 
 		plain.updateEntity();
 		behind.updateEntity();
 		helper.assertTrue(plain.assemblies.get(0).lastWrongBlades == 0, "the plain turbine's blade is right");
-		helper.assertTrue(behind.assemblies.get(0).lastWrongBlades == 1,
-				"the same blade behind a generator is judged wrong - upstream's bug, kept");
+		helper.assertTrue(behind.assemblies.get(0).lastWrongBlades == 0,
+				"the same blade behind a generator is judged right (D-3075)");
 		helper.succeed();
 	}
 

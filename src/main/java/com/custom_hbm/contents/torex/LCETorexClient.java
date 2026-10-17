@@ -104,6 +104,7 @@ public final class LCETorexClient {
 			player.setDeltaMovement(player.getDeltaMovement().add(force));
 		}
 		if(shockwaveDistance < 0) return;
+		if(!cloud.sound) return; // D-3075: sound=false is silent (upstream still played the thunder and hurt the camera)
 
 		int duration = TorexMath.hurtDuration(amplitude, dist);
 		int swingTimer = duration << 1;

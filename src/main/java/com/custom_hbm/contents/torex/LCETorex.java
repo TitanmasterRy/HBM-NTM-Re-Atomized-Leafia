@@ -78,12 +78,10 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
  *
  * <h2>Upstream quirks kept</h2>
  * <ul>
- *   <li>{@code setScale} multiplies the <em>current</em> heights by the scale, and the client calls
- *       it twice - once when the packet is read and again on its first tick - so a client torex's
- *       core, convection, torus and roller are {@code base * scale^2}, not {@code base * scale}.
- *       A scale-1 cloud is unaffected; a scale-5 one is five times taller than the math suggests.</li>
- *   <li>{@code sound = false} also suppresses the shake and the knockback, because upstream puts
- *       all three behind {@code if(!reachedPlayer && sound)}.</li>
+ *   <li>{@code setScale} multiplies the <em>current</em> heights by the scale; the client's second call on
+ *       tick 1 was dropped in D-3075, so a client cloud is {@code base * scale}, not {@code base * scale^2}.</li>
+ *   <li>{@code sound = false} suppresses the shake and the knockback (upstream puts all three behind
+ *       {@code if(!reachedPlayer && sound)}) and, since D-3075, the thunder and hurt wobble too.</li>
  *   <li>{@code MAX_CLOUDLETS} bounds nothing (see {@link TorexMath}).</li>
  *   <li>The first loop of the endothermic palette is {@code SequencedCloudlet}s ({@code ENDOTHERMIC});
  *       its second loop, six per spawn, is the pillar ({@code ENDOTHERMIC_PILLAR}).</li>
@@ -263,7 +261,8 @@ public class LCETorex {
 
 		double s = this.getScale();
 		double cs = 1.5;
-		if(this.ticksExisted == 1) this.setScale((float) s);
+		// D-3075: upstream re-applied setScale here on tick 1 as well as when the packet was read, so a client
+		// cloud's heights were base * scale^2; it is applied once now.
 
 		if(humidity == -1) {
 			humidity = level.getBiome(BlockPos.containing(posX, posY, posZ)).value().getModifiedClimateSettings().downfall();

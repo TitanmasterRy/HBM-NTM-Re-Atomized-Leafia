@@ -720,7 +720,7 @@ public class LeafiaSpkCableTests {
 	 * tick ends, because a live one with both would throw in the nodespace's own update.
 	 */
 	@GameTest(template = EMPTY)
-	public static void theDeprecatedNetUpdateThrowsOnlyWithBothSidesPresent(GameTestHelper helper) {
+	public static void theNetUpdateNeverThrows(GameTestHelper helper) {
 
 		SPKNet net = new SPKNet();
 		try {
@@ -754,7 +754,7 @@ public class LeafiaSpkCableTests {
 			} catch(LeafiaDevFlaw e) {
 				threw = true;
 			}
-			helper.assertTrue(threw, "update() with a provider and a receiver must throw LeafiaDevFlaw, as upstream's does");
+			helper.assertTrue(!threw, "update() with a provider and a receiver must not throw (D-3075)");
 		} finally {
 			net.destroy();
 		}

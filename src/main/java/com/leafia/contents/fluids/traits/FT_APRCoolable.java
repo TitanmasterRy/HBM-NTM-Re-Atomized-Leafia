@@ -19,17 +19,17 @@ import net.minecraft.ChatFormatting;
  * <p>Upstream: {@code com/leafia/contents/fluids/traits/FT_APRCoolable.java}, verbatim. Nothing
  * reads it until the APR is ported; until then it is a tooltip line under shift.
  *
- * <p><b>Upstream has no no-argument constructor here</b>, unlike {@link FT_APRCoolant} and every
- * other trait. A fluid-trait config loader instantiates traits reflectively from the name map,
- * so reading an {@code aprcoolable} entry back would fail. This port's base mod does not read
- * that config yet, so it is not reachable; kept as upstream's and flagged rather than "fixed"
- * (rule 4, D-1068).
+ * <p>It has a no-argument constructor since D-3075 (upstream had none, so the config loader could not
+ * read an {@code aprcoolable} entry back; D-1068).
  */
 public class FT_APRCoolable extends FluidTrait {
 
 	public FluidType conversion;
 	public int in;
 	public int out;
+
+	/** For the trait config loader, which instantiates traits reflectively (D-3075; upstream had none, D-1068). */
+	public FT_APRCoolable() {}
 
 	public FT_APRCoolable(FluidType conversion, int in, int out) {
 		this.conversion = conversion;

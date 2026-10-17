@@ -11,36 +11,18 @@ import net.minecraft.util.Mth;
  * Ported from `com.llib.technical.LeafiaEase`.
  *
  * <p>Thirteen easing curves times three directions, used by the addon's particles, camera
- * shake and cloud animations. Sixteen upstream files name {@code LeafiaEase.Ease} and
- * {@code LeafiaEase.Direction}.
+ * shake and cloud animations.
  *
- * <h2>Two live upstream bugs, preserved</h2>
- *
- * Standing rule 4 and D-021: a bug reachable by players is flagged for a human, not quietly
- * fixed, because fixing it is a balance and behaviour change. Both of these are flagged in
- * D-1004 and both are reproduced here exactly as upstream has them.
- *
+ * <h2>Upstream bugs, fixed (D-3075, owner decision 2026-10-17)</h2>
  * <ol>
- *   <li><b>{@link #get(double, double, double)} never applies the easing.</b> It returns
- *       {@code lerp(min, max, t)} — a plain linear interpolation — so the curve the caller
- *       chose is discarded. Same for the clamped overload, which returns
- *       {@code Mth.clampedLerp}. Only the one-argument {@link #get(double)} eases anything.
- *       This is not theoretical: six upstream call sites use the min/max form, among them the
- *       Fleija vacuum force, the shake camera and the cloud shrink, and every one of them is
- *       linear in upstream despite naming a curve.</li>
- *   <li><b>{@link #parseEase} compares strings with {@code ==}.</b> {@code s == "linear"} is a
- *       reference comparison that is false for any string built at runtime, so the literal
- *       {@code linear} — which {@link #listEasesForCommands} offers as a valid completion —
- *       falls through and is rejected. The command suggests a value it will not accept.</li>
+ *   <li>the default in-out branch overshot to 1.5 (a stray {@code +0.5});</li>
+ *   <li>BOUNCE subtracted un-scaled offsets and its in-direction used {@code 1 - o(x)};</li>
+ *   <li>the min/max overloads returned a plain lerp and never eased - they now ease
+ *       ({@code lerp(min, max, get(t))}), which changes six call sites (Fleija vacuum force,
+ *       shake camera, cloud shrink, torex boost);</li>
+ *   <li>{@link #parseEase} compared with {@code ==} and checked {@code Out} before {@code InOut},
+ *       so "linear" and every in-out name were rejected.</li>
  * </ol>
- *
- * <h2>What did change</h2>
- *
- * {@code MathHelper} is {@link Mth}. {@code parseEase} threw 1.12.2's
- * {@code SyntaxErrorException}, part of a command framework Brigadier replaced wholesale;
- * it throws {@link IllegalArgumentException} here, and the command layer wraps it when
- * {@code CommandLeaf} lands. Neither changes behaviour — the parse still fails on the same
- * inputs.
  */
 public class LeafiaEase {
 
@@ -82,7 +64,7 @@ public class LeafiaEase {
 			else if(x >= 1) return 1;
 			else return -(Math.pow(2, (x - 1) * 10)) * Math.sin((x * 10 - 10.75) * elasticConstant);
 		case BOUNCE:
-			return 1 - o(x);
+			return 1 - o(1 - x);
 		case SMOOTH_STEP:
 		case SMOOTHER_STEP:
 			return 2 * io(x / 2);
@@ -97,16 +79,16 @@ public class LeafiaEase {
 			double d1 = 2.75;
 			if(x < 1 / d1) return n1 * x * x;
 			else if(x < 2 / d1) {
-				x = x - 1.5;
-				return n1 * (x / d1) * x + 0.75;
+				x = x - 1.5 / d1;
+				return n1 * x * x + 0.75;
 			}
 			else if(x < 2.5 / d1) {
-				x = x - 2.25;
-				return n1 * (x / d1) * x + 0.9375;
+				x = x - 2.25 / d1;
+				return n1 * x * x + 0.9375;
 			}
 			else {
-				x = x - 2.625;
-				return n1 * (x / d1) * x + 0.984375;
+				x = x - 2.625 / d1;
+				return n1 * x * x + 0.984375;
 			}
 		case SMOOTH_STEP:
 		case SMOOTHER_STEP: return 2 * io(x / 2 + 0.5) - 1;
@@ -120,7 +102,7 @@ public class LeafiaEase {
 		case BOUNCE: return (x < 0.5) ? (1 - o(1 - 2 * x)) / 2 : (1 + o(2 * x - 1)) / 2;
 		case SMOOTH_STEP: return x * x * (x * -2 + 3);
 		case SMOOTHER_STEP: return x * x * x * (x * (x * 6 - 15) + 10);
-		default: return (x <= .5) ? i(x * 2) / 2 : 1 - i(1 - (x * 2 - 1)) / 2 + 0.5;
+		default: return (x <= .5) ? i(x * 2) / 2 : 1 - i(2 - 2 * x) / 2;
 		}
 	}
 
@@ -144,12 +126,12 @@ public class LeafiaEase {
 	 * class note and D-1004.
 	 */
 	public double get(double t, double min, double max) {
-		return lerp(min, max, t);
+		return lerp(min, max, get(t));
 	}
 
 	/** Also linear, for the same reason. {@link Mth#clampedLerp} does no easing either. */
 	public double get(double t, double min, double max, boolean clamp) {
-		if(clamp) return Mth.clampedLerp(min, max, t);
+		if(clamp) return Mth.clampedLerp(min, max, get(Mth.clamp(t, 0, 1)));
 		else return get(t, min, max);
 	}
 
@@ -185,18 +167,18 @@ public class LeafiaEase {
 	public static LeafiaEase parseEase(String s) {
 		// Reference comparison, as upstream has it: this is never true for a string the command
 		// parser built, so "linear" falls through to the suffix checks and is rejected. See D-1004.
-		if(s == "linear") return new LeafiaEase(Ease.LINEAR, Direction.IO);
+		if(s.equals("linear")) return new LeafiaEase(Ease.LINEAR, Direction.IO);
 		String easeName;
 		Direction direction;
 		if(s.endsWith("In")) {
 			easeName = s.substring(0, s.length() - 2);
 			direction = Direction.I;
-		} else if(s.endsWith("Out")) {
-			easeName = s.substring(0, s.length() - 3);
-			direction = Direction.O;
 		} else if(s.endsWith("InOut")) {
 			easeName = s.substring(0, s.length() - 5);
 			direction = Direction.IO;
+		} else if(s.endsWith("Out")) {
+			easeName = s.substring(0, s.length() - 3);
+			direction = Direction.O;
 		} else throw new IllegalArgumentException("Invalid ease: " + s);
 		for(Ease ease : Ease.values()) {
 			if(ease.name().toLowerCase().equals(easeName))

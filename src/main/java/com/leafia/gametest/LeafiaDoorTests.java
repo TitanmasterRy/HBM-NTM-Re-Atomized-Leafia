@@ -743,7 +743,8 @@ public class LeafiaDoorTests {
 				} else {
 					helper.assertTrue(Math.abs(objectX - 1) < 1e-6, name + ": the only other column is at x = 1, was " + objectX);
 					boundary++;
-					if(paintedFront) front++; else back++;
+					helper.assertTrue(paintedBack, name + ": the x = 1 column takes the back face, deterministically (D-3075)");
+					back++;
 				}
 			}
 			helper.assertTrue(front + back == 18, name + ": eighteen cells, " + front + " + " + back);

@@ -156,8 +156,7 @@ public class LeafiaPacketGuardTests {
 
 	/**
 	 * A button press: the cabin must be within reach, and the button one the cabin has. Pressing
-	 * {@code fire} replaces the whole layout with upstream's seven-button demo, which makes the
-	 * effect visible.
+	 * {@code fire} no longer replaces the layout with upstream's demo (D-3075), so the checks assert it stays.
 	 */
 	@GameTest(template = EMPTY)
 	public static void theCabinButtonPressIsValidated(GameTestHelper helper) {
@@ -198,7 +197,7 @@ public class LeafiaPacketGuardTests {
 
 		// the real thing
 		press(cabin, "fire", player, PacketFlow.SERVERBOUND);
-		helper.assertTrue(cabin.buttons.size() == 7, "the valid press did not run: " + cabin.buttons.size() + " buttons");
+		helper.assertTrue(cabin.buttons.size() == 1, "the fire press must not rewrite the button set (D-3075): " + cabin.buttons.size() + " buttons");
 		cabin.discard();
 		helper.succeed();
 	}

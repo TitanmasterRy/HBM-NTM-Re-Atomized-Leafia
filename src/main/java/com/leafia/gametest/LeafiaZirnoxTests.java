@@ -297,12 +297,12 @@ public class LeafiaZirnoxTests {
 	}
 
 	@GameTest(template = EMPTY)
-	public static void theMeltdownClearsUpstreamsEightCellsAndThrows152Pieces(GameTestHelper helper) {
+	public static void theMeltdownClearsTheFiveByFiveAboveAndThrows152Pieces(GameTestHelper helper) {
 		BlockPos o = BlockPos.ZERO;
 		List<BlockPos> cells = LeafiaZirnoxTE.upstreamClearedCells(o);
 		List<BlockPos> expected = new ArrayList<>();
-		for(int ox = -2; ox <= 5; ox++) expected.add(o.offset(ox, 2, -2));
-		helper.assertTrue(cells.equals(expected), "eight cells in a line two up on the north edge, the last three outside: " + cells);
+		for(int ox = -2; ox <= 2; ox++) for(int oz = -2; oz <= 2; oz++) for(int oy = 2; oy <= 5; oy++) expected.add(o.offset(ox, oy, oz));
+		helper.assertTrue(cells.equals(expected), "the 5x5 from two to five up (D-3075): " + cells);
 
 		List<DebrisType> plan = LeafiaZirnoxTE.debrisPlan();
 		int[] n = new int[DebrisType.values().length];

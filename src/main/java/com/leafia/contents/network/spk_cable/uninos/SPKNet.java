@@ -1,13 +1,7 @@
 package com.leafia.contents.network.spk_cable.uninos;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import com.hbm.uninos.INetworkProvider;
 import com.hbm.uninos.NodeNet;
-import com.llib.exceptions.LeafiaDevFlaw;
 
 /**
  * The SPK (spark) network: a graph of cables over the base mod's nodespace that carries the DFC's
@@ -61,103 +55,17 @@ public class SPKNet extends NodeNet<ISPKReceiver, ISPKProvider, SPKNode> {
 		this.energyTracker = 0;
 	}
 
-	@Deprecated
+	/**
+	 * Net-driven transfer is retired: providers push through {@code tryProvideSPK}. Upstream threw
+	 * here once a net held a provider and a receiver, which was a server-tick crash for anything
+	 * that registered a provider; fixed in D-3075 (owner decision 2026-10-17). This now only drops
+	 * stale or removed entries of both kinds and never moves SPK, so a registered provider is inert
+	 * rather than fatal.
+	 */
 	@Override
 	public void update() {
-
-		if(providerEntries.isEmpty()) return;
-		if(receiverEntries.isEmpty()) return;
-
-		if(true)
-			throw new LeafiaDevFlaw("Deprecated update method of SPKNet called");
-
 		final long timestamp = System.currentTimeMillis();
-
-		final List<Share<ISPKProvider>> providers = new ArrayList<>();
-		long powerAvailable = 0;
-
-		Iterator<Map.Entry<ISPKProvider, Long>> provIt = providerEntries.entrySet().iterator();
-
-		while(provIt.hasNext()) {
-			Map.Entry<ISPKProvider, Long> entry = provIt.next();
-			ISPKProvider prov = entry.getKey();
-
-			if(timestamp - entry.getValue() > timeout || isBadLink(prov)) {
-				provIt.remove();
-				continue;
-			}
-
-			long src = Math.min(prov.getSendable(), prov.getSPKProviderSpeed());
-			if(src > 0) {
-				providers.add(new Share<>(prov, src));
-				powerAvailable += src;
-			}
-		}
-
-		if(powerAvailable <= 0) return;
-
-		final List<Share<ISPKReceiver>> receivers = new ArrayList<>();
-		long totalDemand = 0;
-
-		Iterator<Map.Entry<ISPKReceiver, Long>> recIt = receiverEntries.entrySet().iterator();
-
-		while(recIt.hasNext()) {
-			Map.Entry<ISPKReceiver, Long> entry = recIt.next();
-			ISPKReceiver rec = entry.getKey();
-
-			if(timestamp - entry.getValue() > timeout || isBadLink(rec)) {
-				recIt.remove();
-				continue;
-			}
-
-			long need = Math.min(rec.getMaxSPK() - rec.getSPK(), rec.getSPKReceiverSpeed());
-			if(need > 0) {
-				receivers.add(new Share<>(rec, need));
-				totalDemand += need;
-			}
-		}
-
-		if(totalDemand <= 0) return;
-
-		final long toTransfer = Math.min(powerAvailable, totalDemand);
-		long energyUsed = 0L;
-
-		for(Share<ISPKReceiver> entry : receivers) {
-			ISPKReceiver rec = entry.target();
-			long want = entry.amount();
-			long toSend = (long) Math.max(((double) toTransfer) * ((double) want / (double) totalDemand), 0D);
-
-			long leftoverFromRecv = rec.transferSPK(toSend, false);
-			energyUsed += (toSend - leftoverFromRecv);
-		}
-
-		this.energyTracker += energyUsed;
-
-		if(energyUsed <= 0) return;
-
-		long leftover = energyUsed;
-
-		for(Share<ISPKProvider> entry : providers) {
-			ISPKProvider prov = entry.target();
-			long canProvide = entry.amount();
-
-			double weight = (double) canProvide / (double) powerAvailable;
-			long toUse = (long) Math.max(energyUsed * weight, 0.0D);
-
-			prov.setTransferredSpk(toUse);
-			leftover -= toUse;
-		}
-
-		int iterationsLeft = 100;
-		while(iterationsLeft > 0 && leftover > 0 && !providers.isEmpty()) {
-			iterationsLeft--;
-
-			Share<ISPKProvider> selected = providers.get(rand.nextInt(providers.size()));
-			ISPKProvider scapegoat = selected.target();
-
-			long toUse = Math.min(leftover, scapegoat.getSendable());
-			scapegoat.setTransferredSpk(toUse);
-			leftover -= toUse;
-		}
+		providerEntries.entrySet().removeIf(e -> timestamp - e.getValue() > timeout || isBadLink(e.getKey()));
+		receiverEntries.entrySet().removeIf(e -> timestamp - e.getValue() > timeout || isBadLink(e.getKey()));
 	}
 }

@@ -710,6 +710,20 @@ public class LeafiaPWRTests {
 		helper.succeed();
 	}
 
+	/** D-3075: once the stress timer runs out and the sound plays, it is reset (upstream's stayed spent, so the sound played every tick). */
+	@GameTest(template = BIG)
+	public static void theStressTimerResetsAfterItsSound(GameTestHelper helper) {
+		PWRData data = rigA(helper);
+		data.tanks[2] = new FluidTank(LeafiaFluids.COOLANT_MAL, 3000);
+		data.tanks[2].setFill(3000);
+		data.tanks[1].setFill(0);
+		data.stressTimer = 1;
+		data.drainMalcoolant();
+		helper.assertTrue(data.stressTimer == 300, "the timer was reset to 300, got " + data.stressTimer);
+		teardown(helper);
+		helper.succeed();
+	}
+
 	@GameTest(template = BIG)
 	public static void theBufferDrainsIntoTheHotTankAndStressesTheVessel(GameTestHelper helper) {
 		PWRData data = rigA(helper);

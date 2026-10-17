@@ -70,12 +70,12 @@ import org.joml.Vector3f;
  *
  * <h2>The melt</h2>
  *
- * While on, with no snowball cooling it, {@link #damage} rises one a tick; past {@link #maxDamage}
+ * While on with fuel and no snowball cooling it, {@link #damage} rises one a tick; past {@link #maxDamage}
  * (thirty seconds) {@link #meltdown} clears a 17x17x17 cube around the core to air and kills
- * everything in it. <b>That includes bedrock and obsidian</b>, and the casing and glass it is
- * built of, and it is the same upstream ({@code setBlockToAir} ignores hardness). Note also that
- * damage rises whether or not there is any fuel: turning an empty reactor on without a snowball
- * melts it just the same (D-1082).
+ * everything in it. Fixed in D-3075: an unfuelled reactor does not heat, bedrock and other
+ * unbreakable blocks survive, creative and spectator players are not killed, and the two slots
+ * take only uranium ingots and snowballs (upstream: damage rose with no fuel, everything was
+ * cleared, both slots took anything; D-1082). Obsidian and the reactor's own casing still go.
  *
  * <h2>What does not port, and why</h2>
  *
@@ -154,10 +154,13 @@ public class SlopTE extends BlockEntityMachineBase implements LeafiaPacketReceiv
 		return side == Direction.DOWN ? new int[] { SLOT_FUEL } : new int[] { SLOT_COOLANT };
 	}
 
-	/** Upstream's {@code isItemValidForSlot} is {@code true} for both, and a hopper's the same. */
+	/**
+	 * Upstream's {@code isItemValidForSlot} was {@code true} for both, so a hopper or pipe could fill the
+	 * fuel slot with anything; D-3075 limits slot 0 to uranium ingots and slot 1 to snowballs.
+	 */
 	@Override
 	public boolean canPlaceItem(int slot, ItemStack stack) {
-		return true;
+		return slot == SLOT_FUEL ? stack.is(ModItems.ingot_uranium.get()) : stack.is(Items.SNOWBALL);
 	}
 
 	@Override
@@ -302,13 +305,19 @@ public class SlopTE extends BlockEntityMachineBase implements LeafiaPacketReceiv
 
 		for(int xo = -range; xo <= range; xo++)
 			for(int yo = -range; yo <= range; yo++)
-				for(int zo = -range; zo <= range; zo++)
-					level.setBlock(center.offset(xo, yo, zo), Blocks.AIR.defaultBlockState(), 3);
+				for(int zo = -range; zo <= range; zo++) {
+					BlockPos at = center.offset(xo, yo, zo);
+					// D-3075: unbreakable blocks (bedrock, barriers) survive; upstream's setBlockToAir ignored hardness
+					if(level.getBlockState(at).getDestroySpeed(level, at) < 0) continue;
+					level.setBlock(at, Blocks.AIR.defaultBlockState(), 3);
+				}
 
 		for(Entity entity : level.getEntities((Entity) null, new AABB(
 				center.getX() - range, center.getY() - range, center.getZ() - range,
-				center.getX() + range + 1, center.getY() + range + 1, center.getZ() + range + 1), e -> true))
+				center.getX() + range + 1, center.getY() + range + 1, center.getZ() + range + 1), e -> true)) {
+			if(entity instanceof Player p && (p.isCreative() || p.isSpectator())) continue; // D-3075
 			tryKill(entity);
+		}
 	}
 
 	/**
@@ -442,7 +451,9 @@ public class SlopTE extends BlockEntityMachineBase implements LeafiaPacketReceiv
 				cool--;
 			}
 
-			if(cool <= 0) {
+			if(fuel <= 0) {
+				damage = 0; // D-3075: an unfuelled reactor makes no heat, so it cannot melt down (upstream's did)
+			} else if(cool <= 0) {
 				damage++;
 				if(damage > maxDamage) {
 					meltdown();

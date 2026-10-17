@@ -66,9 +66,8 @@ import net.minecraft.world.phys.Vec3;
  *
  * <h2>Upstream's own behaviour, kept (rule 4)</h2>
  * <ol>
- * <li><b>The type is not saved.</b> A blast reloaded from disk is no longer endothermic: it deals no endothermic
- *     damage and its fallout is ordinary radioactive fallout. Reachable by a player who saves and quits during
- *     an APR meltdown.</li>
+ * <li><b>The type is saved</b> (D-3075). Upstream lost it on reload, so a saved-and-quit APR meltdown carried on as
+ *     an ordinary blast without the cold damage or the flooding fallout.</li>
  * <li><b>The flood floods.</b> D-3009 asked whether an endothermic blast on the parallel ray should flood, since
  *     upstream's parallel ray never recorded a lowest height. It never comes up: upstream runs an endothermic
  *     blast on the batched ray, whose lowest height is recorded, so it floods - here as there.</li>
@@ -237,28 +236,34 @@ public class NukeLCA extends EntityExplosionChunkloading {
 	}
 
 	@Override
-	protected void readAdditionalSaveData(CompoundTag nbt) {
+	public void readAdditionalSaveData(CompoundTag nbt) {
 		radius = nbt.getInt("radius");
 		strength = nbt.getInt("strength");
 		falloutAdd = nbt.getInt("falloutAdd");
 		fallout = nbt.getBoolean("fallout");
 		algorithm = nbt.getInt("algorithm");
 		if(nbt.hasUUID("detonator")) detonator = nbt.getUUID("detonator");
-		// upstream rebuilds the ray from the saved algorithm alone: the type is not saved, so this is never endothermic
+		// D-3075: the type and flood height are saved (upstream's reload lost both and carried on as a plain blast)
+		if(nbt.contains("explosionType")) {
+			try { type = ExplosionType.valueOf(nbt.getString("explosionType")); } catch(IllegalArgumentException ignored) { type = null; }
+		}
+		lowestHeight = nbt.getInt("lowestHeight");
 		if(!initialized && strength > 0) {
-			explosion = makeRay(false, algorithm);
+			explosion = makeRay(type == ExplosionType.ENDOTHERMIC, algorithm);
 			initialized = true;
 		}
 	}
 
 	@Override
-	protected void addAdditionalSaveData(CompoundTag nbt) {
+	public void addAdditionalSaveData(CompoundTag nbt) {
 		nbt.putInt("radius", radius);
 		nbt.putInt("strength", strength);
 		nbt.putInt("falloutAdd", falloutAdd);
 		nbt.putBoolean("fallout", fallout);
 		nbt.putInt("algorithm", algorithm);
 		if(detonator != null) nbt.putUUID("detonator", detonator);
+		if(type != null) nbt.putString("explosionType", type.name());
+		nbt.putInt("lowestHeight", lowestHeight);
 	}
 
 	/** Upstream's exemptions that exist here: the ocelot (1.12.2's ocelot was also the cat). */

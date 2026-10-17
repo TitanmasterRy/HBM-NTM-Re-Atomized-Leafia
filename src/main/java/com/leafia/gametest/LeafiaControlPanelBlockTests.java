@@ -351,8 +351,8 @@ public class LeafiaControlPanelBlockTests {
 						helper.assertTrue(te.getWeakRedstoneOutput(Direction.UP) == 15, "the block to the south gave 15, so up is 15, got " + te.getWeakRedstoneOutput(Direction.UP));
 						helper.assertTrue(te.getRedstoneInputPower(Direction.SOUTH) == 15, "and the panel reads 15 on its south face");
 						BlockState state = helper.getLevel().getBlockState(abs);
-						helper.assertTrue(state.getSignal(helper.getLevel(), abs, Direction.UP) == 15, "the block answers a neighbour asking along up with the weak output");
-						helper.assertTrue(state.getDirectSignal(helper.getLevel(), abs, Direction.UP) == 0, "and nothing strong");
+						helper.assertTrue(state.getSignal(helper.getLevel(), abs, Direction.DOWN) == 15, "the block answers the neighbour above (asking along down) with the weak output of its up face (D-3075)");
+						helper.assertTrue(state.getDirectSignal(helper.getLevel(), abs, Direction.DOWN) == 0, "and nothing strong");
 						helper.setBlock(AT.south(), Blocks.AIR);
 					})
 					.thenIdle(6)
@@ -375,7 +375,7 @@ public class LeafiaControlPanelBlockTests {
 		helper.assertTrue(te.getWeakRedstoneOutput(Direction.EAST) == 15 && te.getStrongRedstoneOutput(Direction.WEST) == 0 && te.getStrongRedstoneOutput(Direction.NORTH) == 6,
 				"15 at most, 0 at least");
 		BlockState state = helper.getLevel().getBlockState(abs);
-		helper.assertTrue(state.getSignal(helper.getLevel(), abs, Direction.EAST) == 15 && state.getDirectSignal(helper.getLevel(), abs, Direction.NORTH) == 6,
+		helper.assertTrue(state.getSignal(helper.getLevel(), abs, Direction.WEST) == 15 && state.getDirectSignal(helper.getLevel(), abs, Direction.SOUTH) == 6,
 				"the block reports them");
 
 		// Outputs set during one event take effect together, at the end of the outermost one.

@@ -68,7 +68,7 @@ public final class TorexMath {
 	public static final double BG2 = 0.1;
 	public static final double BB2 = 0.1;
 
-	/** {@code startBoostEase}: exponential out, which {@code LeafiaEase.get(t, min, max, true)} discards (D-1004). */
+	/** {@code startBoostEase}: exponential out, applied by {@code LeafiaEase.get(t, min, max, true)} since D-3075 (discarded before, D-1004). */
 	private static final LeafiaEase START_BOOST_EASE = new LeafiaEase(Ease.EXPO, Direction.O);
 
 	// ----- scale ------------------------------------------------------------------------------

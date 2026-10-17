@@ -38,14 +38,12 @@ import net.minecraft.world.phys.BlockHitResult;
  * upgraded to {@code EXTRA}, with an inventory-only proxy each, which is how a hopper beside the
  * machine reaches the slots from the corners.
  *
- * <h2>An upstream slip in {@link #checkRequirement}, kept</h2>
+ * <h2>Two upstream slips, fixed in D-3075</h2>
  *
- * Upstream shifts {@code x} and {@code z} to the core <em>in place</em> and then passes them to
- * {@code checkSpace} as the "just placed block, which counts as free" origin as well. So the
- * <b>core's own cell is never checked</b>: a machine can be placed with a solid block exactly where
- * its core goes, and the core replaces it. Only that cell; the other twenty-six and the tower are
- * checked as normal. The base class passes the clicked position there, and that is clearly the
- * intent (D-021: flagged, not fixed).
+ * Upstream shifted {@code x} and {@code z} to the core in place and passed them to {@code checkSpace} as the
+ * "just placed block, which counts as free" origin, so the core's own cell was never checked and a solid block
+ * there was replaced. The placed block is the free origin now, as in the base class. And the block implemented
+ * {@code ITooltipProvider} without ever showing its lang text; it shows it now.
  *
  * <h2>What opens it, and what a break costs</h2>
  *
@@ -53,9 +51,6 @@ import net.minecraft.world.phys.BlockHitResult;
  * <li>A click from any block of it opens the screen unless the player is sneaking.</li>
  * <li>Breaking the core scatters every item inside: upstream's {@code BlockDummyable.breakBlock}
  *     does, and this port's {@code BlockDummyable} has a TODO where that goes.</li>
- * <li>The block says it has a tooltip ({@code ITooltipProvider}) and upstream's lang has a
- *     {@code tile.sol_blaster.desc}, but upstream's block never overrides {@code addInformation}, so
- *     neither is ever shown. Kept: no tooltip. One override restores it.</li>
  * </ul>
  */
 public class SolBlasterBlock extends BlockDummyable implements ITooltipProvider {
@@ -72,6 +67,13 @@ public class SolBlasterBlock extends BlockDummyable implements ITooltipProvider 
 	@Override
 	protected MapCodec<? extends SolBlasterBlock> codec() {
 		return CODEC;
+	}
+
+	@Override
+	public void appendHoverText(net.minecraft.world.item.ItemStack stack, net.minecraft.world.item.Item.TooltipContext context,
+			java.util.List<net.minecraft.network.chat.Component> tooltip, net.minecraft.world.item.TooltipFlag flag) {
+		addStandardInfo("tile.sol_blaster.desc", tooltip); // D-3075: upstream implemented ITooltipProvider and never showed it
+		super.appendHoverText(stack, context, tooltip, flag);
 	}
 
 	@Override
@@ -116,14 +118,16 @@ public class SolBlasterBlock extends BlockDummyable implements ITooltipProvider 
 		makeExtra(world, core.offset(-1, 0, -1));
 	}
 
-	/** The tower, then the box. The core's own cell is the free "origin" of both; see the class doc. */
+	/** The tower, then the box, with the placed block as the free origin of both (D-3075). */
 	@Override
 	protected boolean checkRequirement(Level world, BlockPos pos, Direction dir, int o) {
 
 		BlockPos core = pos.relative(dir, o);
 
-		if(!MultiblockHandlerXR.checkSpace(world, core, TOWER, core, dir)) return false;
-		return MultiblockHandlerXR.checkSpace(world, core, getDimensions(), core, dir);
+		// D-3075: the free origin is the placed block (as the base class passes it), not the core's own cell, which
+		// upstream left unchecked so a solid block there was silently replaced.
+		if(!MultiblockHandlerXR.checkSpace(world, core, TOWER, pos, dir)) return false;
+		return MultiblockHandlerXR.checkSpace(world, core, getDimensions(), pos, dir);
 	}
 
 	@Override

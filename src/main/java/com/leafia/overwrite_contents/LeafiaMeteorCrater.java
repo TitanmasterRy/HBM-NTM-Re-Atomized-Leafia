@@ -37,10 +37,9 @@ import net.minecraft.world.phys.Vec3;
  *
  * <p>Kept from upstream, and worth knowing:
  * <ul>
- * <li><b>the centre column's debris is thrown to the world origin column.</b> Its direction from the centre is
- *     {@code 0 / 0}, and 1.12.2's {@code BlockPos.add(NaN, 0, NaN)} floors to x = 0, z = 0, as 1.21.1's
- *     {@code Mth.floor} does. So about one and a half blocks per meteor land on top of column (0, 0). Flagged in D-3022
- *     for a human; the overhaul that calls this is off by default;</li>
+ * <li><b>the centre column throws no debris</b> (D-3075). Its direction from the centre is
+ *     {@code 0 / 0}; upstream's NaN floored to the world-origin column, which received about one and a half blocks per
+ *     meteor (D-3022);</li>
  * <li>{@code distanceSq} is between block corners and includes the height difference, so debris from deep in a
  *     column travels less far;</li>
  * <li>"the surface" is 1.12.2's {@code getHeight(x, z)}, which is {@code MOTION_BLOCKING} here (D-843), less one; and
@@ -77,7 +76,8 @@ public final class LeafiaMeteorCrater {
 							BlockState state = world.getBlockState(p);
 							if(state.getRenderShape() != RenderShape.INVISIBLE && !state.liquid()) {
 								double moveRatio = 1 - Math.sqrt(p.distSqr(pos)) / RADIUS * 0.5;
-								if(moveRatio > 0) {
+								// D-3075: the centre column has no direction (0 / 0 = NaN, which floored to the world-origin column); it throws nothing
+								if(moveRatio > 0 && horizontalDistance != 0) {
 									double moveAmt = Math.pow(moveRatio, 2) * RADIUS * (0.95 * world.random.nextDouble() * 0.5) + RADIUS / 2d;
 									BlockPos newPos = BlockPos.containing(p.getX() + ox / horizontalDistance * moveAmt, p.getY(), p.getZ() + oz / horizontalDistance * moveAmt);
 									debrisAt.add(newPos);

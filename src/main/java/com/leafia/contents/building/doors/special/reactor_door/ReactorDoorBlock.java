@@ -37,7 +37,7 @@ import net.minecraft.world.phys.Vec3;
  * Sneak with a screwdriver in the main hand and a block in the off hand. The click lands on one
  * of the door's cells; the cell is placed relative to the core, looking along the door's facing
  * ({@code FiaMatrix.toObjectSpace}), and a cell in front of the plane through the core
- * ({@code x < 1}) paints the front face {@link ReactorDoorTE#skinA}, any other the back
+ * ({@code x < 0.5}; upstream's {@code x < 1} was a coin flip on the x = 1 column, D-3075) paints the front face {@link ReactorDoorTE#skinA}, any other the back
  * {@link ReactorDoorTE#skinB}. With nothing in the off hand the same click cycles the door's skin
  * instead - the base door's own behaviour.
  *
@@ -89,7 +89,8 @@ public class ReactorDoorBlock extends AddonDoorGeneric {
 			FiaMatrix mat = new FiaMatrix(Vec3.atLowerCornerOf(core), Vec3.atLowerCornerOf(core.relative(facing)))
 					.toObjectSpace(new FiaMatrix(Vec3.atLowerCornerOf(pos)));
 
-			if(mat.getX() < 1)
+			// D-3075: 0.5, not 1; the column at x = 1 sits on the boundary and rounding decided its face (a coin flip)
+			if(mat.getX() < 0.5)
 				door.skinA = paint;
 			else
 				door.skinB = paint;

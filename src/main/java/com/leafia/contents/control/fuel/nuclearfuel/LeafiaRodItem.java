@@ -287,11 +287,12 @@ public class LeafiaRodItem extends AddonItemHazardBase {
 
 	/**
 	 * Called with null arguments from the constructor to set {@link #meltdownPriority}; with a world,
-	 * it is the blast of a rod that has melted. <b>It grows {@link #detonateRadius} every time it
-	 * explodes</b> (upstream's {@code *=}); {@link #resetDetonate} is what puts it back.
+	 * it is the blast of a rod that has melted. The blast radius is {@link #detonateRadius} times the
+	 * rod's factor, returned; the field itself is no longer grown by each call (D-3075, was D-3001).
 	 */
 	public float detonate(@Nullable Level world, @Nullable BlockPos pos) {
 		boolean explode = (world != null);
+		float radius = detonateRadius; // D-3075: local; upstream's *= grew the item singleton's field on every call
 		switch(functionId) {
 			case "flashgold": case "flashlead":
 				meltdownPriority = 10;
@@ -299,10 +300,10 @@ public class LeafiaRodItem extends AddonItemHazardBase {
 					float x = pos.getX() + 0.5f;
 					float y = pos.getY() + 0.5f;
 					float z = pos.getZ() + 0.5f;
-					detonateRadius *= 1.5f;
-					EntityNukeTorex.statFacStandard(world, x, y, z, detonateRadius);
+					radius *= 1.5f;
+					EntityNukeTorex.statFacStandard(world, x, y, z, radius);
 					if(!detonateVisualsOnly)
-						world.addFreshEntity(EntityNukeExplosionMK5.statFac(world, (int) detonateRadius, x, y, z));
+						world.addFreshEntity(EntityNukeExplosionMK5.statFac(world, (int) radius, x, y, z));
 				}
 				break;
 			case "balefire": case "blazingbalefire":
@@ -311,12 +312,12 @@ public class LeafiaRodItem extends AddonItemHazardBase {
 					float x = pos.getX() + 0.5f;
 					float y = pos.getY() + 0.5f;
 					float z = pos.getZ() + 0.5f;
-					detonateRadius *= 2.5f;
-					EntityNukeTorex.statFacBale(world, x, y, z, detonateRadius);
+					radius *= 2.5f;
+					EntityNukeTorex.statFacBale(world, x, y, z, radius);
 					if(!detonateVisualsOnly) {
 						EntityBalefire bf = new EntityBalefire(world);
 						bf.setPos(x, y, z);
-						bf.destructionRange = (int) detonateRadius;
+						bf.destructionRange = (int) radius;
 						world.addFreshEntity(bf);
 					}
 				}
@@ -327,11 +328,11 @@ public class LeafiaRodItem extends AddonItemHazardBase {
 		if(explode && !detonateVisualsOnly) {
 			ChunkRadiationManager.incrementRad(world, pos, 1000F, 2000F);
 			if(!detonateNuclear) {
-				world.explode(null, pos.getX(), pos.getY(), pos.getZ(), detonateRadius * 1.5f, Level.ExplosionInteraction.TNT);
-				ExplosionNukeGeneric.waste(world, pos.getX(), pos.getY(), pos.getZ(), (int) detonateRadius * 2);
+				world.explode(null, pos.getX(), pos.getY(), pos.getZ(), radius * 1.5f, Level.ExplosionInteraction.TNT);
+				ExplosionNukeGeneric.waste(world, pos.getX(), pos.getY(), pos.getZ(), (int) radius * 2);
 			}
 		}
-		return detonateRadius;
+		return radius;
 	}
 
 	// ------------------------------------------------------------------------- the heat function
@@ -439,7 +440,7 @@ public class LeafiaRodItem extends AddonItemHazardBase {
 			// THORIUM
 			case "thmeu":
 				y = Math.pow(x * 65, 0.35) * 3;
-				n = "(" + flux + "×64)^0.35×3 " + ChatFormatting.DARK_AQUA + "(POOR)";
+				n = "(" + flux + "×65)^0.35×3 " + ChatFormatting.DARK_AQUA + "(POOR)";
 				break;
 
 			// PLUTONIUM

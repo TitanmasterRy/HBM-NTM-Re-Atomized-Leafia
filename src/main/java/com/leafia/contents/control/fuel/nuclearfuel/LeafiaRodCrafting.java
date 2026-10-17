@@ -62,7 +62,7 @@ public class LeafiaRodCrafting extends CustomRecipe {
 				if(tag.getDouble("depletion") >= rod.life * 0.05 && rod.life > 0)
 					return false;
 			}
-			return true;
+			return !rod.baseStack().isEmpty(); // D-3075: a rod with no base item matched and yielded nothing
 		}
 		return false;
 	}
@@ -73,7 +73,7 @@ public class LeafiaRodCrafting extends CustomRecipe {
 		if(stackie != null && stackie.getItem() instanceof LeafiaRodItem rod) {
 			CompoundTag tag = LeafiaRodItem.data(stackie);
 			if(tag != null) {
-				if(tag.getDouble("depletion") > rod.life * 0.05 && rod.life > 0)
+				if(tag.getDouble("depletion") >= rod.life * 0.05 && rod.life > 0)
 					return ItemStack.EMPTY;
 			}
 			return rod.baseStack();

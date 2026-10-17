@@ -52,8 +52,8 @@ import net.neoforged.neoforge.items.SlotItemHandler;
  * the slot still holds that item, so one shift-click doubles it up to the stack limit.
  * <b>Upstream has the same defect</b> (the same two arithmetic lines, the same merge), it needs
  * a full inventory and an item in the slot that accepts anything, and it is reachable only once
- * the screwdriver that opens this menu is ported. Flagged, not fixed (D-021); D-1077 and
- * {@code LeafiaEvCabinGuiTests.shiftClickingTheRadioSlotWithAFullInventoryDoublesIt}.
+ * the screwdriver that opens this menu is ported. Fixed in D-3075 (was flagged, D-021); D-1077 and
+ * {@code LeafiaEvCabinGuiTests.shiftClickingTheRadioSlotWithAFullInventoryDoesNotDoubleIt}.
  *
  * <h2>{@link #stillValid} is true unconditionally</h2>
  *
@@ -122,8 +122,9 @@ public class EvCabinMenu extends AbstractContainerMenu {
 		if(index <= CABIN_SLOTS - 1)
 			changed = moveItemStackTo(stack, CABIN_SLOTS, slots.size(), true);
 
-		// __forInventory().__tryMoveToSlot(0, maxIndex, false): note it starts AT maxIndex (7).
-		if(!changed && !stack.isEmpty() && index >= CABIN_SLOTS - 1 && index <= slots.size())
+		// __forInventory().__tryMoveToSlot(0, maxIndex, false): upstream started AT maxIndex (7) and a full
+		// inventory merged the radio stack into itself (dupe); fixed to start at the first player slot (D-3075).
+		if(!changed && !stack.isEmpty() && index >= CABIN_SLOTS && index <= slots.size())
 			changed = moveItemStackTo(stack, 0, CABIN_SLOTS, false);
 
 		if(!changed) return ItemStack.EMPTY;

@@ -476,9 +476,9 @@ public class LeafiaSlopTests {
 		helper.succeed();
 	}
 
-	/** On with no fuel: no power, but - upstream's quirk - the clock to meltdown runs all the same. */
+	/** On with no fuel: no power and (D-3075) no meltdown clock; upstream's ran regardless. */
 	@GameTest(template = EMPTY)
-	public static void anEmptyReactorMakesNothingButStillOverheats(GameTestHelper helper) {
+	public static void anEmptyReactorMakesNothingAndDoesNotOverheat(GameTestHelper helper) {
 
 		Rig rig = build(helper, Direction.NORTH);
 		SlopTE slop = rig.slop;
@@ -489,7 +489,7 @@ public class LeafiaSlopTests {
 		for(int i = 0; i < 10; i++) slop.updateEntity();
 
 		helper.assertTrue(slop.power == before, "an empty reactor made " + (slop.power - before));
-		helper.assertTrue(slop.damage - damage == 10, "ten uncooled ticks did " + (slop.damage - damage) + " damage");
+		helper.assertTrue(slop.damage == 0, "an unfuelled reactor took " + slop.damage + " damage");
 		helper.succeed();
 	}
 
@@ -582,6 +582,7 @@ public class LeafiaSlopTests {
 
 		Rig rig = build(helper, Direction.NORTH);
 		SlopTE slop = rig.slop;
+		rig.layer(1, toxic());
 		slop.on = true;
 		slop.setItem(SlopTE.SLOT_COOLANT, new ItemStack(Items.ICE, 16));
 
@@ -618,6 +619,7 @@ public class LeafiaSlopTests {
 
 		Rig rig = build(helper, Direction.NORTH);
 		SlopTE slop = rig.slop;
+		rig.layer(1, toxic());
 		slop.on = true;
 
 		helper.assertTrue(SlopTE.maxDamage == 600, "thirty seconds is 600 ticks, got " + SlopTE.maxDamage);
@@ -635,8 +637,8 @@ public class LeafiaSlopTests {
 	}
 
 	/**
-	 * The cube is 17 wide - eight either side of the core's middle - and it takes everything:
-	 * stone, bedrock, a living pig, a dropped item. One block further out is left alone, on every
+	 * The cube is 17 wide - eight either side of the core's middle - and it takes everything
+	 * but bedrock (D-3075): stone, a living pig, a dropped item. One block further out is left alone, on every
 	 * axis, and so is a pig standing outside it.
 	 */
 	@GameTest(template = BIG, batch = "slopMeltdownExtent", timeoutTicks = 100)
@@ -670,6 +672,7 @@ public class LeafiaSlopTests {
 		ItemEntity item = helper.spawnItem(Items.COAL, centre.getX() + 0.5F, centre.getY() + 6F, centre.getZ() + 0.5F);
 		Pig outside = helper.spawnWithNoFreeWill(EntityType.PIG, new BlockPos(centre.getX() + 11, centre.getY() + 1, centre.getZ() + 1));
 
+		rig.layer(1, toxic());
 		rig.slop.on = true;
 		rig.slop.damage = SlopTE.maxDamage;
 		rig.slop.updateEntity();
@@ -677,7 +680,7 @@ public class LeafiaSlopTests {
 		List<String> problems = new ArrayList<>();
 		for(BlockPos p : cleared) if(!helper.getBlockState(p).isAir()) problems.add("survived: " + p.subtract(centre));
 		for(BlockPos p : kept) if(!helper.getBlockState(p).is(Blocks.OBSIDIAN)) problems.add("lost: " + p.subtract(centre));
-		if(!helper.getBlockState(centre.offset(8, 4, 5)).isAir()) problems.add("the bedrock survived");
+		if(!helper.getBlockState(centre.offset(8, 4, 5)).is(Blocks.BEDROCK)) problems.add("the bedrock was cleared (D-3075)");
 
 		helper.assertTrue(problems.isEmpty(), problems.size() + " block(s) wrong: " + problems);
 		helper.assertTrue(inside.getHealth() <= 0F, "the pig inside has " + inside.getHealth() + " health");
@@ -769,8 +772,10 @@ public class LeafiaSlopTests {
 			int[] want = side == Direction.DOWN ? new int[] { 0 } : new int[] { 1 };
 			if(!java.util.Arrays.equals(slots, want)) problems.add(side + " reaches " + java.util.Arrays.toString(slots));
 			for(int slot = 0; slot < 2; slot++) {
-				if(!slop.canPlaceItemThroughFace(slot, new ItemStack(Items.DIRT), side)) problems.add(side + " refused dirt in " + slot);
-				if(slop.canTakeItemThroughFace(slot, new ItemStack(Items.DIRT), side)) problems.add(side + " let dirt out of " + slot);
+				ItemStack ok = slot == 0 ? new ItemStack(com.hbm.items.ModItems.ingot_uranium.get()) : new ItemStack(Items.SNOWBALL);
+				if(!slop.canPlaceItemThroughFace(slot, ok, side)) problems.add(side + " refused " + ok + " in " + slot);
+				if(slop.canPlaceItemThroughFace(slot, new ItemStack(Items.DIRT), side)) problems.add(side + " took dirt in " + slot + " (D-3075)");
+				if(slop.canTakeItemThroughFace(slot, ok, side)) problems.add(side + " let " + ok + " out of " + slot);
 			}
 		}
 

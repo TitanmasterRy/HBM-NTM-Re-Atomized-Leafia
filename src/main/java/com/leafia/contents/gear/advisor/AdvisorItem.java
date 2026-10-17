@@ -371,8 +371,9 @@ public class AdvisorItem extends Item {
 		if(persisted.getBoolean(RECEIVED_KEY)) return false;
 
 		persisted.putBoolean(RECEIVED_KEY, true);
-		// Not checked: a full inventory loses the copy and keeps the flag, as upstream's does.
-		player.getInventory().add(new ItemStack(LeafiaItems.advisor.get()));
+		// D-3075: a full inventory used to lose the copy and keep the flag; the copy is dropped at the player's feet.
+		ItemStack gift = new ItemStack(LeafiaItems.advisor.get());
+		if(!player.getInventory().add(gift) && !gift.isEmpty()) player.drop(gift, false);
 		player.inventoryMenu.broadcastChanges();
 		return true;
 	}
@@ -569,7 +570,7 @@ public class AdvisorItem extends Item {
 
 		public static int gas = 0;
 		public static boolean pyro = false;
-		/** <b>Never counts down</b> - {@link #preTick} does not touch it. Upstream's, kept. */
+		/** Counts down in {@link #preTick} since D-3075 (upstream's never did, so the alert fired once per session). */
 		public static int pyroCooldown = 0;
 		public static boolean skinDmg2 = false;
 		public static boolean skinDmg3 = false;
@@ -581,6 +582,7 @@ public class AdvisorItem extends Item {
 		public static void preTick() {
 			gas = decrement(gas);
 			pyro = false;
+			pyroCooldown = decrement(pyroCooldown);
 			skinDmg2 = false;
 			skinDmg3 = false;
 			lava = decrement(lava);

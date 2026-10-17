@@ -50,21 +50,11 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
  * both hooks are the <b>Pre</b> events, because {@code priorTick}/{@code priorTickWorld} run
  * before anything else in the tick reads the wind.
  *
- * <h2>Two upstream quirks preserved rather than fixed (D-021)</h2>
+ * <h2>Two upstream quirks, fixed in D-3075 (owner decision 2026-10-17)</h2>
  *
- * <ol>
- *   <li><b>The state is static; the save file is per-dimension.</b> {@link WindSavedData} reads
- *       and writes these static fields, so on a server with more than one dimension every
- *       dimension's file holds a copy of one shared wind, and whichever loads last wins. The
- *       wind is genuinely global — the nether and the overworld blow the same way — which is
- *       almost certainly not what a per-world save was meant to express.
- *   <li><b>One sync packet per loaded dimension per tick.</b> {@link #updateWorld} sends to
- *       <em>all</em> players, and it is called once per level, so N dimensions means N identical
- *       broadcasts every tick. Left alone because it is the difference between "the wind is
- *       chatty" and "the wind is different", and only the second would be a port bug.
- * </ol>
- *
- * Both are reachable by a player and neither is fixed here. See D-1027.
+ * The state is static and the wind is global, so the world save now lives in the overworld's data
+ * storage only (it used to be a copy in every dimension's file, the last one loaded winning), and
+ * the sync packet goes out once per tick instead of once per loaded dimension (D-1027).
  */
 @EventBusSubscriber(modid = LeafiaRef.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class Wind {
@@ -191,10 +181,13 @@ public class Wind {
 
 	static Random rand = new Random();
 
-	/** Upstream's per-world half: tell everyone, and mark the file dirty. */
+	/** Upstream's per-world half: tell everyone, and mark the file dirty. Overworld only (D-3075). */
 	public static void updateWorld(Level level) {
 
 		if(level.isClientSide) return;
+		// D-3075: the wind is one global state, so it is broadcast and saved once per tick (from the
+		// overworld) instead of once per loaded dimension (upstream's N identical packets and N file copies).
+		if(!level.dimension().equals(Level.OVERWORLD)) return;
 
 		LeafiaCustomPacket.__start(new WindSyncPacket()).__sendToAll();
 

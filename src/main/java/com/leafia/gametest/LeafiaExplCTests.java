@@ -657,8 +657,12 @@ public class LeafiaExplCTests {
 			helper.assertTrue(lining.is(ModBlocks.tektite.get()) || lining.is(ModBlocks.ore_tektite_osmiridium.get()), "the centre is lined with tektite: " + lining);
 			helper.assertTrue(level.getBlockState(far.offset(13, 0, 13)).is(Blocks.STONE), "the corner, 18 out, is not dug");
 		} finally {
+			boolean originTouched = false;
+			for(int y = originTop; y < originTop + 16; y++)
+				if(level.getBlockState(new BlockPos(0, y, 0)).is(Blocks.STONE)) originTouched = true;
 			clear(level, far.offset(-32, -14, -32), far.offset(32, 6, 32));
-			// upstream's centre-column debris lands on the world origin column (D-3022); take it back off
+			if(originTouched) helper.fail("debris landed on the world-origin column (D-3022)");
+			// belt and braces: the world origin column must be untouched (D-3075 fixed the NaN that landed debris there)
 			for(int y = originTop; y < originTop + 16; y++) {
 				BlockPos o = new BlockPos(0, y, 0);
 				if(level.getBlockState(o).is(Blocks.STONE)) level.setBlock(o, Blocks.AIR.defaultBlockState(), 2 | 16);

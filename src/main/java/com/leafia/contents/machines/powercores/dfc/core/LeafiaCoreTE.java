@@ -124,11 +124,10 @@ import net.minecraft.world.phys.Vec3;
  * <h2>Upstream oddities kept (rule 4), each pinned</h2>
  *
  * <ul>
- * <li><b>{@code fix_tool} never works.</b> The vaporisation loop skips every {@code fix_tool} item entity
- *     at its top, before the crucifix branch that names it; only {@code fix_survival} reaches it.
- *     Flagged for the owner (D-3011).</li>
+ * <li><b>{@code fix_tool} works in a collapse</b> (D-3075). The vaporisation loop used to skip every
+ *     {@code fix_tool} item entity at its top, before the crucifix branch that names it.</li>
  * <li>{@code hasCore} is true when both catalyst slots hold catalysts, not when there is a core.</li>
- * <li>The radius table's five-to-seven branch subtracts: five detonators is 430, not 520.</li>
+ * <li>The radius table's five-to-seven branch no longer subtracts (D-3075): five detonators is 520, not 430.</li>
  * <li>A collapse counts wall-clock seconds; a single-player pause is excluded the way upstream does
  *     it, by moving the clock from the client while paused ({@link #SINGLEPLAYER_CORES}).</li>
  * </ul>
@@ -323,9 +322,8 @@ public class LeafiaCoreTE extends BlockEntityCore implements LeafiaPacketReceive
 		if(power <= 1) return 0;
 		int radius = 130 * (power - 1);
 		if(power <= 4) return radius;
-		if(power <= 7) return radius + 30 * (power - 8);
-		radius += 30 * (power - 8);
-		radius += 100 * (power - 8);
+		if(power <= 7) return radius; // D-3075: upstream added 30 x (n - 8), a negative, so five detonators gave 430 and six 590
+		radius += 130 * (power - 8);
 		return radius;
 	}
 
@@ -837,7 +835,7 @@ public class LeafiaCoreTE extends BlockEntityCore implements LeafiaPacketReceive
 		int x = worldPosition.getX(), y = worldPosition.getY(), z = worldPosition.getZ();
 		List<Entity> list = level.getEntities((Entity) null, new AABB(x - range + 0.5, y - range + 0.5, z - range + 0.5, x + range + 0.5, y + range + 0.5, z + range + 0.5));
 		for(Entity e : list) {
-			if(isFixTool(e)) continue;
+			if(isFixTool(e) && collapsing <= 0) continue; // D-3075: upstream skipped it always, so the crucifix branch below never saw it
 			if(e instanceof FallingBlockEntity) continue;
 			boolean isPlayer = e instanceof Player;
 			if(!(isPlayer && (ArmorUtil.checkForHazmat((Player) e) || ArmorUtil.checkArmor((Player) e, ModItems.hev_helmet.get(), ModItems.hev_plate.get(), ModItems.hev_legs.get(), ModItems.hev_boots.get())))) {

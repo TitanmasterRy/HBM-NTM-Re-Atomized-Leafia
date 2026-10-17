@@ -250,9 +250,8 @@ public class LeafiaShakecam {
 		}
 
 		/**
-		 * One at the start, falling to zero over {@code duration}. <b>Linear whatever {@link #ease} is</b>:
-		 * {@code LeafiaEase.get(t, min, max, clamp)} never calls the curve (D-1004), so a shake's ease
-		 * does nothing. Upstream's; kept, and the reason {@code ease=} on the command is inert.
+		 * One at the start, falling to zero over {@code duration}. Follows {@link #ease}
+		 * since D-3075 ({@code LeafiaEase.get(t, min, max, clamp)} used to ignore the curve, D-1004).
 		 */
 		public double getTimeMultiplier(double time) {
 			if(easeInstance == null) return 1;

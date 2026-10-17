@@ -548,4 +548,19 @@ public class LeafiaAPRTests {
 		helper.assertTrue(Math.abs(nuke.getY() - (p.y + live.getEyeHeight())) < 1e-6, "at its eye height");
 		helper.succeed();
 	}
+
+	/** D-3075: the blast's type and flood height are saved, so a reloaded endothermic blast is still endothermic. */
+	@GameTest(template = EMPTY)
+	public static void aSavedBlastKeepsItsTypeAndFloodHeight(GameTestHelper helper) {
+		NukeLCA blast = new NukeLCA(helper.getLevel());
+		blast.setExplosionType(ExplosionType.ENDOTHERMIC);
+		blast.lowestHeight = 37;
+		net.minecraft.nbt.CompoundTag tag = new net.minecraft.nbt.CompoundTag();
+		blast.addAdditionalSaveData(tag);
+		NukeLCA loaded = new NukeLCA(helper.getLevel());
+		loaded.readAdditionalSaveData(tag);
+		helper.assertTrue(loaded.type == ExplosionType.ENDOTHERMIC, "the type was lost: " + loaded.type);
+		helper.assertTrue(loaded.lowestHeight == 37, "the flood height was lost: " + loaded.lowestHeight);
+		helper.succeed();
+	}
 }

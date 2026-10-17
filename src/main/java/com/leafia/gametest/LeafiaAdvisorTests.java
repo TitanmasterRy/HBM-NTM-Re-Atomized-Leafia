@@ -411,9 +411,9 @@ public class LeafiaAdvisorTests {
 		helper.succeed();
 	}
 
-	/** A full inventory loses the copy and keeps the flag: upstream's, flagged. */
+	/** A full inventory drops the copy at the player's feet (D-3075; upstream lost it and kept the flag). */
 	@GameTest(template = EMPTY)
-	public static void aFullInventoryLosesTheFirstCopyButKeepsTheFlag(GameTestHelper helper) {
+	public static void aFullInventoryDropsTheFirstCopy(GameTestHelper helper) {
 
 		ServerPlayer player = mockPlayer(helper);
 		// A creative player's full inventory "accepts" anything and discards it, which would make
@@ -423,10 +423,15 @@ public class LeafiaAdvisorTests {
 		for(int i = 0; i < player.getInventory().items.size(); i++)
 			player.getInventory().items.set(i, new ItemStack(Items.STONE, 64));
 
+		player.setPos(helper.absoluteVec(new net.minecraft.world.phys.Vec3(1.5, 1, 1.5))); // the drop must land in the test's own chunk
 		helper.assertTrue(AdvisorItem.giveFirstAdvisor(player), "it reports giving");
 		helper.assertTrue(player.getInventory().items.stream().noneMatch(s -> s.getItem() == LeafiaItems.advisor.get()),
-				"there was no room, so no advisor");
-		helper.assertTrue(!AdvisorItem.giveFirstAdvisor(player), "and the flag is already set, so it is lost for good");
+				"there was no room, so no advisor in the inventory");
+		var dropped = helper.getLevel().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(4),
+				e -> e.getItem().getItem() == LeafiaItems.advisor.get());
+		helper.assertTrue(dropped.size() == 1, "the copy was dropped, found " + dropped.size());
+		dropped.forEach(e -> e.discard());
+		helper.assertTrue(!AdvisorItem.giveFirstAdvisor(player), "and the flag is set");
 		helper.succeed();
 	}
 
@@ -642,7 +647,7 @@ public class LeafiaAdvisorTests {
 		}
 	}
 
-	/** The clock: flags last one tick, three cooldowns count down, and the pyrophoric one does not. */
+	/** The clock: flags last one tick, the cooldowns count down, the pyrophoric one included (D-3075). */
 	@GameTest(template = EMPTY)
 	public static void theClientTickClearsFlagsAndCountsCooldownsDown(GameTestHelper helper) {
 		try {
@@ -661,8 +666,8 @@ public class LeafiaAdvisorTests {
 
 			for(int i = 0; i < 5000; i++) Warns.preTick();
 			helper.assertTrue(Warns.gas == 0 && Warns.lava == 0 && Warns.toxicCooldown == 0, "a cooldown went negative or stuck");
-			helper.assertTrue(Warns.pyroCooldown == 1200,
-					"upstream's pyrophoric cooldown never counts down, so it stays 1200, got " + Warns.pyroCooldown);
+			helper.assertTrue(Warns.pyroCooldown == 0,
+					"the pyrophoric cooldown counts down too (D-3075), got " + Warns.pyroCooldown);
 			helper.succeed();
 		} finally {
 			Warns.reset();

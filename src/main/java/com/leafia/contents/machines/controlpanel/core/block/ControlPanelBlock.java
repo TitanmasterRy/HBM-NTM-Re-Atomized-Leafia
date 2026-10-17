@@ -61,9 +61,9 @@ import com.leafia.init.LeafiaBlockEntities;
  *
  * <h2>Redstone</h2>
  * A panel is a signal source on every face. {@code getSignal} and {@code getDirectSignal} answer from the block entity's outputs
- * with the <b>direction the neighbour asks along</b> used as CE used it (its {@code getWeakPower(.., side)} indexed the output by
- * {@code side} unchanged), so a node writing face {@code F} is read by the neighbour that is on the opposite side of the panel
- * from {@code F}. That is CE's behaviour kept, flagged in D-3063 for review. A neighbour change re-reads the inputs.
+ * for the <b>physical face the neighbour is on</b>: vanilla asks along the direction from the neighbour to the panel, so the
+ * output indexed by that direction's opposite is the one read (D-3075; CE indexed by the direction unchanged, so a node writing
+ * face {@code F} was read by the neighbour on the opposite side, D-3063). A neighbour change re-reads the inputs.
  *
  * <h2>The drop</h2>
  * Breaking one drops the panel with everything on it ({@link IPersistentNBT}); a creative break drops nothing (vanilla's rule,
@@ -219,14 +219,14 @@ public class ControlPanelBlock extends BaseEntityBlock {
 	@Override
 	protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction side) {
 		if(level.getBlockEntity(pos) instanceof ControlPanelTE panel)
-			return panel.getWeakRedstoneOutput(side);
+			return panel.getWeakRedstoneOutput(side.getOpposite()); // D-3075: the physical face towards the asking neighbour
 		return 0;
 	}
 
 	@Override
 	protected int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction side) {
 		if(level.getBlockEntity(pos) instanceof ControlPanelTE panel)
-			return panel.getStrongRedstoneOutput(side);
+			return panel.getStrongRedstoneOutput(side.getOpposite());
 		return 0;
 	}
 

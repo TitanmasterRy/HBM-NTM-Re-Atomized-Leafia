@@ -184,28 +184,28 @@ public class LeafiaRecipeTests {
 
 	/**
 	 * The broof's grid, crafted for real: three carpets over two steel beams with a gap. The
-	 * carpet is magenta, not the green upstream's code names - see D-1064.
+	 * carpet is green, as upstream's code means (it crafted from magenta by a dye/wool numbering slip, D-1064; fixed D-3075).
 	 */
 	@GameTest(template = EMPTY)
-	public static void theBroofCraftsFromMagentaCarpetAndSteelBeams(GameTestHelper helper) {
+	public static void theBroofCraftsFromGreenCarpetAndSteelBeams(GameTestHelper helper) {
 
 		if(!LeafiaFeatures.broof) { helper.succeed(); return; }
 
-		ItemStack carpet = new ItemStack(Items.MAGENTA_CARPET);
+		ItemStack carpet = new ItemStack(Items.GREEN_CARPET);
 		ItemStack beam = new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("hbm", "steel_beam")));
 		helper.assertTrue(!beam.isEmpty() && !beam.is(Items.AIR), "hbm:steel_beam does not exist");
 
 		CraftingInput grid = CraftingInput.of(3, 2, List.of(carpet, carpet, carpet, beam, ItemStack.EMPTY, beam));
 		var level = helper.getLevel();
 		var found = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, grid, level);
-		helper.assertTrue(found.isPresent(), "three magenta carpets over two steel beams craft nothing");
+		helper.assertTrue(found.isPresent(), "three green carpets over two steel beams craft nothing");
 		ItemStack out = found.map(RecipeHolder::value).get().assemble(grid, level.registryAccess());
 		helper.assertTrue(out.is(LeafiaBlocks.broof.get().asItem()) && out.getCount() == 1, "crafted " + out);
 
-		CraftingInput green = CraftingInput.of(3, 2, List.of(new ItemStack(Items.GREEN_CARPET), new ItemStack(Items.GREEN_CARPET),
-				new ItemStack(Items.GREEN_CARPET), beam, ItemStack.EMPTY, beam));
-		helper.assertTrue(level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, green, level).isEmpty(),
-				"green carpet crafts a broof - upstream's recipe takes magenta");
+		CraftingInput magenta = CraftingInput.of(3, 2, List.of(new ItemStack(Items.MAGENTA_CARPET), new ItemStack(Items.MAGENTA_CARPET),
+				new ItemStack(Items.MAGENTA_CARPET), beam, ItemStack.EMPTY, beam));
+		helper.assertTrue(level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, magenta, level).isEmpty(),
+				"magenta carpet still crafts a broof (D-3075 moved it to green)");
 		helper.succeed();
 	}
 }

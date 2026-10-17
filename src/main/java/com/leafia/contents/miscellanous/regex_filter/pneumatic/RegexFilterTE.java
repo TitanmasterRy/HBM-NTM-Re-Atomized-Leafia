@@ -396,10 +396,8 @@ public class RegexFilterTE extends BlockEntity implements LeafiaPacketReceiver, 
 	 * {@link #MAX_PATTERN} characters that compiles (the screen refuses to save one that does not),
 	 * and a boolean flag.
 	 *
-	 * <p>This bounds the list and the pattern text; it cannot bound how long a pattern takes to
-	 * run, and a catastrophic one (nested quantifiers) still ties up the server thread when an item
-	 * is tested against it. That is the same open end the screen has (D-1084), and no cheap check
-	 * closes it.
+	 * <p>This bounds the list and the pattern text; running is bounded separately: {@link LeafiaUtil#matchesRegex} abandons a catastrophic
+	 * pattern after {@link LeafiaUtil#MATCH_STEP_LIMIT} character reads (D-3075).
 	 */
 	public static boolean isValidFilterList(ListTag list) {
 

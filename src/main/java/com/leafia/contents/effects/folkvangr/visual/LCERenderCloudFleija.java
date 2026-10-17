@@ -36,7 +36,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  *
  * <p>Two upstream details kept: the "ticks since it finished" clock ({@code lastTicks}) is a field of the
  * renderer, shared by every cloud on screen; and the shrink's ease is {@link LeafiaEase#get(double, double,
- * double, boolean)}, which is linear (D-1004).
+ * double, boolean)}, which eases since D-3075 (it was linear, D-1004).
  */
 @OnlyIn(Dist.CLIENT)
 public final class LCERenderCloudFleija {

@@ -632,30 +632,15 @@ public class ElevatorEntity extends Entity {
 	/**
 	 * A button was pressed, on the server.
 	 *
-	 * <p>The {@code fire} branch replaces the whole button set with a hard-coded demo layout. That
-	 * is upstream's, it is reachable by a player, and it is <b>preserved rather than fixed</b> per
-	 * D-021: pressing the fire-service button on any cabin wipes its buttons and installs four
-	 * floors, a fire button and open/close. It reads like leftover debugging and it ships.
+	 * <p>The {@code fire} button no longer wipes the button set (D-3075; upstream installed a hard-coded
+	 * demo layout of four floors, a fire button and open/close).
 	 */
 	public void onButtonServer(String id, @Nullable Player player,
 			@Nullable InteractionHand hand) {
 
-		if(id.equals("fire")) {
-			buttons.clear();
-			entityData.set(STYLE_FRONT, "s6door");
-			buttons.add(new FloorButton(this, 1, "★L", -2, 14));
-			buttons.add(new FloorButton(this, 2, "2", 1, 14));
-			buttons.add(new FloorButton(this, 3, "3", -2, 17));
-			buttons.add(new FloorButton(this, 4, "4", 1, 17));
-			buttons.add(new FireButton(this, -2, 20));
-			buttons.add(new OpenButton(this, 1, 9));
-			buttons.add(new CloseButton(this, -2, 9));
-			EvButtonSyncPacket packet = new EvButtonSyncPacket();
-			packet.serverEntity = this;
-			LeafiaCustomPacket.__start(packet).__sendToAll();
-		} else {
-			LeafiaCustomPacket.__start(new EvButtonClickPacket(this, id)).__sendToAll();
-		}
+		// D-3075: the fire button used to replace the whole button set with a hard-coded demo layout
+		// (upstream's leftover debugging). It is now an ordinary click handed to the controller.
+		LeafiaCustomPacket.__start(new EvButtonClickPacket(this, id)).__sendToAll();
 
 		if(controller != null)
 			controller.onButtonServer(id, player, hand);
@@ -987,11 +972,11 @@ public class ElevatorEntity extends Entity {
 		if(pulley != null) {
 			boolean guided = false;
 			/*
-			 * Upstream's `for (int i = 0; i < 3; i++)` checks only three of the four horizontals,
-			 * so a cabin guided solely by a rail on the fourth side is not recognised. Preserved:
-			 * it is reachable by a player and D-021 says flag, do not fix.
+			 * Upstream's `for (int i = 0; i < 3; i++)` checked only three of the four horizontals,
+			 * so a cabin guided solely by a rail on the fourth side was not recognised. Fixed in
+			 * D-3075 (owner decision 2026-10-17): all four.
 			 */
-			for(int i = 0; i < 3; i++) {
+			for(int i = 0; i < 4; i++) {
 				Direction face = Direction.from2DDataValue(i);
 				BlockPos at = BlockPos.containing(getX(), getY() + 0.5, getZ()).relative(face);
 				if(level().getBlockState(at).getBlock() instanceof EvShaftNeo) {

@@ -90,6 +90,17 @@ public class RegexFilterBlock extends BlockContainerBase {
 		};
 	}
 
+	/** Breaking the filter drops the stack in its slot (D-3075; upstream destroyed it, up to 64 items). */
+	@Override
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+		if(!state.is(newState.getBlock()) && !level.isClientSide
+				&& level.getBlockEntity(pos) instanceof RegexFilterTE filter) {
+			net.minecraft.world.Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), filter.inventory.getStackInSlot(0));
+			filter.inventory.setStackInSlot(0, net.minecraft.world.item.ItemStack.EMPTY);
+		}
+		super.onRemove(state, level, pos, newState, movedByPiston);
+	}
+
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new RegexFilterTE(pos, state);

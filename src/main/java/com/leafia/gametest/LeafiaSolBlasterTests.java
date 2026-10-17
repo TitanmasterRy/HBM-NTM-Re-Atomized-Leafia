@@ -345,21 +345,6 @@ public class LeafiaSolBlasterTests {
 		helper.succeed();
 	}
 
-	/**
-	 * Upstream's slip, kept: the core's own cell is passed as the "free" origin of both checks, so a
-	 * solid block exactly there does not stop the placement and is replaced. Any other cell does.
-	 */
-	@GameTest(template = EMPTY)
-	public static void theCoresOwnCellIsNeverChecked(GameTestHelper helper) {
-
-		BlockPos coreAt = new BlockPos(2, 0, 2);
-		helper.setBlock(coreAt, Blocks.STONE);
-		Rig rig = place(helper, coreAt, Direction.SOUTH);
-		helper.assertTrue(helper.getBlockState(rig.core).getValue(BlockDummyable.PART) == Part.CORE,
-				"the core did not replace the stone");
-		helper.succeed();
-	}
-
 	/** A solid block in the tower or the box refuses the placement and gives the player the item back. */
 	@GameTest(template = EMPTY)
 	public static void aSolidBlockAnywhereElseRefusesThePlacementAndRefundsIt(GameTestHelper helper) {
@@ -367,7 +352,7 @@ public class LeafiaSolBlasterTests {
 		BlockPos coreAt = new BlockPos(2, 0, 2);
 		List<String> problems = new ArrayList<>();
 
-		for(BlockPos blocker : new BlockPos[] { coreAt.offset(0, 4, 0), coreAt.offset(0, 3, 0), coreAt.offset(1, 2, -1), coreAt.offset(-1, 0, 0) }) {
+		for(BlockPos blocker : new BlockPos[] { coreAt, coreAt.offset(0, 4, 0), coreAt.offset(0, 3, 0), coreAt.offset(1, 2, -1), coreAt.offset(-1, 0, 0) }) {
 
 			helper.setBlock(blocker, Blocks.STONE);
 			ServerPlayer player = survivor(helper);
@@ -1356,12 +1341,12 @@ public class LeafiaSolBlasterTests {
 	 * overrides {@code addInformation}: nothing is shown. Pinned so a fix is a decision.
 	 */
 	@GameTest(template = EMPTY)
-	public static void upstreamsBlockShowsNoTooltipAndHasTheTextAnyway(GameTestHelper helper) {
+	public static void theBlockShowsItsTooltipAndHasTheText(GameTestHelper helper) {
 
 		List<net.minecraft.network.chat.Component> lines = new ArrayList<>();
 		LeafiaBlocks.sol_blaster.get().appendHoverText(new ItemStack(LeafiaBlocks.sol_blaster.get()),
 				net.minecraft.world.item.Item.TooltipContext.EMPTY, lines, net.minecraft.world.item.TooltipFlag.NORMAL);
-		helper.assertTrue(lines.isEmpty(), "the block shows a tooltip: " + lines);
+		helper.assertTrue(!lines.isEmpty(), "the block shows no tooltip (D-3075)");
 
 		JsonObject lang = json("lang/en_us.json");
 		helper.assertTrue(lang.get("tile.sol_blaster.desc").getAsString().startsWith("Uses solinium core implosion propellants to$"),

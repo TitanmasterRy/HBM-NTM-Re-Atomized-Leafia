@@ -131,6 +131,7 @@ public interface ISPKProvider extends ISPKHandler {
 						energyUsed += (toSend - leftoverFromRecv);
 					}
 					this.setTransferredSpk(energyUsed);
+					node.net.energyTracker += energyUsed; // D-3075: upstream never counted it
 
 					return;
 				}
@@ -197,8 +198,9 @@ public interface ISPKProvider extends ISPKHandler {
 		}
 	}
 
-	/** {@code simulate} is ignored, as upstream's is. */
+	/** {@code simulate} moves nothing (D-3075; upstream ignored it and always sent). */
 	default void tryProvideSPK(Level world, BlockPos pos, Direction dir, boolean simulate) {
+		if(simulate) return;
 		tryProvideSPK(world, pos.getX(), pos.getY(), pos.getZ(), dir);
 	}
 }
