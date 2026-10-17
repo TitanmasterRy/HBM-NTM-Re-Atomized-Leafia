@@ -22,7 +22,7 @@ import net.minecraft.world.item.ItemStack;
  *
  * <p>Upstream: {@code com/leafia/contents/cannery/cannery/CanneryTest.java}, wait for wait. The icon is the PWR fuel rod's, as
  * upstream's; with the PWR switched off there is none to show. The name is the bare key {@code cannery.test}, which upstream's
- * language file does not define either.
+ * language file does not define; the addon's does (D-3076).
  */
 public class CanneryTest extends CanneryBase {
 

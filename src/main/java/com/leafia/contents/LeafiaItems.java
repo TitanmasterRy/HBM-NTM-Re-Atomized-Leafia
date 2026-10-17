@@ -282,7 +282,7 @@ public final class LeafiaItems {
 
 			/*
 			 * Upstream: new ItemNTMFBottle("ntmfbottle"), setMaxStackSize(1) in its constructor -
-			 * read the class, not just the call site. One item; the fluid is on the stack,
+			 * read the class, not just the call site (rule 7). One item; the fluid is on the stack,
 			 * so the tab gets one stack per drinkable fluid rather than the item itself.
 			 */
 			ntmfbottle = reg("ntmfbottle", ItemNTMFBottle::new, null, new Item.Properties().stacksTo(1));

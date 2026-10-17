@@ -36,9 +36,8 @@ import net.neoforged.api.distmarker.OnlyIn;
  * "Loading..." line sits at a half pixel upstream, which {@code GuiGraphics} reaches through the
  * pose rather than a float argument.
  *
- * <p><b>Upstream's race, kept:</b> closing the screen before the answer arrives sends three -1s, and
- * the server then replaces the radio's tag with an empty one, wiping whatever it held. Flagged in
- * D-1088, not fixed.
+ * <p>Closing the screen before the answer arrives sends nothing (D-3076; upstream sent three -1s, and
+ * the server then replaced the radio's tag with an empty one, wiping whatever it held).
  */
 @OnlyIn(Dist.CLIENT)
 public class EvRadioUI extends GuiScreenLeafia {
@@ -136,6 +135,11 @@ public class EvRadioUI extends GuiScreenLeafia {
 	public void removed() {
 		instance = null;
 		if(screenSwitching) return;
+		// closed before the answer arrived: the three -1s would wipe the radio's choices (D-3076)
+		if(loading) {
+			super.removed();
+			return;
+		}
 		sendChoices(upOrdinal, downOrdinal, idleOrdinal);
 		super.removed();
 	}

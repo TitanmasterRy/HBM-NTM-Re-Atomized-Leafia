@@ -206,25 +206,27 @@ public class LeafiaCoolantHeatexTests {
 	}
 
 	/**
-	 * <b>The default coolant does not boil here.</b> Upstream's coolant mode 2 is the base mod's COOLANT, and this
-	 * port's fluid table (D-951 verified it line for line) gives it heat-exchanger, PWR and ICF efficiencies and no
-	 * boiler one, so the cold side's default mode converts nothing and the heat counter climbs until it halts the hot
-	 * side. Air and water, the other two modes, work. If this fails because COOLANT gained a boiler efficiency, the
-	 * default mode has come alive and D-3016 is stale.
+	 * <b>The default coolant boils (D-3076).</b> Upstream's coolant mode 2 is the base mod's COOLANT, which this
+	 * port's fluid table (and upstream's) gives heat-exchanger, PWR and ICF efficiencies and no boiler one, so the
+	 * cold side's default mode converted nothing and the heat counter climbed until it halted the hot side. The
+	 * addon now gives it a virtual boiler trait on the fluid's own first step, as air and water have.
 	 */
 	@GameTest(template = EMPTY)
-	public static void theDefaultCoolantCannotBoilOnThisPortsTable(GameTestHelper helper) {
+	public static void theDefaultCoolantBoilsOnItsOwnFirstStep(GameTestHelper helper) {
 		if(!on()) { helper.succeed(); return; }
 		CoolantHeatexTE heatex = core(helper);
 
-		helper.assertTrue(Fluids.COOLANT.getTrait(FT_Heatable.class).getEfficiency(HeatingType.BOILER) == 0.0,
-				"COOLANT has gained a boiler efficiency: the default mode works now, update D-3016");
-
+		// D-3076: the base table gives COOLANT no boiler efficiency (upstream's too), so the cold side's default mode is given
+		// a virtual boiler trait on the fluid's own first step, as air and water are.
+		var step = Fluids.COOLANT.getTrait(FT_Heatable.class).getFirstStep();
 		heatex.ntmfInputB.setFill(10_000);
 		heatex.heatEnergy = 100_000;
 		heatex.tryConvertB();
-		helper.assertTrue(heatex.ntmfInputB.getFill() == 10_000 && heatex.ntmfOutputB.getFill() == 0 && heatex.heatEnergy == 100_000,
-				"the default mode moved something: " + heatex.ntmfInputB.getFill() + "/" + heatex.ntmfOutputB.getFill());
+		int ops = Math.min(10_000 / step.amountReq, Math.min(heatex.ntmfOutputB.getMaxFill() / step.amountProduced, 100_000 / step.heatReq));
+		helper.assertTrue(ops > 0 && heatex.ntmfInputB.getFill() == 10_000 - step.amountReq * ops
+				&& heatex.ntmfOutputB.getFill() == step.amountProduced * ops && heatex.heatEnergy == 100_000 - step.heatReq * ops,
+				"the default mode boils " + ops + " operations: " + heatex.ntmfInputB.getFill() + "/" + heatex.ntmfOutputB.getFill() + "/" + heatex.heatEnergy);
+		helper.assertTrue(heatex.getHeatRequired() > 0, "and its gate reads the same step");
 		helper.succeed();
 	}
 
@@ -428,7 +430,7 @@ public class LeafiaCoolantHeatexTests {
 	 * too: a partly cooled tank loses all of its heat, though only the cooled millibuckets were counted (D-021).
 	 */
 	@GameTest(template = EMPTY)
-	public static void aPartlyCooledTankOfSaltLosesAllItsHeat(GameTestHelper helper) {
+	public static void aPartlyCooledTankOfSaltKeepsTheHeatOfWhatIsLeft(GameTestHelper helper) {
 		if(!on()) { helper.succeed(); return; }
 		CoolantHeatexTE heatex = core(helper);
 
@@ -438,13 +440,14 @@ public class LeafiaCoolantHeatexTests {
 
 		helper.assertTrue(heatex.ffInputA.getFluidAmount() == 500, "300 mB cooled");
 		helper.assertTrue(heatex.heatEnergy == 60_000, "counted for 300 only: 200 x 300, got " + heatex.heatEnergy);
-		helper.assertTrue(heatOf(heatex.ffInputA.getFluid()) == 0.0, "the 500 mB left behind have no heat: " + heatOf(heatex.ffInputA.getFluid()));
+		helper.assertTrue(heatOf(heatex.ffInputA.getFluid()) == 100.0, "the 500 mB left behind keep their heat (D-3076): " + heatOf(heatex.ffInputA.getFluid()));
+		helper.assertTrue(heatOf(heatex.ffOutputA.getFluid()) == 0.0, "and the 300 that left are cold: " + heatOf(heatex.ffOutputA.getFluid()));
 		helper.assertTrue(MSRTEBase.readMixture(MSRTEBase.nbtProtocol(heatex.ffInputA.getFluid())).equals(Map.of("u233", 0.5)), "their fuel is kept");
 		helper.succeed();
 	}
 
 	@GameTest(template = EMPTY)
-	public static void theHeatCounterIsAnIntAndWrapsAsOne(GameTestHelper helper) {
+	public static void theHeatCounterStopsAtTheIntCeiling(GameTestHelper helper) {
 		if(!on()) { helper.succeed(); return; }
 		CoolantHeatexTE heatex = core(helper);
 
@@ -452,9 +455,8 @@ public class LeafiaCoolantHeatexTests {
 		// and 24,000 mB of it is 4.8e9, which an int cannot hold.
 		heatex.ffInputA.setFluid(salt(24_000, 100_000, null, 0));
 		heatex.tryConvertFF();
-		int wrapped = (int) (200_000 * 24_000 * 1.0);
-		helper.assertTrue((long) 200_000 * 24_000 > Integer.MAX_VALUE && wrapped == 505_032_704, "the product that wraps: " + wrapped);
-		helper.assertTrue(heatex.heatEnergy == wrapped, "the counter holds the wrapped int " + wrapped + ", got " + heatex.heatEnergy);
+		helper.assertTrue((long) 200_000 * 24_000 > Integer.MAX_VALUE, "a product an int cannot hold");
+		helper.assertTrue(heatex.heatEnergy == Integer.MAX_VALUE, "the counter stops at the ceiling (D-3076; upstream wrapped to 505,032,704), got " + heatex.heatEnergy);
 		helper.succeed();
 	}
 
@@ -801,7 +803,7 @@ public class LeafiaCoolantHeatexTests {
 	}
 
 	@GameTest(template = EMPTY)
-	public static void theShiftClickCountsTheMachineAsThreeSlots(GameTestHelper helper) {
+	public static void theShiftClickStopsAtTheMachinesTwoSlots(GameTestHelper helper) {
 		if(!on()) { helper.succeed(); return; }
 		CoolantHeatexTE heatex = core(helper);
 		ServerPlayer player = mockPlayer(helper);
@@ -816,37 +818,35 @@ public class LeafiaCoolantHeatexTests {
 				"the battery went to the hotbar's last slot");
 		inventory.clearContent();
 
-		// from the inventory: slot 0 takes anything, so a battery lands there and not in the battery slot
+		// from the inventory: a battery lands in the battery slot, not the identifier slot that takes anything (D-3076)
 		inventory.setItem(10, new ItemStack(ModItems.battery_potato.get()));
 		menu.quickMoveStack(player, 2 + 1); // inventory slot 10 is menu slot 3
-		helper.assertTrue(heatex.slots[0].is(ModItems.battery_potato.get()) && heatex.slots[1].isEmpty(),
-				"a battery shift-clicked in the inventory goes to the identifier slot first");
+		helper.assertTrue(heatex.slots[1].is(ModItems.battery_potato.get()) && heatex.slots[0].isEmpty(),
+				"a battery shift-clicked in the inventory goes to the battery slot");
 
-		// with slot 0 taken by something else, a battery goes to its own slot
+		// anything else goes to the identifier slot
 		inventory.clearContent();
-		heatex.slots[0] = new ItemStack(Items.STONE);
-		heatex.slots[1] = ItemStack.EMPTY;
-		inventory.setItem(10, new ItemStack(ModItems.battery_potato.get()));
-		menu.quickMoveStack(player, 2 + 1);
-		helper.assertTrue(heatex.slots[1].is(ModItems.battery_potato.get()), "and then to the battery slot");
-
-		// anything else, with slot 0 taken, moves to menu slot 2: the first slot of the player's own inventory
-		inventory.clearContent();
+		heatex.slots[0] = ItemStack.EMPTY;
 		heatex.slots[1] = ItemStack.EMPTY;
 		inventory.setItem(12, new ItemStack(Items.DIRT));
 		menu.quickMoveStack(player, 2 + 3);
-		helper.assertTrue(inventory.getItem(9).is(Items.DIRT) && inventory.getItem(12).isEmpty() && heatex.slots[1].isEmpty(),
-				"a dirt block shuffled into the first inventory slot, upstream's third 'machine' slot");
+		helper.assertTrue(heatex.slots[0].is(Items.DIRT) && inventory.getItem(12).isEmpty(), "a dirt block goes to the identifier slot");
 
-		// the first inventory slot is menu slot 2, upstream's third 'machine' slot, and the chain treats a click there as an inventory click:
-		// it goes to the identifier slot, not to the far end of the inventory
+		// with both slots taken, nothing is shuffled inside the inventory (upstream's third 'machine' slot was the first inventory slot)
+		inventory.clearContent();
+		heatex.slots[0] = new ItemStack(Items.STONE);
+		heatex.slots[1] = new ItemStack(ModItems.battery_potato.get());
+		inventory.setItem(12, new ItemStack(Items.DIRT));
+		menu.quickMoveStack(player, 2 + 3);
+		helper.assertTrue(inventory.getItem(12).is(Items.DIRT) && inventory.getItem(9).isEmpty(), "and a full machine moves nothing within the inventory");
+
+		// a click in the first inventory slot is an ordinary inventory click
 		inventory.clearContent();
 		heatex.slots[0] = ItemStack.EMPTY;
 		heatex.slots[1] = ItemStack.EMPTY;
 		inventory.setItem(9, new ItemStack(Items.DIRT));
 		menu.quickMoveStack(player, 2);
-		helper.assertTrue(heatex.slots[0].is(Items.DIRT) && inventory.getItem(9).isEmpty() && inventory.getItem(8).isEmpty(),
-				"a click in menu slot 2 is an inventory click: it goes to slot 0");
+		helper.assertTrue(heatex.slots[0].is(Items.DIRT) && inventory.getItem(9).isEmpty(), "the first inventory slot goes to the identifier slot");
 		helper.succeed();
 	}
 

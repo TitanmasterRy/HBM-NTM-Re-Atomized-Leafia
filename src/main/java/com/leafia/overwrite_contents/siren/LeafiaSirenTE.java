@@ -42,8 +42,8 @@ import net.minecraft.world.level.block.state.BlockState;
  * <li>No cassette: the base mod's "off" {@code TESirenPacket}, every tick (upstream keeps that one line).</li>
  * <li>A looping track: the addon packet, to every player within 8,192 blocks, every tick: the track (key 0), looped
  *     (key 1) and whether the block is powered (key 2).</li>
- * <li>Any other track: on the rising edge of the signal, track / not looped / on; on the falling edge, off. The base
- *     mod lets a one-shot track play to its end; upstream's overhaul cuts it off when the signal drops.</li>
+ * <li>Any other track: on the rising edge of the signal, track / not looped / on. The falling edge sends nothing: the base
+ *     mod lets a one-shot track play to its end, and so does this (D-3076; upstream's overhaul cut it off).</li>
  * </ul>
  *
  * <h2>The client</h2>
@@ -54,8 +54,8 @@ import net.minecraft.world.level.block.state.BlockState;
  *
  * <h2>Upstream's behaviour, kept (rule 4)</h2>
  * <ol>
- * <li>Taking the cassette out of a looping siren leaves it sounding: the "off" that follows is the base mod's packet,
- *     which the addon's sound does not hear, until the chunk unloads or the block goes.</li>
+ * <li>(Fixed, D-3076) Taking the cassette out of a looping siren left it sounding, because the "off" that followed was the
+ *     base mod's packet; the addon's own "off" is sent once now.</li>
  * <li>The packet is sent every tick to everyone within 8,192 blocks, which is what upstream calls
  *     {@code __sendToClients(8192)}.</li>
  * </ol>
@@ -78,6 +78,10 @@ public class LeafiaSirenTE extends BlockEntityMachineSiren implements LeafiaPack
 	public LCEAudioWrapper audio = null;
 	public int playingType = 0;
 	public boolean playing = false;
+	/** Whether the last packet told the addon's sound to play (D-3076). */
+	boolean addonSounding = false;
+	/** Client: the last looping flag received, so a one-shot is started again on every rising edge. */
+	boolean looped = false;
 
 	public LeafiaSirenTE(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -127,13 +131,14 @@ public class LeafiaSirenTE extends BlockEntityMachineSiren implements LeafiaPack
 				}
 			}
 			case KEY_LOOPED -> {
+				looped = (boolean) value;
 				if(audio != null)
 					audio.setLooped((boolean) value);
 			}
 			case KEY_PLAYING -> {
 				if(audio != null) {
 					if((boolean) value) {
-						if(!playing)
+						if(!playing || !looped) // a one-shot is not cut off any more, so each rising edge starts it again (D-3076)
 							audio.startSound();
 						playing = true;
 					} else {
@@ -163,6 +168,11 @@ public class LeafiaSirenTE extends BlockEntityMachineSiren implements LeafiaPack
 
 		if(currentType == TrackType.NULL) {
 			sendState(id, false);
+			// D-3076: the base's "off" is not heard by the addon's sound, so a looping siren whose cassette was taken out went on sounding
+			if(addonSounding) {
+				addonSounding = false;
+				sendSiren(null, null, false);
+			}
 			return;
 		}
 
@@ -170,15 +180,17 @@ public class LeafiaSirenTE extends BlockEntityMachineSiren implements LeafiaPack
 		boolean active = isActive();
 
 		if(currentType.getType() == SoundKind.LOOP) {
+			addonSounding = true;
 			sendSiren(id, true, active);
 		} else {
 			if(!lock && active) {
 				lock = true;
+				addonSounding = true;
 				sendSiren(id, false, true);
 			}
 			if(lock && !active) {
+				// D-3076: the base mod lets a one-shot track play to its end; upstream's overhaul cut it off here
 				lock = false;
-				sendSiren(null, null, false);
 			}
 		}
 	}

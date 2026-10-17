@@ -401,7 +401,9 @@ public class LeafiaPWR2Tests {
 		helper.assertTrue(!recipe.matches(CraftingInput.of(3, 3, eight), helper.getLevel()), "eight do not");
 		List<ItemStack> counts = new ArrayList<>(nine);
 		counts.set(4, piece.copyWithCount(2));
-		helper.assertTrue(!recipe.matches(CraftingInput.of(3, 3, counts), helper.getLevel()), "nor nine of different counts (areItemStacksEqual)");
+		helper.assertTrue(recipe.matches(CraftingInput.of(3, 3, counts), helper.getLevel()), "nine of different counts still match (D-3076; upstream's areItemStacksEqual compared them)");
+		helper.assertTrue(PWRDebrisItem.containsWord("Block of Steel", "of") && !PWRDebrisItem.containsWord("Offset Stone", "of") && !PWRDebrisItem.containsWord("Proof Glass", "of"),
+				"the name's 'of' switch is a word, not a substring (D-3076)");
 		List<ItemStack> shards = new ArrayList<>();
 		for(int i = 0; i < 9; i++) shards.add(PWRDebrisItem.of(LeafiaItems.lwr_shard.get(), Blocks.GLASS.defaultBlockState()));
 		helper.assertTrue(!recipe.matches(CraftingInput.of(3, 3, shards), helper.getLevel()), "shards never craft back");
@@ -564,23 +566,27 @@ public class LeafiaPWR2Tests {
 				PWRExplosion boom = data.gatherMeltdown(helper.getLevel(), null);
 				data.growMembers(data.growMembers(data.growMembers(data.growMembers(data.members))));
 				helper.assertTrue(data.members.size() == 129, "four layers out on every face: the octahedron of radius 4, " + data.members.size());
-				RandomSource rand = RandomSource.create(42);
+				// the threshold rolls are the only random part: shut in, a constant roll of 0 (a threshold of 7) makes the outcome independent of the
+				// order the members are taken in, which is a HashSet's and so differs with the test's position
+				RandomSource rand = open ? RandomSource.create(42) : new ZeroRandom();
 				Plan plan = PWRMeltdown.plan(data, boom, p -> open && !data.members.contains(p), rand);
-				RandomSource twin = RandomSource.create(42);
-				for(int i = 0; i < 128; i++) twin.nextInt(3);
-				helper.assertTrue(rand.nextLong() == twin.nextLong(), "one threshold roll per ray-casting member, 128");
+				if(open) {
+					RandomSource twin = RandomSource.create(42);
+					for(int i = 0; i < 128; i++) twin.nextInt(3);
+					helper.assertTrue(rand.nextLong() == twin.nextLong(), "one threshold roll per ray-casting member, 128");
+				}
 				helper.assertTrue(plan.elements.keySet().equals(Set.of(helper.absolutePos(C))), "the fuel column melts, it does not cast rays");
-				// sum over the octahedron of (member + 0.5 - centre) is 0.5 x 128 per axis, over 129 members
+				// the octahedron is symmetric about the core's middle (D-3076: upstream measured from the core's corner, so every ray
+				// leaned half a block to +x/+y/+z), so the rays sum to nothing on every axis
 				if(open) {
 					helper.assertTrue(plan.vaporized.size() == 128 && plan.remains.isEmpty(), "open all round: everything goes");
-					near(helper, plan.pressure.x, 64.0 / 129, "pressure outward");
+					near(helper, plan.pressure.x, 0, "pressure outward cancels");
 				} else {
-					// shut in, a member counts only the members its eleven samples land on: the three faces of the
-					// core toward -x, -y, -z keep all eleven inside (the centre point is the core's corner, not its
-					// middle), and no other member reaches 7 - none is near the 7-to-9 threshold either way
-					helper.assertTrue(new HashSet<>(plan.vaporized).equals(rel(helper, VAPORISED_SHUT_IN)) && plan.remains.size() == 125,
-							"shut in: only the three inner faces go, " + plan.vaporized);
-					near(helper, plan.pressure.y, -63.0 / 129, "pressure inward: 63.5 - 0.5, over 129");
+					// shut in, a member counts only the members its eleven samples land on. The six faces of the core keep all
+					// eleven inside; the twelve edges keep exactly seven, the lowest threshold; nothing else reaches seven
+					helper.assertTrue(new HashSet<>(plan.vaporized).equals(shutInVaporised(helper)) && plan.remains.size() == 110,
+							"shut in: the six faces and twelve edges go, " + plan.vaporized);
+					near(helper, plan.pressure.y, 0, "pressure inward cancels too");
 				}
 				helper.setBlock(C, Blocks.STONE);
 			}
@@ -590,20 +596,50 @@ public class LeafiaPWR2Tests {
 		helper.succeed();
 	}
 
-	/** Offsets from C of what a shut-in meltdown at C vaporises (worked out by hand: see theRaysDecideWhatVaporises). */
-	private static final int[][] VAPORISED_SHUT_IN = {{-1, 0, 0}, {0, -1, 0}, {0, 0, -1}};
+	/** A roll that is always 0: a threshold of 7 and a floored heat, whatever order the members come in. */
+	private static final class ZeroRandom extends net.minecraft.world.level.levelgen.LegacyRandomSource {
+		ZeroRandom() {
+			super(0L);
+		}
+
+		@Override
+		public int nextInt(int bound) {
+			return 0;
+		}
+	}
+
+	/** What a shut-in meltdown at C vaporises (worked out by hand: see theRaysDecideWhatVaporises): the six faces and twelve edges of the core. */
+	private static Set<BlockPos> shutInVaporised(GameTestHelper helper) {
+		Set<BlockPos> out = new HashSet<>();
+		for(int dx = -1; dx <= 1; dx++)
+			for(int dy = -1; dy <= 1; dy++)
+				for(int dz = -1; dz <= 1; dz++) {
+					int nonzero = (dx != 0 ? 1 : 0) + (dy != 0 ? 1 : 0) + (dz != 0 ? 1 : 0);
+					if(nonzero == 1 || nonzero == 2) out.add(helper.absolutePos(C.offset(dx, dy, dz)));
+				}
+		return out;
+	}
 
 	/**
-	 * Offsets from C of the walls a shut-in meltdown at C cooks: the walls that stay and touch one of the
-	 * three that went. (The walls touching the core do not count: a U-238 rod melts into the base mod's
-	 * solid {@code block_corium}, which buries them.)
+	 * What a shut-in meltdown at C cooks: the members that stay and touch one that went. (The walls touching the core do not
+	 * count: a U-238 rod melts into the base mod's solid {@code block_corium}, which buries them, and every one of the core's
+	 * neighbours went in any case.)
 	 */
-	private static final int[][] COOKED_SHUT_IN = {{-2, 0, 0}, {-1, -1, 0}, {-1, 0, -1}, {-1, 0, 1}, {-1, 1, 0},
-			{0, -2, 0}, {0, -1, -1}, {0, -1, 1}, {0, 0, -2}, {0, 1, -1}, {1, -1, 0}, {1, 0, -1}};
-
-	private static Set<BlockPos> rel(GameTestHelper helper, int[][] offsets) {
+	private static Set<BlockPos> shutInCooked(GameTestHelper helper) {
+		Set<BlockPos> went = shutInVaporised(helper);
 		Set<BlockPos> out = new HashSet<>();
-		for(int[] o : offsets) out.add(helper.absolutePos(C.offset(o[0], o[1], o[2])));
+		for(int dx = -4; dx <= 4; dx++)
+			for(int dy = -4; dy <= 4; dy++)
+				for(int dz = -4; dz <= 4; dz++) {
+					if(Math.abs(dx) + Math.abs(dy) + Math.abs(dz) > 4 || (dx == 0 && dy == 0 && dz == 0)) continue;
+					BlockPos pos = helper.absolutePos(C.offset(dx, dy, dz));
+					if(went.contains(pos)) continue;
+					for(Direction d : Direction.values())
+						if(went.contains(pos.relative(d))) {
+							out.add(pos);
+							break;
+						}
+				}
 		return out;
 	}
 
@@ -618,29 +654,31 @@ public class LeafiaPWR2Tests {
 			((PWRElementTE) be(helper, C)).inventory.setStackInSlot(0, new ItemStack(rod));
 			PWRExplosion boom = data.gatherMeltdown(helper.getLevel(), null);
 			List<Object[]> blasts = new ArrayList<>();
-			Result result = PWRMeltdown.run(data, boom, RandomSource.create(7), p -> false, (w, at, s) -> blasts.add(new Object[] {at, s}));
+			Result result = PWRMeltdown.run(data, boom, new ZeroRandom(), p -> false, (w, at, s) -> blasts.add(new Object[] {at, s}));
 			helper.assertTrue(result.reactorSize == 7, "one block's reactor is 1 + 2 + 4 across: " + result.reactorSize);
 			helper.assertTrue(blasts.size() == 1 && ((Vec3) blasts.get(0)[0]).equals(boom.centerPoint.add(0.5, 0.5, 0.5))
 					&& Math.abs((float) blasts.get(0)[1] - 25.6F) < 1e-5, "one blast of 24 x 16,000 / 15,000 at the centre");
 			helper.assertTrue(helper.getBlockState(C).getBlock() == rod.corium(), "the column is its rod's corium");
 			helper.assertTrue(result.debris.isEmpty(), "nothing thrown: what vaporised touched a wall that stayed");
-			helper.assertTrue(new HashSet<>(result.placeWrecks).equals(rel(helper, VAPORISED_SHUT_IN)), "the three that went touch walls that stay, so they are set aside for wreck rather than thrown, " + result.placeWrecks);
-			Set<BlockPos> cooked = rel(helper, COOKED_SHUT_IN);
+			Set<BlockPos> went = shutInVaporised(helper);
+			helper.assertTrue(new HashSet<>(result.placeWrecks).equals(went), "the eighteen that went touch walls that stay, so they are set aside for wreck rather than thrown, " + result.placeWrecks);
+			Set<BlockPos> cooked = shutInCooked(helper);
 			Set<BlockPos> wrecked = new HashSet<>(cooked);
-			wrecked.addAll(rel(helper, VAPORISED_SHUT_IN));
+			wrecked.addAll(went);
 			Set<BlockPos> got = new HashSet<>(result.allDebris);
-			helper.assertTrue(got.equals(wrecked), "fifteen walls are not buried: the three that went and the twelve beside them, " + got.size());
-			// stone is not Material.IRON, so a wall that stays is cooked rather than eroded: slaked sellafield at
-			// min(heat, 6). 0.866 from the centre point is heat 7.04 (7 every way: level 6); 1.658 is 5.99 (5
-			// floored, 6 rounded or ceiled). The three that went face only solid blocks - the corium included -
-			// so no side is open for a wreck to face, and they are given back as they were.
+			helper.assertTrue(got.equals(wrecked), "the walls not buried: those that went and those beside them, " + got.size() + " against " + wrecked.size());
+			// stone is not Material.IRON, so a wall that stays is cooked rather than eroded: slaked sellafield at min(heat, 6), heat floored
+			// by the constant roll. The ones that went face only solid blocks - the corium included - so no side is open for a wreck to
+			// face, and they are given back as they were.
+			Vec3 middle = boom.centerPoint.add(0.5, 0.5, 0.5);
 			for(BlockPos abs : cooked) {
 				BlockPos pos = abs.subtract(helper.absolutePos(BlockPos.ZERO));
 				BlockState wall = helper.getBlockState(pos);
 				helper.assertTrue(wall.getBlock() == ModBlocks.sellafield_slaked.get(), pos + " is cooked: " + wall);
 				int lv = wall.getValue(BlockSellafieldSlaked.LEVEL);
-				double length = Vec3.atLowerCornerOf(abs).add(0.5, 0.5, 0.5).distanceTo(boom.centerPoint);
-				helper.assertTrue(length < 1 ? lv == 6 : (lv == 5 || lv == 6), pos + " at " + length + ": level " + lv);
+				double length = Vec3.atCenterOf(abs).distanceTo(middle); // the member's middle to the reactor's middle (D-3076)
+				int expected = Math.min(6, PWRMeltdown.heat(PWRMeltdown.heatBase(length, 7), 0));
+				helper.assertTrue(lv == expected, pos + " at " + length + ": level " + lv + ", expected " + expected);
 			}
 			for(int x = from.getX(); x <= to.getX(); x++)
 				for(int y = from.getY(); y <= to.getY(); y++)
@@ -733,7 +771,7 @@ public class LeafiaPWR2Tests {
 	public static void aMeltedControlRodIsElectricalScrapInAnIntactWreck(GameTestHelper helper) {
 		if(!LeafiaFeatures.pwrReactor()) { helper.succeed(); return; }
 		BlockPos m = C;
-		Vec3 centre = Vec3.atLowerCornerOf(helper.absolutePos(C.offset(-1, 0, 0))); // 1.658 at size 7: heat 5 or 6
+		Vec3 centre = Vec3.atLowerCornerOf(helper.absolutePos(C)).subtract(1.5, 0.5, 0.5); // the rod's middle is (1.5, 0.5, 0.5) from it: 1.658 at size 7, heat 5 or 6 (D-3076)
 		try {
 			helper.setBlock(m, LeafiaBlocks.lwr_control.get());
 			Set<BlockPos> anti = new HashSet<>();

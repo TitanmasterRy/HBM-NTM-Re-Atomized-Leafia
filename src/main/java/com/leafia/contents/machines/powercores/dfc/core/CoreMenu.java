@@ -23,9 +23,9 @@ import net.minecraft.world.item.ItemStack;
  * <p>Plain {@link Slot}s, as upstream's {@code SlotItemHandler} over an unfiltered handler: a player
  * may put anything in, and automation still asks the block entity (D-967).
  *
- * <p><b>Upstream's shift-click, kept with its oddity.</b> Out of the machine it merges into slots
- * {@code 2 .. end} - <em>including the machine's own slot 2</em> - so a catalyst shift-clicked out of
- * slot 0 lands in slot 2 when that is empty. Into the machine it tries slot 0, then 1, then 2.
+ * <p><b>The shift-click (D-3076).</b> Out of the machine it merges into the player's slots, {@code 3 .. end};
+ * upstream's range began at 2 and so included the machine's own slot 2, where a catalyst shifted out of
+ * slot 0 landed. Into the machine it tries slot 0, then 1, then 2.
  */
 public class CoreMenu extends ContainerBase {
 
@@ -61,7 +61,7 @@ public class CoreMenu extends ContainerBase {
 			var3 = var5.copy();
 
 			if(par2 <= 2) {
-				if(!this.moveItemStackTo(var5, 2, this.slots.size(), true)) {
+				if(!this.moveItemStackTo(var5, 3, this.slots.size(), true)) { // D-3076: the player slots (upstream began at the machine's own slot 2)
 					return ItemStack.EMPTY;
 				}
 			} else if(!this.moveItemStackTo(var5, 0, 1, false))

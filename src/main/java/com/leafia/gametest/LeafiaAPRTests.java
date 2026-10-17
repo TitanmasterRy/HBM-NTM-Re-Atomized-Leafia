@@ -226,9 +226,9 @@ public class LeafiaAPRTests {
 		helper.succeed();
 	}
 
-	/** Upstream's {@code setChambers}: clamped to 1..32, sorted, and a request with two rings within 3 empties the list. */
+	/** Upstream's {@code setChambers}: clamped to 1..32, sorted, and a request with two rings within 3 is refused and (D-3076) the old list stays. */
 	@GameTest(template = EMPTY)
-	public static void aRejectedChamberListEmptiesTheReactors(GameTestHelper helper) {
+	public static void aRejectedChamberListLeavesTheReactorsAlone(GameTestHelper helper) {
 		if(!on()) { helper.succeed(); return; }
 		BlockPos at = new BlockPos(2, 1, 2);
 		APRCoreTE te = core(helper, at);
@@ -237,11 +237,11 @@ public class LeafiaAPRTests {
 		te.setChambers(new int[] { 0, 9 }, false);
 		helper.assertTrue(te.chambers.equals(List.of(1, 9)), "clamped up to 1: " + te.chambers);
 		te.setChambers(new int[] { 0, 9 }, true);
-		helper.assertTrue(te.chambers.isEmpty(), "the spacing counts from the centre, so a first ring under 4 is refused: " + te.chambers);
+		helper.assertTrue(te.chambers.equals(List.of(1, 9)), "the spacing counts from the centre, so a first ring under 4 is refused and the list kept: " + te.chambers);
 		te.setChambers(new int[] { 9, 6 }, false);
 		helper.assertTrue(te.chambers.equals(List.of(6, 9)), "the client's copy takes it as it is: " + te.chambers);
 		te.setChambers(new int[] { 9, 6 }, true);
-		helper.assertTrue(te.chambers.isEmpty(), "a request three apart empties the list (upstream's): " + te.chambers);
+		helper.assertTrue(te.chambers.equals(List.of(6, 9)), "a request three apart is refused and the list kept (D-3076; upstream emptied it): " + te.chambers);
 		te.setChambers(new int[] { 10, 6 }, true);
 		helper.assertTrue(te.chambers.equals(List.of(6, 10)), "four apart is accepted");
 		helper.setBlock(at, Blocks.AIR);
@@ -330,6 +330,10 @@ public class LeafiaAPRTests {
 		te.rps = 0;
 		te.tickServer();
 		helper.assertTrue(te.damage == 599, "cool and slow, the damage falls by one: " + te.damage);
+		// D-3076: "hottest" is this tick's. A chamber at 500.5 cools to 499.54 inside the tick, so the damage falls (upstream read 500.5 and held it)
+		te.chamberDatas.get(0).blanketTemp = 500.5;
+		te.tickServer();
+		helper.assertTrue(te.damage == 598, "a chamber that cooled through 500 this tick no longer holds the damage up: " + te.damage);
 		helper.setBlock(at, Blocks.AIR);
 		helper.succeed();
 	}

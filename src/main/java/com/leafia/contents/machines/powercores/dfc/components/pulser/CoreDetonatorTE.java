@@ -63,9 +63,8 @@ import net.minecraft.world.level.block.state.BlockState;
  *
  * A fresh detonator takes whatever code is typed first and keeps it; after that the screen unlocks only
  * for that code. The switches send the code along with the command, and the server authorises the
- * player for the rest of that one packet. Upstream's clean-up loop removes any authorisation older than
- * five ticks <em>in the future</em> - every one, every tick - which is why a session never outlives its
- * packet; kept as written.
+ * player for five ticks (D-3076: upstream's clean-up loop removed any authorisation older than
+ * five ticks <em>in the future</em> - every one, every tick - so a session never outlived its packet).
  *
  * <h2>Translations</h2>
  *
@@ -186,6 +185,15 @@ public class CoreDetonatorTE extends BlockEntityMachineBase implements IDFCBase,
 			authorized.put(plr, level.getGameTime());
 	}
 
+	/** Forgets every authorisation more than five ticks old (D-3076: upstream's test was {@code < now + 5}, which is every one, every tick). */
+	public void forgetOldAuthorizations(long now) {
+		Iterator<Entry<Player, Long>> it = authorized.entrySet().iterator();
+		while(it.hasNext()) {
+			if(it.next().getValue() < now - 5)
+				it.remove();
+		}
+	}
+
 	public boolean isAuthorized(Player plr) {
 		return authorized.containsKey(plr);
 	}
@@ -256,11 +264,7 @@ public class CoreDetonatorTE extends BlockEntityMachineBase implements IDFCBase,
 				leafia$targetPosition(worldPosition.relative(state.getValue(CoreComponent.FACING)));
 		}
 		BlockEntityCore core = leafia$getCore(LeafiaConfig.dfcComponentRange);
-		Iterator<Entry<Player, Long>> it = authorized.entrySet().iterator();
-		while(it.hasNext()) {
-			if(it.next().getValue() < level.getGameTime() + 5)
-				it.remove();
-		}
+		forgetOldAuthorizations(level.getGameTime());
 		LeafiaPacket._start(this).__write(KEY_TARGET, targetPosition).__sendToAffectedClients();
 		this.autoPort(ALL_AROUND);
 		if(isOn && core instanceof IMixinTileEntityCore mixin) {

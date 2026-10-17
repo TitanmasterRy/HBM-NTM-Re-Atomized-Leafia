@@ -7,7 +7,7 @@ package com.leafia.contents.control.fuel.nuclearfuel;
  * width and flips it, so the rod's temperature is the picture's height at the flux.
  *
  * <p>Ported from {@code com.leafia.contents.control.fuel.nuclearfuel.ShitfuckiumData}, array copied by
- * script rather than retyped; the name and the typo in {@code evalute} are upstream's, and the
+ * script rather than retyped (rule 7); the name and the typo in {@code evalute} are upstream's, and the
  * latter is kept because the rod's own code calls it.
  */
 public class ShitfuckiumData {

@@ -229,8 +229,8 @@ public class LeafiaMachineOverrideTests {
 	}
 
 	/**
-	 * The server: no cassette is the base mod's "off"; a looping track is the addon's packet every tick; a one-shot
-	 * track plays on the rising edge and - unlike the base mod's - is stopped on the falling one.
+	 * The server: no cassette is the base mod's "off" (and the addon's, once, if it had been sounding); a looping track is
+	 * the addon's packet every tick; a one-shot track plays on the rising edge and, as the base mod's, runs to its end (D-3076).
 	 */
 	@GameTest(template = EMPTY)
 	public static void theSirenSendsUpstreamsPackets(GameTestHelper helper) {
@@ -251,13 +251,23 @@ public class LeafiaMachineOverrideTests {
 		helper.assertTrue(siren.sent.equals(List.of(pass + "/false/true")), "the rising edge plays it once: " + siren.sent);
 		helper.setBlock(rel.above(), Blocks.AIR);
 		siren.updateEntity();
-		helper.assertTrue(siren.sent.equals(List.of(pass + "/false/true", "null/null/false")), "the falling edge stops it: " + siren.sent);
+		helper.assertTrue(siren.sent.equals(List.of(pass + "/false/true")), "the falling edge sends nothing: the track runs to its end: " + siren.sent);
 		siren.sent.clear();
 		siren.slots[0] = cassette(TrackType.HATCH);
 		siren.updateEntity();
 		siren.updateEntity();
 		int hatch = TrackType.HATCH.ordinal();
 		helper.assertTrue(siren.sent.equals(List.of(hatch + "/true/false", hatch + "/true/false")), "a loop every tick: " + siren.sent);
+		// D-3076: the cassette taken out of a looping siren silences the addon's sound, once
+		siren.sent.clear();
+		helper.setBlock(rel.above(), Blocks.REDSTONE_BLOCK);
+		siren.updateEntity();
+		siren.sent.clear();
+		siren.slots[0] = ItemStack.EMPTY;
+		siren.updateEntity();
+		siren.updateEntity();
+		helper.assertTrue(siren.sent.equals(List.of("base 0-", "null/null/false", "base 0-")), "the base off every tick, the addon's off once: " + siren.sent);
+		helper.setBlock(rel.above(), Blocks.AIR);
 		helper.setBlock(rel, Blocks.AIR);
 		helper.succeed();
 	}

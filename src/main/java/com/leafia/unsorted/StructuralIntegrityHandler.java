@@ -72,9 +72,9 @@ import net.minecraft.world.level.block.state.BlockState;
  *   <li><b>{@value #MAX_DEPTH} levels</b> of horizontal search from the root. A column at the
  *       limit is counted but does not look further.
  *   <li><b>{@value #BUDGET} calculations per server tick</b>, counted across every level, and
- *       <b>one calculation per position per tick</b> ({@link #blockedPoses}). The rest are
- *       dropped, not deferred - upstream's behaviour, and it is why a very large edit leaves part
- *       of a building unchecked until something next touches it.
+ *       <b>one calculation per position per tick</b> ({@link #blockedPoses}). The rest wait for
+ *       the next tick (D-3076: the listener carries them over; upstream dropped them, which left
+ *       part of a large edit's building unchecked until something next touched it).
  *   <li>A search stops, and the check is abandoned, the moment it would read a chunk that is not
  *       loaded - it never loads or generates one.
  *   <li>Nether and End are never checked.
@@ -121,6 +121,11 @@ public class StructuralIntegrityHandler {
 	static final int BUDGET = 200;
 
 	public static int calculations = 0;
+
+	/** Whether this tick's budget is spent (upstream's test is {@code calculations > BUDGET}, so 201 are made). */
+	public static boolean overBudget() {
+		return calculations > BUDGET;
+	}
 	/**
 	 * Positions already calculated this tick. <b>Keyed by position alone</b>, so two dimensions
 	 * share it; the Nether and End are excluded, which leaves modded dimensions. Upstream's.
@@ -139,9 +144,18 @@ public class StructuralIntegrityHandler {
 		BlockState state = level.getBlockState(pos);
 		if (state.isAir()) return;
 		if (LeafiaUtil.isSolidVisibleCube(state, level, pos)) {
+			// D-3076: a block with an inventory keeps it: the block entity is saved, taken off the cell quietly (so the block's own
+			// removal drops nothing) and handed to the falling block, which writes it back where it lands (upstream's fell without it)
+			net.minecraft.nbt.CompoundTag carried = null;
+			net.minecraft.world.level.block.entity.BlockEntity entity = level.getBlockEntity(pos);
+			if (entity != null && !level.isClientSide && !(state.getBlock() instanceof com.hbm.blocks.BlockDummyable)) {
+				carried = entity.saveWithoutMetadata(level.registryAccess());
+				level.removeBlockEntity(pos);
+			}
 			// fall() puts the fluid state back in the cell, which is what setBlockToAir was.
 			FallingBlockEntity fallingBlock = FallingBlockEntity.fall(level, pos, state);
 			fallingBlock.time = 1;
+			if (carried != null) fallingBlock.blockData = carried;
 		} else
 			level.destroyBlock(pos, true);
 	}

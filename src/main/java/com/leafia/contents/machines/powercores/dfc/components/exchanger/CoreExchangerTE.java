@@ -165,7 +165,8 @@ public class CoreExchangerTE extends BlockEntityMachineBase implements IDFCBase,
 		if(chain.steps() > 0) {
 			if(input.getTankType() != f)
 				input.setFill(0);
-			if(output.getTankType() != f)
+			// upstream compared the output tank with the INPUT fluid (always different), so every reload emptied the spent coolant (D-3076)
+			if(output.getTankType() != chain.produced())
 				output.setFill(0);
 			this.compression = chain.steps();
 			input.setTankType(f);
@@ -225,7 +226,7 @@ public class CoreExchangerTE extends BlockEntityMachineBase implements IDFCBase,
 							if(canFill == fill) {
 								input.setFill(availableIn - drain);
 								DFCParts.fill(output, outType, fill, true);
-								mixin.setDFCTemperature(Math.max(mixin.getDFCTemperature() - drain * heatAmt / mbPerCelsius / 20, 0.0));
+								mixin.setDFCTemperature(Math.max(mixin.getDFCTemperature() - (long) drain * heatAmt / mbPerCelsius / 20, 0.0));
 							}
 						}
 					}

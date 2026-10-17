@@ -41,7 +41,7 @@ import net.minecraft.world.level.ItemLike;
  * digamma, {@code HOT} for {@link #fire}, {@code BLINDING}, {@code ASBESTOS}, {@code COAL} and
  * {@code EXPLOSIVE}, and - with {@code features.hazardOverhaul}, D-3023 - the addon's toxic, alkaline
  * and sharp types. Cryogenic has no type. {@link #unwired()} lists what an item asked for and did not
- * get, so a test (and a future contributor) can see it rather than discovering it in a world.
+ * get, so a test (and a future porter) can see it rather than discovering it in a world.
  */
 public class AddonItemHazardBase extends Item {
 

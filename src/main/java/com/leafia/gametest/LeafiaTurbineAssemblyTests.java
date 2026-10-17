@@ -81,13 +81,13 @@ public class LeafiaTurbineAssemblyTests {
 			s.put(p + "_port_side", new Spec(n, i + 1, 0.1, dims[i], TurbineComponentType.PORT, any));
 			s.put(p + "_port_inline", new Spec(n, i + 1, 0.1, dims[i], TurbineComponentType.INLINE_PORT, any));
 		}
-		// T4: blades and flywheels share their shapes. The 2x2 flywheel joins 3x3 parts, not 2x2.
+		// T4: blades and flywheels share their shapes. The 2x2 flywheel joins 2x2 parts (D-3076; upstream said 3x3).
 		int[] rotor = { 2, 3, 5, 7, 9 };
 		int[] rotorShaft = { 1, 1, 2, 3, 4 };
 		int[][] rotorDims = { { 1, 0, 0, 0, 1, 1 }, { 2, 0, 0, 0, 1, 1 }, { 3, 0, 0, 0, 2, 2 }, { 4, 0, 0, 0, 3, 3 }, { 5, 0, 0, 0, 4, 4 } };
 		double[] bladeWeight = { 5, 10, 20, 30, 40 };
 		double[] flywheelWeight = { 120, 160, 320, 480, 640 };
-		int[] flywheelConnect = { 3, 3, 5, 7, 9 };
+		int[] flywheelConnect = { 2, 3, 5, 7, 9 };
 		for(int i = 0; i < rotor.length; i++) {
 			int n = rotor[i];
 			String p = "modular_turbine_" + n + "x" + n;

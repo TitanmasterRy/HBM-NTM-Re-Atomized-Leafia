@@ -277,9 +277,8 @@ public class LeafiaEvRadioTests {
 	}
 
 	/**
-	 * Only the main hand's radio is ever written - upstream's {@code getHeldItemMainhand} - so a
-	 * radio in the off hand, or a different item in the main hand, is left alone. <b>This is the
-	 * upstream behaviour that makes an off-hand radio's screen load forever</b> (D-1088).
+	 * The radio written is the main hand's, else the off hand's (D-3076: upstream asked the main hand
+	 * only, so an off-hand radio's screen loaded forever); a different item in the main hand is left alone.
 	 */
 	@GameTest(template = EMPTY)
 	public static void onlyTheMainHandIsWritten(GameTestHelper helper) {
@@ -290,8 +289,13 @@ public class LeafiaEvRadioTests {
 
 		deliver(ui(1, 1, 1), player, PacketFlow.SERVERBOUND);
 
-		helper.assertTrue(!offhand.has(DataComponents.CUSTOM_DATA), "the off-hand radio was written");
+		helper.assertTrue(offhand.has(DataComponents.CUSTOM_DATA), "the off-hand radio was not written");
 		helper.assertTrue(!player.getMainHandItem().has(DataComponents.CUSTOM_DATA), "a stick was given a tag");
+
+		ItemStack main = radio();
+		player.setItemInHand(InteractionHand.MAIN_HAND, main);
+		deliver(ui(0, 0, 0), player, PacketFlow.SERVERBOUND);
+		helper.assertTrue(EvRadioItem.read(main).up() == 0 && EvRadioItem.read(offhand).up() == 1, "with a radio in each hand the main hand's is written");
 		helper.succeed();
 	}
 
@@ -355,6 +359,12 @@ public class LeafiaEvRadioTests {
 		player.setItemInHand(InteractionHand.MAIN_HAND, radio());
 		helper.assertTrue(reachedSending(() -> deliver(new EvRadioSyncRequestPacket(), player, PacketFlow.SERVERBOUND)),
 				"a request with a radio in hand was not answered");
+
+		player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.STICK));
+		player.setItemInHand(InteractionHand.OFF_HAND, radio());
+		helper.assertTrue(reachedSending(() -> deliver(new EvRadioSyncRequestPacket(), player, PacketFlow.SERVERBOUND)),
+				"a request with a radio in the off hand was not answered (D-3076)");
+		player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 
 		helper.assertTrue(!reachedSending(() -> deliver(new EvRadioSyncRequestPacket(), player, PacketFlow.CLIENTBOUND)),
 				"a clientbound request was answered");

@@ -83,13 +83,9 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
  * <h2>Upstream's quirks, kept (D-021)</h2>
  *
  * <ol>
- * <li><b>A partly cooled tank of salt loses its whole heat.</b> The hot side's salt branch reads the
- *     heat out of the input stack's tag with {@code MSRTEBase.nbtProtocol}, which hands back the tag itself, and
- *     zeroes it in place. So the heat of every millibucket left in the input tank - not only the ones cooled this
- *     cycle - is gone, and counted for the ones cooled only. Pinned by
- *     {@code LeafiaVatHeatexTests.aPartlyCooledTankOfSaltLosesAllItsHeat}.</li>
- * <li><b>The heat counter is an {@code int}</b>, and so is the product it adds: {@code heat x ops} is
- *     multiplied as two ints before the efficiency, so a big enough cycle of hot salt wraps it.</li>
+ * <li>(Fixed, D-3076) <b>A partly cooled tank of salt kept its heat only on paper</b>: upstream zeroed the input stack's own
+ *     tag, so every millibucket left behind lost its heat; only the salt that leaves is cooled now. And the
+ *     {@code int} product {@code heat x ops} wrapped; the counter stops at the int ceiling instead.</li>
  * <li><b>The heat counter is not saved</b> ({@code writeToNBT} has no line for it), so a reloaded exchanger
  *     starts cold: the heat a cycle gathered and the cold side had not yet used is lost with the chunk.</li>
  * <li><b>Draining is refused.</b> The Forge handler this block entity is takes input fluid (FF mode only, the set
@@ -364,6 +360,8 @@ public class CoolantHeatexTE extends BlockEntityMachineBase implements LeafiaPac
 	/** Built on first use: their product is the addon's warm fluid, which a static initialiser could read before it exists. */
 	private static FT_Heatable virtualAir;
 	private static FT_Heatable virtualWater;
+	private static FT_Heatable virtualCoolant;
+	private static FT_Heatable virtualCoolantOf;
 	static final FT_Coolable VIRTUAL_LPS = new FT_Coolable(Fluids.WATER, 1, 1, 20).setEff(CoolingType.HEATEXCHANGER, 1.0D);
 
 	/**
@@ -379,6 +377,20 @@ public class CoolantHeatexTE extends BlockEntityMachineBase implements LeafiaPac
 		if(fluid.equals(Fluids.WATER)) {
 			if(virtualWater == null) virtualWater = new FT_Heatable().addStep(70, 1, LeafiaFluids.HOT_WATER, 1).setEff(HeatingType.BOILER, 1.0D);
 			return virtualWater;
+		}
+		if(fluid.equals(Fluids.COOLANT)) {
+			// D-3076: the table gives the default coolant a heat-exchanger efficiency and no boiler one (upstream's is the same), so the cold
+			// side's default mode could never boil. It boils on its own first step (300 heat, 1 mB to 1 mB of hot coolant).
+			FT_Heatable own = fluid.getTrait(FT_Heatable.class);
+			if(own != null && own.getEfficiency(HeatingType.BOILER) <= 0 && own.getFirstStep() != null) {
+				if(virtualCoolant == null || virtualCoolantOf != own) {
+					HeatingStep step = own.getFirstStep();
+					virtualCoolant = new FT_Heatable().addStep(step.heatReq, step.amountReq, step.typeProduced, step.amountProduced).setEff(HeatingType.BOILER, 1.0D);
+					virtualCoolantOf = own;
+				}
+				return virtualCoolant;
+			}
+			return own;
 		}
 		return fluid.getTrait(FT_Heatable.class);
 	}
@@ -419,6 +431,11 @@ public class CoolantHeatexTE extends BlockEntityMachineBase implements LeafiaPac
 		}
 	}
 
+	/** The heat counter is an int: a cycle that would carry it past that stops at the ceiling (D-3076; upstream multiplied two ints and wrapped to a small or negative number). */
+	private void addHeat(double gained) {
+		heatEnergy = (int) Math.max(Math.min((double) heatEnergy + gained, Integer.MAX_VALUE), Integer.MIN_VALUE);
+	}
+
 	/** Side A in NTMF mode: ordinary tanks. */
 	public void tryConvert() {
 		FT_Coolable trait = getCoolable(inputFilter);
@@ -433,7 +450,7 @@ public class CoolantHeatexTE extends BlockEntityMachineBase implements LeafiaPac
 		int ops = Math.min(inputOps, Math.min(outputOps, opCap));
 		ntmfInputA.setFill(ntmfInputA.getFill() - trait.amountReq * ops);
 		ntmfOutputA.setFill(ntmfOutputA.getFill() + trait.amountProduced * ops);
-		this.heatEnergy += (int) (trait.heatEnergy * ops * trait.getEfficiency(CoolingType.HEATEXCHANGER));
+		addHeat((long) trait.heatEnergy * ops * trait.getEfficiency(CoolingType.HEATEXCHANGER));
 		this.setChanged();
 	}
 
@@ -461,13 +478,12 @@ public class CoolantHeatexTE extends BlockEntityMachineBase implements LeafiaPac
 			amountReq = 1;
 			FluidStack stack = ffInputA.getFluid();
 			if(!stack.isEmpty()) {
+				// D-3076: the heat is taken out of the salt that leaves, not out of the tank (upstream's nbtProtocol handed
+				// back the input stack's own tag and zeroed it, so the millibuckets left behind lost their heat as well).
 				CompoundTag compound = MSRTEBase.nbtProtocol(stack);
 				double h = compound.getDouble("heat");
 				compound.putDouble("heat", 0);
 				heat = (int) (h * 2);
-				// Upstream's nbtProtocol hands back the stack's own tag, so zeroing it cooled the whole tank
-				// (class note, quirk 1). The port's copy has to be written back for that to be so.
-				if(LeafiaFF.hasTag(stack)) LeafiaFF.setTag(stack, compound.copy());
 				outStack = stack.copy();
 				LeafiaFF.setTag(outStack, compound);
 			} else
@@ -489,7 +505,7 @@ public class CoolantHeatexTE extends BlockEntityMachineBase implements LeafiaPac
 			holder.setFluid(produced);
 			LeafiaUtil.fillFF(holder, ffOutputA, amountProduced * ops);
 		}
-		this.heatEnergy += (int) (heat * ops * efficiency);
+		addHeat((long) heat * ops * efficiency);
 		this.setChanged();
 	}
 

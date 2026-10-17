@@ -237,7 +237,7 @@ public class LeafiaPWRTests {
 	}
 
 	@GameTest(template = BIG)
-	public static void theDarkConcreteShieldsByFinishButStopsNeutronsInAll(GameTestHelper helper) {
+	public static void theDarkConcreteShieldsAndStopsNeutronsByFinish(GameTestHelper helper) {
 		if(!LeafiaFeatures.concreteBricks) {
 			helper.succeed();
 			return;
@@ -249,8 +249,8 @@ public class LeafiaPWRTests {
 			BlockState state = finishes[i].defaultBlockState();
 			helper.assertTrue(((IRadResistantBlock) finishes[i]).getResistance() == (shields[i] ? 1 : 0), finishes[i].getDescriptionId() + " resistance flag");
 			helper.assertTrue(IRadResistantBlock.blocksRadiation(state) == shields[i], finishes[i].getDescriptionId() + " shields radiation");
-			// upstream's isRadResistant(world, pos) is the interface default for every finish
-			helper.assertTrue(PWRElementTE.stopsNeutrons(state), finishes[i].getDescriptionId() + " stops the PWR's neutrons");
+			// D-3076: the cracked and broken finishes (which do not shield radiation) no longer stop the PWR's neutrons either
+			helper.assertTrue(PWRElementTE.stopsNeutrons(state) == shields[i], finishes[i].getDescriptionId() + " stops the PWR's neutrons only if it shields");
 		}
 		helper.succeed();
 	}
@@ -487,7 +487,7 @@ public class LeafiaPWRTests {
 		var query = computer.queryValues();
 		near(helper, query.get("tank_coolant"), 1234, "tank_coolant");
 		near(helper, query.get("capacity_coolant"), data.tanks[0].getMaxFill(), "capacity_coolant is the capacity");
-		helper.assertTrue(computer.getTankCapacities()[0] == 1234, "getTankCapacities answers the fill (upstream's bug)");
+		helper.assertTrue(computer.getTankCapacities()[0] == data.tanks[0].getMaxFill() && computer.getTankFills()[0] == 1234, "getTankCapacities answers the capacity, getTankFills the fill (D-3076)");
 		teardown(helper);
 		helper.succeed();
 	}
@@ -502,11 +502,14 @@ public class LeafiaPWRTests {
 		ServerPlayer player = mockPlayer(helper);
 		LeafiaRodItem rod = u238(helper);
 		ItemStack fuel = rodAt(rod, 20);
+		fuel.setCount(3);
+		player.setGameMode(net.minecraft.world.level.GameType.SURVIVAL); // a creative hand keeps its stack
 		player.setItemInHand(InteractionHand.MAIN_HAND, fuel);
 		BlockHitResult hit = new BlockHitResult(Vec3.atCenterOf(helper.absolutePos(low)), Direction.UP, helper.absolutePos(low), false);
 		helper.getBlockState(low).useItemOn(fuel, helper.getLevel(), player, InteractionHand.MAIN_HAND, hit);
-		helper.assertTrue(element(helper, low).inventory.getStackInSlot(0).is(rod), "the rod is in the column");
-		helper.assertTrue(player.getMainHandItem().isEmpty(), "and out of the hand");
+		helper.assertTrue(element(helper, low).inventory.getStackInSlot(0).is(rod) && element(helper, low).inventory.getStackInSlot(0).getCount() == 1, "one rod is in the column");
+		helper.assertTrue(player.getMainHandItem().getCount() == 2, "and the other two stay in the hand (D-3076; upstream put the whole stack in)");
+		player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
 
 		helper.setBlock(high, LeafiaBlocks.lwr_element.get());
 		helper.assertTrue(helper.getBlockState(low).getValue(PWRElementBlock.stacked), "the lower block is stacked");
@@ -582,9 +585,9 @@ public class LeafiaPWRTests {
 		helper.assertTrue(data.tanks[2].getFill() == 1, "one buffer millibucket: " + data.tanks[2].getFill());
 		helper.assertTrue(data.boilingAccum() == 20, "a remainder of 20: " + data.boilingAccum());
 		for(int i = 0; i < 3; i++) data.spendCoolant(10.5, null);
-		// Remainders 50, 80, 110; at 110 one unit pays out and only 1 is taken off (upstream's bug), leaving 109.
+		// Remainders 50, 80, 110; at 110 one unit pays out and 96 is taken off (D-3076; upstream took off 1, leaving 109).
 		helper.assertTrue(data.tanks[2].getFill() == 5, "1 + 1 + 1 + 2: " + data.tanks[2].getFill());
-		helper.assertTrue(data.boilingAccum() == 109, "the remainder keeps 109: " + data.boilingAccum());
+		helper.assertTrue(data.boilingAccum() == 14, "the remainder keeps 14: " + data.boilingAccum());
 		teardown(helper);
 		helper.succeed();
 	}
@@ -743,13 +746,13 @@ public class LeafiaPWRTests {
 	}
 
 	@GameTest(template = BIG)
-	public static void identifyingPlainCoolantTurnsTheBufferIntoHotCoolant(GameTestHelper helper) {
+	public static void identifyingPlainCoolantKeepsTheMalfunctioningBuffer(GameTestHelper helper) {
 		PWRData data = rigA(helper);
 		helper.assertTrue(data.tankTypes[0] == Fluids.COOLANT && data.tankTypes[1] == Fluids.COOLANT_HOT && data.tankTypes[2] == LeafiaFluids.COOLANT_MAL, "the defaults");
 		near(helper, data.multiplier, 1, "coolant heats 1:1");
 		helper.assertTrue(data.updateCoolantType(Fluids.COOLANT.getID()), "coolant is a valid coolant");
-		// getBoiledCoolant answers (second-hottest, hottest, ratio); a one-step chain answers its product twice.
-		helper.assertTrue(data.tankTypes[1] == Fluids.COOLANT_HOT && data.tankTypes[2] == Fluids.COOLANT_HOT, "upstream's quirk: the buffer becomes hot coolant: " + data.tankTypes[2].getName());
+		// getBoiledCoolant answers (second-hottest, hottest, ratio); a one-step chain answers its product twice, and the buffer stays malfunctioning coolant (D-3076).
+		helper.assertTrue(data.tankTypes[1] == Fluids.COOLANT_HOT && data.tankTypes[2] == LeafiaFluids.COOLANT_MAL, "the buffer stays malfunctioning coolant: " + data.tankTypes[2].getName());
 		helper.assertTrue(!data.updateCoolantType(Fluids.WATER.getID()) || data.tankTypes[0] == Fluids.WATER, "water either is not a coolant or becomes one");
 		helper.assertTrue(!data.updateCoolantType(Fluids.NONE.getID()), "nothing is not a coolant");
 		teardown(helper);

@@ -88,12 +88,35 @@ public final class StructuralIntegrityListener {
 		Set<Entry> running = queue;
 		queue = new LinkedHashSet<>();
 		if (!LeafiaFeatures.structuralIntegrity) return;
+		Set<Entry> carried = null;
 		for (Entry entry : running) {
+			// D-3076: what the budget cannot reach this tick waits for the next (upstream dropped it, leaving part of a building unchecked)
+			if (carried != null || StructuralIntegrityHandler.overBudget()) {
+				if (carried == null) carried = new LinkedHashSet<>();
+				carried.add(entry);
+				continue;
+			}
 			BlockPos pos = BlockPos.of(entry.pos());
 			StructuralIntegrityHandler.handleBlock(entry.level(), pos);
 			for (Direction side : Direction.values()) {
-				if ((entry.sides() & (1 << side.ordinal())) != 0)
+				if ((entry.sides() & (1 << side.ordinal())) != 0) {
+					if (StructuralIntegrityHandler.overBudget()) {
+						// the budget ran out inside this entry: the whole of it waits (the sides already done are blocked no more next tick, and are checked again)
+						carried = new LinkedHashSet<>();
+						carried.add(entry);
+						break;
+					}
 					StructuralIntegrityHandler.handleBlock(entry.level(), pos.relative(side));
+				}
+			}
+		}
+		if (carried != null) {
+			carried.addAll(queue);
+			queue = carried;
+			while (queue.size() > MAX_QUEUED) {
+				Iterator<Entry> it = queue.iterator();
+				it.next();
+				it.remove();
 			}
 		}
 	}

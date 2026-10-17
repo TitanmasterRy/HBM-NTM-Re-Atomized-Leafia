@@ -23,17 +23,16 @@ import net.minecraft.world.item.ItemStack;
  * not "machine out, then machine in". The slot positions are upstream's: the identifier at (17, 72), the battery
  * at (152, 72), the inventory at 122 and the hotbar at 180, to line up with {@code coolant_heatex.png}.
  *
- * <h2>The chain, upstream's numbers (D-021)</h2>
+ * <h2>The chain (D-3076)</h2>
  *
  * <pre>
  *   LeafiaItemTransfer(2): any machine slot -&gt; the inventory, from the far end;
- *                          the inventory   -&gt; slots 0 to 2, then 3 to the machine's last slot (1: nothing).
+ *                          the inventory   -&gt; the battery slot (batteries only), then the identifier slot.
  * </pre>
  *
- * Slots 0 and 1 are the machine's; <b>slot 2 is the first slot of the player's inventory</b>, which upstream's
- * "first three" reaches because it counted the machine as three slots wide. So a stack shift-clicked in the inventory
- * goes to the identifier slot if it will go there (anything is accepted), else to the battery slot (batteries only), else
- * onto the first inventory slot, which is a move within the inventory. Kept as it is: the numbers are the only thing the chain is.
+ * Upstream's chain asked for "slots 0 to 2" and then "3 to the last", counting the machine as three slots wide, so the
+ * third was the first slot of the player's own inventory and a shift-click could shuffle within it. The chain stops at the
+ * machine's two slots now.
  *
  * <p>The client builds the same menu from a payload naming the block entity's position, and where it cannot find it
  * the menu opens on an empty container: a desync costs a blank screen rather than a crash.
@@ -85,9 +84,9 @@ public class CoolantHeatexMenu extends LeafiaItemTransferable {
 
 				.__forInventory()
 
-				.__tryMoveToSlot(0, 2, false);
-		return transfer.__tryMoveToSlot(3, transfer.__maxIndex, false)
-				.__getReturn();
+				.__tryMoveToSlot(1, 1, false) // the battery slot takes only batteries, so it goes first
+				.__tryMoveToSlot(0, 0, false);
+		return transfer.__getReturn();
 	}
 
 	@Override

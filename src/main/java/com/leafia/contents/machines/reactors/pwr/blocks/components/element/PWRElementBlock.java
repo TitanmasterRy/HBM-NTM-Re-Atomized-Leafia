@@ -186,8 +186,9 @@ public class PWRElementBlock extends Block implements ITooltipProvider, ILookOve
 		if(stack.isEmpty()) {
 			if(held.getItem() instanceof ItemTooling) return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
 			if(world.isClientSide) return ItemInteractionResult.SUCCESS;
-			element.inventory.setStackInSlot(0, held.copy());
-			player.setItemSlot(hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+			// D-3076: one rod goes in, the rest of the held stack stays in the hand (upstream put the whole stack in the column's one slot)
+			element.inventory.setStackInSlot(0, held.copyWithCount(1));
+			if(!player.getAbilities().instabuild) held.shrink(1);
 			world.playSound(null, pos, NtmSounds.ITEM_UPGRADE_PLUG.get(), SoundSource.BLOCKS, 1, 1);
 			element.setChanged();
 			return ItemInteractionResult.SUCCESS;

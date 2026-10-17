@@ -329,6 +329,25 @@ public class LeafiaStructuralIntegrityTests {
 		helper.succeed();
 	}
 
+	/** A cube with an inventory takes it down with it (D-3076): the block entity rides in the falling block, and the cell drops nothing. */
+	@GameTest(template = EMPTY16)
+	public static void aFallingCubeKeepsItsBlockEntity(GameTestHelper helper) {
+		BlockPos at = new BlockPos(5, 8, 5);
+		helper.setBlock(at, Blocks.BARREL);
+		net.minecraft.world.level.block.entity.BlockEntity entity = helper.getBlockEntity(at);
+		assertTrue(helper, entity instanceof net.minecraft.world.Container, "a barrel has an inventory");
+		((net.minecraft.world.Container) entity).setItem(0, new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.DIAMOND, 3));
+		Level level = helper.getLevel();
+		StructuralIntegrityHandler.collapse(level, helper.absolutePos(at));
+		helper.assertBlock(at, b -> b == Blocks.AIR, "the barrel left its cell");
+		List<FallingBlockEntity> falling = helper.getEntities(EntityType.FALLING_BLOCK, at, 1.5);
+		assertTrue(helper, falling.size() == 1 && falling.get(0).getBlockState().is(Blocks.BARREL), "and fell as a block");
+		assertTrue(helper, falling.get(0).blockData != null && falling.get(0).blockData.contains("Items"), "carrying its contents");
+		assertTrue(helper, helper.getEntities(EntityType.ITEM, at, 2.5).isEmpty(), "nothing was dropped on the spot");
+		falling.get(0).discard();
+		helper.succeed();
+	}
+
 	/** A whole solid cube falls; anything else breaks and drops; a cell of air is nothing. */
 	@GameTest(template = EMPTY16)
 	public static void aCubeFallsAndAnythingElseBreaks(GameTestHelper helper) {
@@ -487,6 +506,43 @@ public class LeafiaStructuralIntegrityTests {
 			helper.assertTrue(StructuralIntegrityHandler.blockedPoses.isEmpty(), "and no position blocked");
 			helper.succeed();
 		} finally {
+			StructuralIntegrityHandler.blockedPoses.clear();
+			StructuralIntegrityHandler.calculations = 0;
+		}
+	}
+
+	/**
+	 * What the budget cannot reach in one tick waits for the next (D-3076; upstream dropped it). 255 changes are
+	 * queued, a tick calculates 201 of them, and the rest are still queued; ticks go on until every one has been seen.
+	 */
+	@GameTest(template = EMPTY16, batch = "structuralIntegrityDeferred")
+	public static void whatTheBudgetCannotReachWaitsForTheNextTick(GameTestHelper helper) {
+		try {
+			for (int x = 0; x < 16; x++)
+				for (int z = 0; z < 16; z++)
+					if (x != 0 || z != 0) helper.setBlock(new BlockPos(x, 0, z), Blocks.STONE);
+			LeafiaFeatures.structuralIntegrity = true;
+			StructuralIntegrityListener.clearQueue();
+			for (int x = 0; x < 16; x++)
+				for (int z = 0; z < 16; z++)
+					if (x != 0 || z != 0) synthetic(helper, helper.absolutePos(new BlockPos(x, 0, z)));
+			int queued = StructuralIntegrityListener.pending();
+			helper.assertTrue(queued == 255, "255 positions queued, not " + queued);
+			int total = 0;
+			int ticks = 0;
+			while (StructuralIntegrityListener.pending() > 0 && ticks < 20) {
+				StructuralIntegrityListener.onServerTick(null);
+				total += StructuralIntegrityHandler.calculations;
+				ticks++;
+				if (ticks == 1)
+					helper.assertTrue(StructuralIntegrityListener.pending() > 0, "the first tick left some waiting");
+			}
+			helper.assertTrue(ticks >= 2 && StructuralIntegrityListener.pending() == 0, "and they were all taken in " + ticks + " ticks");
+			helper.assertTrue(total >= 255, "every floor block was calculated: " + total);
+			helper.succeed();
+		} finally {
+			LeafiaFeatures.structuralIntegrity = false;
+			StructuralIntegrityListener.clearQueue();
 			StructuralIntegrityHandler.blockedPoses.clear();
 			StructuralIntegrityHandler.calculations = 0;
 		}

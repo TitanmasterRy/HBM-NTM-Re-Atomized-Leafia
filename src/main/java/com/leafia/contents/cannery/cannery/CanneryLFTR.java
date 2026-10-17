@@ -576,6 +576,8 @@ public class CanneryLFTR extends CanneryBase {
 
 		@Override
 		public void updateActor(int ticks, CompoundTag data) {
+			// a rewound scene starts the actor again at tick 0; the blade starts again with it (D-3076; upstream kept the angle, as the script creates the actor once)
+			if(ticks == 0) mixerRot = 115;
 			prevRot = mixerRot;
 			if(data.getBoolean("spin")) {
 				this.mixerRot += 9F;

@@ -213,7 +213,7 @@ public class LeafiaDFC3Tests {
 	}
 
 	@GameTest(template = EMPTY)
-	public static void theBeamBurnsWhatStandsInItAndTheCreativeBoostersDoesNoDamage(GameTestHelper helper) {
+	public static void theBeamBurnsWhatStandsInItAndTheCreativeBoostersBurnsToo(GameTestHelper helper) {
 		// the emitter is left armed and fuelled by the body; a failed assertion must not leave it firing a 50-block beam into its neighbours (D-3042)
 		try {
 			LeafiaCoreTE core = core(helper, new BlockPos(1, 2, 1));
@@ -248,8 +248,8 @@ public class LeafiaDFC3Tests {
 				c.updateEntity();
 				helper.assertTrue(core.getDFCIncomingSpk() == 20_000_000L / 1_000_000d, "the creative booster's second beam is 20 MSPK, got " + core.getDFCIncomingSpk());
 				helper.assertTrue(c.watts == 20_000 && c.power == 0 && c.tank.getFill() == 0, "no power, no coolant; setting " + c.watts);
-				helper.assertTrue(other.isOnFire() && other.getHealth() == other.getMaxHealth(),
-						"its beam ignites and does no damage (upstream's), health " + other.getHealth());
+				helper.assertTrue(other.isOnFire() && !other.isAlive(),
+						"its beam ignites and burns for the beam's 20 MSPK x 1e-6 = 20 damage (D-3076; upstream burned for an empty buffer), health " + other.getHealth());
 				c.updateEntity();
 				helper.assertTrue(helper.getLevel().getBlockState(c.getBlockPos()).is(LeafiaBlocks.dfc_cemitter.get()), "and never melts");
 				c.isOn = false;
@@ -530,12 +530,12 @@ public class LeafiaDFC3Tests {
 		x.updateEntity();
 		helper.assertTrue(x.input.getFill() == in, "a core no hotter than the output boils nothing");
 
-		// Upstream's setInput empties the output whenever its fluid is not the input's - always - and the
-		// NBT load calls it: a reloaded exchanger loses its spent coolant and keeps its input (oddity 5).
+		// Upstream's setInput emptied the output whenever its fluid was not the INPUT's - always - and the
+		// NBT load calls it, so a reload lost the spent coolant (D-3076): now only a changed product empties it.
 		int outBefore = x.output.getFill();
 		helper.assertTrue(outBefore > 0, "something was boiled");
 		x.loadWithComponents(x.saveWithoutMetadata(helper.getLevel().registryAccess()), helper.getLevel().registryAccess());
-		helper.assertTrue(x.output.getFill() == 0 && x.input.getFill() == in, "a reload empties the output (upstream's), output " + x.output.getFill());
+		helper.assertTrue(x.output.getFill() == outBefore && x.input.getFill() == in, "a reload keeps the output (D-3076), output " + x.output.getFill());
 
 		if(LeafiaItems.fuzzy_identifier != null) {
 			ItemStack id = new ItemStack(LeafiaItems.fuzzy_identifier.get());

@@ -119,7 +119,7 @@ public abstract class ModularTurbineBlockBase extends BlockDummyable
 		MachineTooltip.addModular(tooltip);
 		if(this instanceof MTCoreBlock)
 			MachineTooltip.addCore(tooltip);
-		if(variant().equals("glass")) {
+		if(variant().startsWith("glass")) { // both glass looks (D-3076; upstream compared with "glass" only)
 			for(String line : I18nUtil.resolveKey("info.turbine._tooltip.glass").split("\\$"))
 				tooltip.add(Component.literal(line));
 		}

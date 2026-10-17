@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
  * <b>Generated</b> by a script, which re-reads every number
  * below from upstream before writing - edit the table there, not this file.
  *
- * <p>Shaft 1 up from the core block, weight 120, joins only size 3 (not its own 2 - upstream's).
+ * <p>Shaft 1 up from the core block, weight 120, joins only its own size.
  * 1 narrower cap row on top round the disc off.
  * Drawn by the component renderer (T6); until then it is invisible and hidden from the creative tab.
  */
@@ -43,7 +43,7 @@ public class MTFlywheel2x2 extends MTFlywheelBase {
 
 	@Override
 	public int[] canConnectTo() {
-		return new int[] { 3 };
+		return new int[] { 2 };
 	}
 
 	@Override

@@ -76,6 +76,8 @@ import org.joml.Vector3f;
  * unbreakable blocks survive, creative and spectator players are not killed, and the two slots
  * take only uranium ingots and snowballs (upstream: damage rose with no fuel, everything was
  * cleared, both slots took anything; D-1082). Obsidian and the reactor's own casing still go.
+ * Fixed in D-3076: a partly built layer costs only the cells it lacks (upstream charged {@code 9 - fuel % 9}
+ * and wrote all nine), and a formed reactor is re-read every {@link #FORM_RECHECK} ticks instead of every tick.
  *
  * <h2>What does not port, and why</h2>
  *
@@ -129,6 +131,9 @@ public class SlopTE extends BlockEntityMachineBase implements LeafiaPacketReceiv
 	public int partialConsumption = 0;
 	public int dynaMaxPartialConsumption = 0;
 	public int fuel = 0;
+	/** Ticks until a formed reactor's 125 cells are read again. */
+	public static final int FORM_RECHECK = 10;
+	int formRecheck = 0;
 	public boolean on = false;
 	public long power = 0;
 	public int cool = 0;
@@ -290,9 +295,25 @@ public class SlopTE extends BlockEntityMachineBase implements LeafiaPacketReceiv
 		int yo = fuel / 9 + 1;
 
 		for(int xo = -1; xo <= 1; xo++)
+			for(int zo = 1; zo <= 3; zo++) {
+				BlockPos at = worldPosition.relative(forward, zo).relative(right, xo).above(yo);
+				if(!isValidFuel(at)) // D-3076: only the cells that are not fuel, which are the ones the ingots paid for
+					level.setBlock(at, ModBlocks.toxic_block.get().defaultBlockState(), 3);
+			}
+	}
+
+	/** The cells of the next layer that are not fuel yet: what the ingots buy (D-3076; upstream charged {@code 9 - fuel % 9}, and wrote all nine). */
+	public int missingInNextLayer() {
+
+		Direction forward = forward();
+		Direction right = forward.getClockWise();
+		int yo = fuel / 9 + 1;
+		int missing = 0;
+
+		for(int xo = -1; xo <= 1; xo++)
 			for(int zo = 1; zo <= 3; zo++)
-				level.setBlock(worldPosition.relative(forward, zo).relative(right, xo).above(yo),
-						ModBlocks.toxic_block.get().defaultBlockState(), 3);
+				if(!isValidFuel(worldPosition.relative(forward, zo).relative(right, xo).above(yo))) missing++;
+		return missing;
 	}
 
 	// ---- the meltdown ----------------------------------------------------------------------
@@ -407,7 +428,11 @@ public class SlopTE extends BlockEntityMachineBase implements LeafiaPacketReceiv
 
 		if(level.isClientSide) return;
 
-		formed = checkFormed(false);
+		// D-3076: a formed reactor is re-read every FORM_RECHECK ticks (upstream read all 125 cells every tick); an unformed one every tick, so a finished build starts at once
+		if(!formed || --formRecheck <= 0) {
+			formed = checkFormed(false);
+			formRecheck = FORM_RECHECK;
+		}
 
 		if(!formed) {
 			on = false;
@@ -418,8 +443,8 @@ public class SlopTE extends BlockEntityMachineBase implements LeafiaPacketReceiv
 
 		ItemStack ingots = slots[SLOT_FUEL];
 		if(ingots.is(ModItems.ingot_uranium.get()) && fuel < MAX_FUEL) {
-			int demand = 9 - fuel % 9;
-			if(ingots.getCount() >= demand) {
+			int demand = missingInNextLayer();
+			if(demand > 0 && ingots.getCount() >= demand) {
 				ingots.shrink(demand);
 				fillFuelLayer();
 			}

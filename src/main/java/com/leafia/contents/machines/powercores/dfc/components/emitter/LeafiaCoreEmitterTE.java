@@ -223,7 +223,7 @@ public class LeafiaCoreEmitterTE extends BlockEntityCoreEmitter
 				List<Entity> list = level.getEntitiesOfClass(Entity.class,
 						new AABB(centerVec.subtract(0.5, 0.5, 0.5), centerVec.add(0.5, 0.5, 0.5)));
 				for(Entity e : list) {
-					e.hurt(level.damageSources().source(ModDamageSource.amsCore), joules * 0.000001F);
+					e.hurt(level.damageSources().source(ModDamageSource.amsCore), out * 0.000001F); // the beam being fired, not the buffer: the creative booster fills no buffer (D-3076)
 					e.igniteForSeconds(10);
 				}
 			}

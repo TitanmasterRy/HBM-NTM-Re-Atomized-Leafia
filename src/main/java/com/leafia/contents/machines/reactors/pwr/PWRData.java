@@ -225,10 +225,9 @@ public class PWRData implements LeafiaPacketReceiver {
 	public double multiplier = 1;
 
 	/**
-	 * Retypes the three coolant tanks for a new coolant. <b>Upstream's bug, kept:</b> each of the three
-	 * mismatch checks empties {@code tanks[2]}, where the second and third were evidently meant to empty
-	 * tanks 1 and 2. The base tank's {@code setTankType} empties a tank whose type changes anyway, so the
-	 * only effect is that the emergency buffer is emptied when the hot coolant's type changes.
+	 * Retypes the three coolant tanks for a new coolant. D-3076: each of the three mismatch checks empties its own
+	 * tank (upstream's all emptied {@code tanks[2]}), and the plain coolant's emergency buffer is the malfunctioning
+	 * coolant rather than a second hot coolant.
 	 */
 	public boolean updateCoolantType(int coolantId) {
 		FluidType coolant = Fluids.fromID(coolantId);
@@ -236,12 +235,17 @@ public class PWRData implements LeafiaPacketReceiver {
 			this.coolantId = coolantId;
 			Triplet<FluidType, FluidType, Double> hots = getBoiledCoolant(coolant);
 			if(hots != null) {
-				if(tankTypes[0] != coolant) tanks[2].setFill(0);
-				if(tankTypes[1] != hots.getX()) tanks[2].setFill(0);
-				if(tankTypes[2] != hots.getX()) tanks[2].setFill(0);
+				// D-3076: the plain coolant's emergency buffer is the malfunctioning coolant (the default), not a second hot coolant: with the
+				// addon's fluid traits off COOLANT_HOT has no heat step, the chain is one step long and upstream's walk answered its product twice
+				FluidType buffer = hots.getY();
+				if(coolant.equals(Fluids.COOLANT) && LeafiaFluids.COOLANT_MAL != null && buffer.equals(hots.getX())) buffer = LeafiaFluids.COOLANT_MAL;
+				// D-3076: each mismatch empties its own tank (upstream's three checks all emptied the buffer)
+				if(tankTypes[0] != coolant) tanks[0].setFill(0);
+				if(tankTypes[1] != hots.getX()) tanks[1].setFill(0);
+				if(tankTypes[2] != buffer) tanks[2].setFill(0);
 				tankTypes[0] = coolant;
 				tankTypes[1] = hots.getX();
-				tankTypes[2] = hots.getY();
+				tankTypes[2] = buffer;
 				for(int i = 0; i < 3; i++) tanks[i].setTankType(tankTypes[i]);
 				multiplier = hots.getZ();
 				resizeTanks(lastChannels, lastConductors);
@@ -639,10 +643,9 @@ public class PWRData implements LeafiaPacketReceiver {
 	 * becomes hot coolant, and what will not fit in the hot tank boils into the emergency buffer at
 	 * 96:1. With the buffer full as well, the vessel blows ({@link #explode}, level by toughness).
 	 *
-	 * <p><b>Upstream's bug, kept:</b> the 96:1 remainder accumulator subtracts the whole units it hands
-	 * out rather than 96 times them ({@code boilingAccum -= fillAdd}), so it creeps upward and pays out
-	 * about one extra millibucket per 96 it was owed. With coolant missing entirely nothing is drained
-	 * and nothing heats: CE's {@code drain} answers null on an empty tank.
+	 * <p>The 96:1 remainder accumulator subtracts 96 per unit it hands out (D-3076; upstream took off one per unit,
+	 * so it crept upward and paid out about one extra millibucket per 96 it was owed). With coolant missing entirely
+	 * nothing is drained and nothing heats: CE's {@code drain} answers null on an empty tank.
 	 */
 	public void spendCoolant(double cooled, @Nullable ItemStack stack) {
 		double drainD = cooled * transferMultiplier / multiplier;
@@ -670,7 +673,7 @@ public class PWRData implements LeafiaPacketReceiver {
 						int fill = drained / boilingDivision;
 						boilingAccum += Math.floorMod(drained, boilingDivision);
 						int fillAdd = boilingAccum / boilingDivision;
-						boilingAccum -= fillAdd;
+						boilingAccum -= fillAdd * boilingDivision; // D-3076: the units paid out at 96 each (upstream took off one per unit, so the remainder crept up)
 						int filled = fill(tanks[tank], tankTypes[tank], fill + fillAdd, true);
 						drained -= filled * boilingDivision;
 					}

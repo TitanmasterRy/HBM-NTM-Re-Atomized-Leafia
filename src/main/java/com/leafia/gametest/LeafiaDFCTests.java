@@ -364,7 +364,9 @@ public class LeafiaDFCTests {
 		pulser.onReceivePacketServer((byte) 1, false, player);
 		helper.assertTrue(!pulser.isOn, "the code authorises the command after it");
 		pulser.updateEntity();
-		helper.assertTrue(!pulser.isAuthorized(player), "and the next tick forgets the player (upstream's +5 is in the future)");
+		helper.assertTrue(pulser.isAuthorized(player), "and the player stays authorised for five ticks (D-3076; upstream forgot at once)");
+		pulser.forgetOldAuthorizations(helper.getLevel().getGameTime() + 6);
+		helper.assertTrue(!pulser.isAuthorized(player), "then is forgotten");
 		CompoundTag tag = pulser.saveWithoutMetadata(helper.getLevel().registryAccess());
 		helper.assertTrue(tag.getString("code").equals("1234") && !tag.getBoolean("isOn") && tag.contains("x1"), "code, switch and target are saved: " + tag);
 		clear(helper, new BlockPos(1, 2, 1));
@@ -410,7 +412,7 @@ public class LeafiaDFCTests {
 	// ---- the menus -------------------------------------------------------------------------
 
 	@GameTest(template = EMPTY)
-	public static void theCoreMenuIsUpstreamsColumnAndItsShiftClickReachesSlotTwo(GameTestHelper helper) {
+	public static void theCoreMenuIsUpstreamsColumnAndItsShiftClickLeavesTheMachine(GameTestHelper helper) {
 		BlockPos at = new BlockPos(1, 2, 1);
 		LeafiaCoreTE core = overhauledCore(helper, at);
 		ServerPlayer player = mockPlayer(helper);
@@ -421,7 +423,7 @@ public class LeafiaDFCTests {
 		for(int i = 0; i < player.getInventory().items.size(); i++) player.getInventory().items.set(i, new ItemStack(Items.DIRT, 64));
 		core.setItem(0, new ItemStack(ModItems.ams_catalyst_iron.get()));
 		menu.quickMoveStack(player, 0);
-		helper.assertTrue(core.getItem(0).isEmpty() && core.getItem(2).is(ModItems.ams_catalyst_iron.get()), "upstream's range starts at the machine's own slot 2");
+		helper.assertTrue(core.getItem(2).isEmpty() && !core.getItem(0).isEmpty(), "with a full inventory the stack stays and never reaches the machine's own slot 2 (D-3076; upstream's range began there)");
 		core.clearContent();
 		clear(helper, at);
 		helper.succeed();

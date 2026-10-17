@@ -32,7 +32,7 @@ import net.minecraft.world.level.block.state.BlockState;
  *
  * <p>The name is upstream's composition: {@code item.lwrdebris.conjunctive} ("{block} {type}") with the
  * block's name and the type's word, or the {@code .alt} form ("{type} of {block}") when the block's name
- * contains {@code item.lwrdebris.conjunctive.switch} ("of"), compared lower-case - so "Block of Steel"
+ * contains {@code item.lwrdebris.conjunctive.switch} ("of") as a word, compared lower-case - so "Block of Steel"
  * reads "Shrapnel of Block of Steel". A stack with no tag uses the item's own name as the block's, as
  * upstream does. The parts are looked up in the running language, as upstream's {@code I18nUtil} did on the client.
  */
@@ -96,6 +96,13 @@ public class PWRDebrisItem extends Item {
 		return Component.literal(composeName(stack));
 	}
 
+	/** Whether {@code word} stands alone in {@code text}, compared lower-case (D-3076: upstream took any substring, so "Offset" counted as "of"). */
+	public static boolean containsWord(String text, String word) {
+		if(word.isEmpty()) return false;
+		return java.util.regex.Pattern.compile("(?<!\\p{L})" + java.util.regex.Pattern.quote(word.toLowerCase()) + "(?!\\p{L})")
+				.matcher(text.toLowerCase()).find();
+	}
+
 	/** Upstream's {@code getItemStackDisplayName}. */
 	public String composeName(ItemStack stack) {
 		Language lang = Language.getInstance();
@@ -108,7 +115,7 @@ public class PWRDebrisItem extends Item {
 		if(key != null && BuiltInRegistries.BLOCK.containsKey(key))
 			itemName = BuiltInRegistries.BLOCK.get(key).getName().getString();
 		String mainKey = "item.lwrdebris.conjunctive";
-		if(itemName.toLowerCase().contains(lang.getOrDefault("item.lwrdebris.conjunctive.switch").toLowerCase()))
+		if(containsWord(itemName, lang.getOrDefault("item.lwrdebris.conjunctive.switch")))
 			mainKey = mainKey + ".alt";
 		return lang.getOrDefault(mainKey).replace("{type}", typename).replace("{block}", itemName);
 	}

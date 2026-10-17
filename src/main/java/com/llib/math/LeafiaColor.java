@@ -37,7 +37,6 @@ public class LeafiaColor { // Color utility for doing complex color mixing
 		blue = toDouble(code&0xFF);
 		alpha = toDouble(0xFF-(code>>>0_30));
 	}
-	/// thanks gpt
 	public static LeafiaColor fromHSV(double h,double s,double v) {
 		h = h % 360f;
 		if (h < 0) h += 360f;
