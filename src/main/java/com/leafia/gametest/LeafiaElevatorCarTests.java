@@ -2,6 +2,7 @@ package com.leafia.gametest;
 
 import java.lang.reflect.Field;
 
+import com.hbm.blocks.BlockDummyable;
 import com.leafia.contents.LeafiaBlocks;
 import com.leafia.contents.LeafiaItems;
 import com.leafia.contents.machines.elevators.EvBuffer;
@@ -16,6 +17,7 @@ import com.leafia.init.LeafiaBlockEntities;
 import com.leafia.init.LeafiaEntities;
 import com.leafia.lib.LeafiaRef;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -23,6 +25,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -273,6 +277,44 @@ public class LeafiaElevatorCarTests {
 		helper.assertTrue(LeafiaBlockEntities.EV_FLOOR.get()
 						.isValid(LeafiaBlocks.elevator_skyliftfloor.get().defaultBlockState()),
 				"EV_FLOOR is not valid for elevator_skyliftfloor - the two landings share one type");
+		helper.succeed();
+	}
+
+	/**
+	 * Every part of the pulley can actually build its block entity (D-3076).
+	 *
+	 * <p>This is the test the crash wanted, and the one above is why it was missing. That one asks
+	 * the <em>core</em> type whether it is valid for the block, which passes whatever the parts do,
+	 * because {@code BlockEntityType.isValid} is {@code validBlocks.contains(state.getBlock())} and
+	 * never looks at the properties. Meanwhile the EXTRA part carried the base mod's shared
+	 * {@code MULTIBLOCK_DUMMY} type, which names the base mod's blocks only, so {@code
+	 * newBlockEntity} threw out of the {@code BlockEntity} constructor on placement and the server
+	 * died on the next chunk broadcast.
+	 *
+	 * <p>So: build each part, rather than asking a type whether it approves of the block. A type
+	 * that is valid for the block says nothing about a part that uses a different type.
+	 */
+	@GameTest(template = EMPTY)
+	public static void everyPulleyPartBuildsItsBlockEntity(GameTestHelper helper) {
+		EvPulley pulley = (EvPulley) LeafiaBlocks.elevator_pulley.get();
+		BlockPos at = helper.absolutePos(BlockPos.ZERO);
+
+		for(BlockDummyable.Part part : BlockDummyable.Part.values()) {
+			BlockState state = pulley.defaultBlockState().setValue(BlockDummyable.PART, part);
+			BlockEntity be;
+			try {
+				be = pulley.newBlockEntity(at, state);
+			} catch(Exception e) {
+				throw new AssertionError("the " + part + " part cannot build its block entity: " + e, e);
+			}
+			if(part == BlockDummyable.Part.DUMMY) {
+				helper.assertTrue(be == null, "the DUMMY part should carry no block entity, got " + be);
+				continue;
+			}
+			helper.assertTrue(be != null, "the " + part + " part carries no block entity");
+			helper.assertTrue(be.getType().isValid(state),
+					"the " + part + " part's type does not name elevator_pulley, so placing one throws");
+		}
 		helper.succeed();
 	}
 

@@ -2,7 +2,6 @@ package com.leafia.contents.machines.elevators;
 
 import com.hbm.blockentity.BlockEntityProxyCombo;
 import com.hbm.blocks.BlockDummyable;
-import com.hbm.slices.Slice3;
 import com.leafia.init.LeafiaBlockEntities;
 import com.mojang.serialization.MapCodec;
 
@@ -30,9 +29,13 @@ import net.minecraft.world.level.block.state.BlockState;
  *
  * <p>Upstream builds that proxy as {@code new TileEntityProxyCombo(false, true, false)}: power
  * only, no fluid and no inventory. This port has the same class as
- * {@link BlockEntityProxyCombo}, partial but with power forwarding done (base D-068), and the
- * base mod already registers a shared {@code MULTIBLOCK_DUMMY} type for exactly this job — so the
- * pulley uses that rather than registering a second one.
+ * {@link BlockEntityProxyCombo}, partial but with power forwarding done (base D-068).
+ *
+ * <p>It carries the addon's own {@link LeafiaBlockEntities#EV_PULLEY_PROXY} type and not the base
+ * mod's shared {@code MULTIBLOCK_DUMMY} (D-3076). Sharing that type is how upstream does it and it
+ * cannot work here: a 1.21.1 {@code BlockEntityType} validates the block it is placed on
+ * ({@code validBlocks.contains(state.getBlock())}), and the base mod's type lists the base mod's
+ * blocks, so placing a pulley threw and then crashed the server on the next chunk broadcast.
  */
 public class EvPulley extends BlockDummyable {
 
@@ -56,7 +59,7 @@ public class EvPulley extends BlockDummyable {
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return switch(state.getValue(PART)) {
 			case CORE -> new EvPulleyTE(pos, state);
-			case EXTRA -> new BlockEntityProxyCombo(Slice3.MULTIBLOCK_DUMMY.get(), pos, state).power();
+			case EXTRA -> new BlockEntityProxyCombo(LeafiaBlockEntities.EV_PULLEY_PROXY.get(), pos, state).power();
 			case DUMMY -> null;
 		};
 	}

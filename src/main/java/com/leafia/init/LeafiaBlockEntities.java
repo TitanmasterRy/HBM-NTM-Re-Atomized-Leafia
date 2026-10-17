@@ -234,6 +234,18 @@ public final class LeafiaBlockEntities {
 	/** The pulley's core. Null when {@code features.elevators} is off. */
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<EvPulleyTE>> EV_PULLEY;
 
+	/**
+	 * The power proxy on the pulley's extra block (D-3076).
+	 *
+	 * <p>The base mod's shared {@code MULTIBLOCK_DUMMY} cannot serve here, which is a 1.21.1
+	 * difference rather than a port slip: {@code BlockEntityType.isValid} is
+	 * {@code validBlocks.contains(state.getBlock())}, and that type lists the base mod's own
+	 * blocks. Placing a pulley therefore threw out of the {@code BlockEntity} constructor and
+	 * crashed the server on the next chunk broadcast. One type per block, as {@link #LIGHT_PROXY}
+	 * already does for the light.
+	 */
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockEntityProxyCombo>> EV_PULLEY_PROXY;
+
 	/** The buffer's. */
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<EvBufferTE>> EV_BUFFER;
 
@@ -636,6 +648,11 @@ public final class LeafiaBlockEntities {
 
 			EV_PULLEY = BLOCK_ENTITIES.register("ev_pulley", () -> BlockEntityType.Builder
 					.of(EvPulleyTE::new, LeafiaBlocks.elevator_pulley.get())
+					.build(null));
+
+			EV_PULLEY_PROXY = BLOCK_ENTITIES.register("ev_pulley_proxy", () -> BlockEntityType.Builder
+					.of((pos, state) -> new BlockEntityProxyCombo(EV_PULLEY_PROXY.get(), pos, state).power(),
+							LeafiaBlocks.elevator_pulley.get())
 					.build(null));
 
 			EV_BUFFER = BLOCK_ENTITIES.register("ev_buffer", () -> BlockEntityType.Builder
