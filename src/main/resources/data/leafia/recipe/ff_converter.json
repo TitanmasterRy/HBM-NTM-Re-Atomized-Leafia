@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_converter"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_duct_colored"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:ff_duct_colored"
+    },
+    {
+      "tag": "c:plates/aluminum"
+    }
+  ],
+  "result": {
+    "id": "leafia:ff_converter",
+    "count": 1
+  }
+}

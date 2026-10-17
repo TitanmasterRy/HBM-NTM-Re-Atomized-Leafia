@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        200,
+        0
+      ],
+      "scale": [
+        0.2465,
+        0.2465,
+        0.2465
+      ],
+      "translation": [
+        -5.527,
+        9.007,
+        1.118
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        200,
+        0
+      ],
+      "scale": [
+        0.2465,
+        0.2465,
+        0.2465
+      ],
+      "translation": [
+        -5.527,
+        9.007,
+        1.118
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        180,
+        0
+      ],
+      "scale": [
+        0.5685,
+        0.5685,
+        0.5685
+      ],
+      "translation": [
+        -4.548,
+        4.548,
+        4.548
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        0.2934,
+        0.2934,
+        0.2934
+      ],
+      "translation": [
+        -2.347,
+        5.347,
+        -2.347
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        405,
+        0
+      ],
+      "scale": [
+        0.6354,
+        0.6354,
+        0.6354
+      ],
+      "translation": [
+        7.189,
+        4.402,
+        2.542
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "scale": [
+        0.3088,
+        0.3088,
+        0.3088
+      ],
+      "translation": [
+        -3.494,
+        3.139,
+        2.386
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "scale": [
+        0.3088,
+        0.3088,
+        0.3088
+      ],
+      "translation": [
+        -3.494,
+        3.139,
+        2.386
+      ]
+    }
+  },
+  "parent": "leafia:block/ff_duct_colored_item"
+}

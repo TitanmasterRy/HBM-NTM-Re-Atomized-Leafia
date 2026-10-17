@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "leafia:block/leafia/msr/msr_fuel_ejector",
+    "side": "leafia:block/leafia/msr/msr_element",
+    "top": "leafia:block/leafia/msr/msr_element"
+  }
+}

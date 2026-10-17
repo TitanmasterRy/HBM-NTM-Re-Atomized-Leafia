@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.085,
+        0.085,
+        0.085
+      ],
+      "translation": [
+        -2.129,
+        5.969,
+        -0.974
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.085,
+        0.085,
+        0.085
+      ],
+      "translation": [
+        -2.129,
+        5.969,
+        -0.974
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.2067,
+        0.2067,
+        0.2067
+      ],
+      "translation": [
+        1.653,
+        -3.307,
+        -1.653
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1067,
+        0.1067,
+        0.1067
+      ],
+      "translation": [
+        0.853,
+        1.293,
+        0.853
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.2442,
+        0.2442,
+        0.2442
+      ],
+      "translation": [
+        -2.763,
+        -3.384,
+        -1.954
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.1425,
+        0.1425,
+        0.1425
+      ],
+      "translation": [
+        1.612,
+        1.91,
+        -2.202
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.1425,
+        0.1425,
+        0.1425
+      ],
+      "translation": [
+        1.612,
+        1.91,
+        -2.202
+      ]
+    }
+  },
+  "parent": "leafia:block/crimson_door_small_item"
+}

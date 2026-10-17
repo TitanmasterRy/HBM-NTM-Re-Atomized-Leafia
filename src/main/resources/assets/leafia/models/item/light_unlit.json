@@ -1,0 +1,136 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "base": {
+      "parent": "leafia:block/light_item_base"
+    },
+    "bulb": {
+      "parent": "leafia:block/light_bulb"
+    }
+  },
+  "item_render_order": [
+    "base",
+    "bulb"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -3.92,
+        3.001,
+        1.732
+      ],
+      "scale": [
+        0.3465,
+        0.3465,
+        0.3465
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0.853,
+        4.067,
+        0.853
+      ],
+      "scale": [
+        0.1067,
+        0.1067,
+        0.1067
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        1.653,
+        -1.653,
+        2.067
+      ],
+      "scale": [
+        0.2067,
+        0.2067,
+        0.2067
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.0,
+        2.958,
+        1.708
+      ],
+      "scale": [
+        0.1768,
+        0.1768,
+        0.1768
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.0,
+        2.958,
+        1.708
+      ],
+      "scale": [
+        0.1768,
+        0.1768,
+        0.1768
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.832,
+        7.098,
+        1.259
+      ],
+      "scale": [
+        0.1139,
+        0.1139,
+        0.1139
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.832,
+        7.098,
+        1.259
+      ],
+      "scale": [
+        0.1139,
+        0.1139,
+        0.1139
+      ]
+    }
+  }
+}

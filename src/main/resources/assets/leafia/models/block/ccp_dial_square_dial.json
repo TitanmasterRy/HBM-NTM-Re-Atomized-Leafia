@@ -1,0 +1,13 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_dial_square.obj",
+  "textures": {
+    "0": "leafia:block/ccp/dial_square",
+    "particle": "leafia:block/ccp/dial_square"
+  },
+  "visibility": {
+    "base": false
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.3292,
+        0.3292,
+        0.3292
+      ],
+      "translation": [
+        0.353,
+        7.007,
+        3.037
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.3292,
+        0.3292,
+        0.3292
+      ],
+      "translation": [
+        0.353,
+        7.007,
+        3.037
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.62,
+        0.62,
+        0.62
+      ],
+      "translation": [
+        4.96,
+        4.96,
+        4.836
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.32,
+        0.32,
+        0.32
+      ],
+      "translation": [
+        2.56,
+        5.56,
+        2.496
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.9558,
+        0.9558,
+        0.9558
+      ],
+      "translation": [
+        -10.679,
+        6.554,
+        3.94
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.4465,
+        0.4465,
+        0.4465
+      ],
+      "translation": [
+        4.989,
+        3.486,
+        3.434
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.4465,
+        0.4465,
+        0.4465
+      ],
+      "translation": [
+        4.989,
+        3.486,
+        3.434
+      ]
+    }
+  },
+  "parent": "leafia:block/fluid_duct_gauge_mdl_item"
+}

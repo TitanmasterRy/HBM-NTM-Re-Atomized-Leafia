@@ -1,0 +1,13 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/pwrwreck_metal_slight_1.obj",
+  "textures": {
+    "0": "hbm:block/brick_concrete",
+    "particle": "hbm:block/brick_concrete"
+  },
+  "visibility": {
+    "Cube": true
+  }
+}

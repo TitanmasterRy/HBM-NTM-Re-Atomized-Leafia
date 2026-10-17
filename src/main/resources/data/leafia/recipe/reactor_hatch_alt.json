@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:reactor_hatch"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:reactor_hatch_alt"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:reactor_hatch"
+    }
+  ],
+  "result": {
+    "id": "leafia:reactor_hatch_alt",
+    "count": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:nugget_schraranium",
+      "required": false
+    }
+  ]
+}

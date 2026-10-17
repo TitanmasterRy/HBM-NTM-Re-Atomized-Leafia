@@ -1,0 +1,16 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/reactordoorfinal.obj",
+  "textures": {
+    "0": "leafia:block/reactordoor",
+    "particle": "leafia:block/reactordoor"
+  },
+  "visibility": {
+    "Door": false,
+    "FrameA": false,
+    "Handle": false,
+    "Wall": false
+  }
+}

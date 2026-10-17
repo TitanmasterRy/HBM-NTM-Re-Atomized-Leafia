@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/amsp_receiver.obj",
+  "textures": {
+    "0": "leafia:block/amsp_receiver",
+    "particle": "leafia:block/amsp_receiver"
+  },
+  "visibility": {}
+}

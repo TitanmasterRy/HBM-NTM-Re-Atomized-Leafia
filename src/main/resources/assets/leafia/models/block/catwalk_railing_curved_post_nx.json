@@ -1,0 +1,43 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/catwalk_railing_curved.obj",
+  "textures": {
+    "0": "leafia:block/catwalk_railing_curved",
+    "particle": "leafia:block/catwalk_railing_curved"
+  },
+  "visibility": {
+    "curve_nXnZ": false,
+    "curve_nXpZ": false,
+    "curve_pXnZ": false,
+    "curve_pXpZ": false,
+    "end_nXnZ": false,
+    "end_nXpZ": false,
+    "end_nZnX": false,
+    "end_nZpX": false,
+    "end_pXnZ": false,
+    "end_pXpZ": false,
+    "end_pZnX": false,
+    "end_pZpX": false,
+    "post_nZ": false,
+    "post_pX": false,
+    "post_pZ": false,
+    "stair_nXnZ": false,
+    "stair_nXpZ": false,
+    "stair_nZnX": false,
+    "stair_nZpX": false,
+    "stair_pXnZ": false,
+    "stair_pXpZ": false,
+    "stair_pZnX": false,
+    "stair_pZpX": false,
+    "straight_nXnZ": false,
+    "straight_nXpZ": false,
+    "straight_nZnX": false,
+    "straight_nZpX": false,
+    "straight_pXnZ": false,
+    "straight_pXpZ": false,
+    "straight_pZnX": false,
+    "straight_pZpX": false
+  }
+}

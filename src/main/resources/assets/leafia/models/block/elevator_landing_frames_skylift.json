@@ -1,0 +1,15 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_landing.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "leafia:block/elevator_skylift_frame",
+    "particle": "leafia:block/elevator_skylift_frame"
+  },
+  "visibility": {
+    "DoorL": false,
+    "DoorR": false,
+    "Wall": false
+  }
+}

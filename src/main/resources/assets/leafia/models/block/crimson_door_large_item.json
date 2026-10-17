@@ -1,0 +1,23 @@
+{
+  "children": {
+    "frame": {
+      "parent": "leafia:block/crimson_door_large_frame"
+    },
+    "left": {
+      "parent": "leafia:block/crimson_door_large_left"
+    },
+    "light": {
+      "parent": "leafia:block/crimson_door_large_light"
+    },
+    "right": {
+      "parent": "leafia:block/crimson_door_large_right"
+    }
+  },
+  "item_render_order": [
+    "frame",
+    "left",
+    "right",
+    "light"
+  ],
+  "loader": "neoforge:composite"
+}

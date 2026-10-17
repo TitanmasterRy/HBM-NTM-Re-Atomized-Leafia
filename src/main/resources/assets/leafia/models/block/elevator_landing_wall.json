@@ -1,0 +1,15 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_landing.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "hbm:block/block_steel",
+    "particle": "hbm:block/block_steel"
+  },
+  "visibility": {
+    "DoorL": false,
+    "DoorR": false,
+    "Frames": false
+  }
+}

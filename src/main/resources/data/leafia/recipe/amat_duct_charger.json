@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:amat_duct"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:amat_duct_charger"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DWD",
+    "WEW",
+    "DWD"
+  ],
+  "key": {
+    "W": {
+      "tag": "c:wire_denses/bscco"
+    },
+    "D": {
+      "item": "leafia:amat_duct"
+    },
+    "E": {
+      "item": "hbm:battery_pack_capacitor_niobium"
+    }
+  },
+  "result": {
+    "id": "leafia:amat_duct_charger",
+    "count": 1
+  }
+}

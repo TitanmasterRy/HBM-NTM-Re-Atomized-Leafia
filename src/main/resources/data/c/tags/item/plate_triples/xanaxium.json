@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:plate_cast_xanaxium",
+      "required": false
+    }
+  ]
+}

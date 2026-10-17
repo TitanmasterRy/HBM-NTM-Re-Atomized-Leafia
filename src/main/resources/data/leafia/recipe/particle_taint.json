@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:particle_taint"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:particle_empty"
+    },
+    {
+      "tag": "c:dusts/taintium"
+    },
+    {
+      "item": "hbm:pellet_charged"
+    }
+  ],
+  "result": {
+    "id": "leafia:particle_taint",
+    "count": 1
+  }
+}

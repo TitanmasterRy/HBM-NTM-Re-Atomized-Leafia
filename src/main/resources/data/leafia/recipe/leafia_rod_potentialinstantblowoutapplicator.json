@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod_potentialinstantblowoutapplicator"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "item": "hbm:meltdown_tool"
+    }
+  ],
+  "result": {
+    "id": "leafia:leafia_rod_potentialinstantblowoutapplicator",
+    "count": 1
+  }
+}

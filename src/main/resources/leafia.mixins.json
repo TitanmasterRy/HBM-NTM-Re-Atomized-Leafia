@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.leafia.overwrite_contents.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MixinBlockFire",
+    "MixinServerLevel"
+  ],
+  "client": [
+    "MixinSplashManager"
+  ],
+  "server": []
+}

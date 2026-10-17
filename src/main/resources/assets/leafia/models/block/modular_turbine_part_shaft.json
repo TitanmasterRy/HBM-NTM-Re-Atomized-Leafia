@@ -1,0 +1,27 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/modular_turbine.obj",
+  "textures": {
+    "0": "leafia:block/modular_turbine_t1",
+    "particle": "leafia:block/modular_turbine_t1"
+  },
+  "visibility": {
+    "Blades": false,
+    "Block2_3": false,
+    "Block5": false,
+    "Block7": false,
+    "Block9": false,
+    "Core": false,
+    "Tube2": false,
+    "Tube2.001": false,
+    "Tube3.001": false,
+    "Tube5": false,
+    "Tube5.001": false,
+    "Tube7": false,
+    "Tube7.001": false,
+    "Tube9": false,
+    "Tube9.001": false
+  }
+}

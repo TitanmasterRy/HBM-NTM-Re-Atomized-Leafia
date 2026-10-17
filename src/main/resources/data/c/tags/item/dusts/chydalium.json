@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:powder_chydalium",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "leafia:feature",
+      "feature": "digammaCrater"
+    }
+  ],
+  "comparator_output": 15,
+  "description": {
+    "text": "digma balls",
+    "obfuscated": true
+  },
+  "length_in_seconds": 177.23077,
+  "sound_event": "leafia:music.wtf"
+}

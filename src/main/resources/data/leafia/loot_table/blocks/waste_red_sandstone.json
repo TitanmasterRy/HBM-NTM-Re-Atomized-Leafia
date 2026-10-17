@@ -1,0 +1,107 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_red_sandstone_0",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_red_sandstone",
+              "properties": {
+                "meta": "0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_red_sandstone_1",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_red_sandstone",
+              "properties": {
+                "meta": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_red_sandstone_2",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_red_sandstone",
+              "properties": {
+                "meta": "2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_red_sandstone_3",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_red_sandstone",
+              "properties": {
+                "meta": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_red_sandstone_4",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_red_sandstone",
+              "properties": {
+                "meta": "4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_red_sandstone_5",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_red_sandstone",
+              "properties": {
+                "meta": "5"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_red_sandstone_6",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_red_sandstone",
+              "properties": {
+                "meta": "6"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

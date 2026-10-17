@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_blank"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "dfcOverhaul"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PTP",
+    "GSG",
+    "PJP"
+  ],
+  "key": {
+    "P": {
+      "item": "hbm:plate_dineutronium"
+    },
+    "T": {
+      "item": "hbm:rune_thurisaz"
+    },
+    "G": {
+      "item": "hbm:reinforced_glass"
+    },
+    "S": {
+      "tag": "c:shells/aluminum"
+    },
+    "J": {
+      "item": "hbm:rune_jera"
+    }
+  },
+  "result": {
+    "id": "leafia:ams_focus_blank",
+    "count": 1
+  }
+}

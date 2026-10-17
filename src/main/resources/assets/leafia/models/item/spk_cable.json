@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.2809,
+        0.2809,
+        0.2809
+      ],
+      "translation": [
+        -0.12,
+        6.96,
+        2.617
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.2809,
+        0.2809,
+        0.2809
+      ],
+      "translation": [
+        -0.12,
+        6.96,
+        2.617
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        0.62,
+        0.62,
+        0.62
+      ],
+      "translation": [
+        4.96,
+        -4.96,
+        4.96
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.32,
+        0.32,
+        0.32
+      ],
+      "translation": [
+        2.56,
+        5.56,
+        2.56
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.693,
+        0.693,
+        0.693
+      ],
+      "translation": [
+        -7.84,
+        4.801,
+        2.772
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.3456,
+        0.3456,
+        0.3456
+      ],
+      "translation": [
+        3.91,
+        3.216,
+        2.67
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.3456,
+        0.3456,
+        0.3456
+      ],
+      "translation": [
+        3.91,
+        3.216,
+        2.67
+      ]
+    }
+  },
+  "parent": "leafia:block/spk_cable_item"
+}

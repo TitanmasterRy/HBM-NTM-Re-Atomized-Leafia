@@ -1,0 +1,18 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/mixingvat.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/mixingvat",
+    "1": "leafia:block/mixingvat_blade",
+    "2": "leafia:block/mixingvat_fluid",
+    "particle": "leafia:block/mixingvat"
+  },
+  "visibility": {
+    "Fluid": false,
+    "Frame": false,
+    "Spinner": false
+  }
+}

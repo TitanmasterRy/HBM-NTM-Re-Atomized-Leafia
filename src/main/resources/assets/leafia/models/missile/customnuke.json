@@ -1,0 +1,10 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/missile_customnuke.obj",
+  "textures": {
+    "0": "leafia:block/missile_customnuke",
+    "particle": "leafia:block/missile_customnuke"
+  }
+}

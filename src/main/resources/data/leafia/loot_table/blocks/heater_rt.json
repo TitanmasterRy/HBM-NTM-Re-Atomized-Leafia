@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "item": "leafia:heater_rt",
+      "type": "neoforge:item_exists"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:heater_rt",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "type": "minecraft:block"
+}

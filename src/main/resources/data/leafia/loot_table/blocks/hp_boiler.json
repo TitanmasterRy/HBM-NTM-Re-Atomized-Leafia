@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "item": "leafia:hp_boiler",
+      "type": "neoforge:item_exists"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:hp_boiler",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "type": "minecraft:block"
+}

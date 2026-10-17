@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "leafia:block/modular_turbine_connector",
+    "particle": "leafia:block/modular_turbine",
+    "side": "leafia:block/modular_turbine",
+    "top": "leafia:block/modular_turbine_port"
+  }
+}

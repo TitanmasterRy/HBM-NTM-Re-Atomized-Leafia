@@ -1,0 +1,17 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_pulley.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "hbm:block/concrete_colored_ext.machine",
+    "particle": "hbm:block/concrete_colored_ext.machine"
+  },
+  "visibility": {
+    "Inlet": false,
+    "Motor": false,
+    "Pulley": false,
+    "Rope": false,
+    "Support": false
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod_depleteduranium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "hbm:waste_uranium",
+      "components": {
+        "minecraft:custom_data": {
+          "cooling": true
+        }
+      }
+    }
+  ],
+  "result": {
+    "id": "leafia:leafia_rod_depleteduranium",
+    "count": 1
+  }
+}

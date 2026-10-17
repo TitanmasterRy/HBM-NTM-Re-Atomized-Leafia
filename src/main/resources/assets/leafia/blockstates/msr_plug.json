@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "leafia:block/msr_plug",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "leafia:block/msr_plug"
+    },
+    "facing=south": {
+      "model": "leafia:block/msr_plug",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "leafia:block/msr_plug",
+      "y": 270
+    }
+  }
+}

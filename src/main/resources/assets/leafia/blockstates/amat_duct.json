@@ -1,0 +1,196 @@
+{
+  "variants": {
+    "down=false,east=false,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_core"
+    },
+    "down=false,east=false,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnx"
+    },
+    "down=false,east=false,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pyny"
+    },
+    "down=false,east=false,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpycore"
+    },
+    "down=false,east=false,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pznz"
+    },
+    "down=false,east=false,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_nxnzcore"
+    },
+    "down=false,east=false,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pynzcore"
+    },
+    "down=false,east=false,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpynzcore"
+    },
+    "down=false,east=false,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pznz"
+    },
+    "down=false,east=false,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_nxpzcore"
+    },
+    "down=false,east=false,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pypzcore"
+    },
+    "down=false,east=false,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpypzcore"
+    },
+    "down=false,east=false,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pznz"
+    },
+    "down=false,east=false,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_nxnzpzcore"
+    },
+    "down=false,east=false,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pynzpzcore"
+    },
+    "down=false,east=false,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpynzpzcore"
+    },
+    "down=false,east=true,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxnx"
+    },
+    "down=false,east=true,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnx"
+    },
+    "down=false,east=true,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpycore"
+    },
+    "down=false,east=true,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpycore"
+    },
+    "down=false,east=true,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxnzcore"
+    },
+    "down=false,east=true,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnxnzcore"
+    },
+    "down=false,east=true,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpynzcore"
+    },
+    "down=false,east=true,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpynzcore"
+    },
+    "down=false,east=true,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxpzcore"
+    },
+    "down=false,east=true,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpzcore"
+    },
+    "down=false,east=true,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpypzcore"
+    },
+    "down=false,east=true,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpypzcore"
+    },
+    "down=false,east=true,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxnzpzcore"
+    },
+    "down=false,east=true,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnxnzpzcore"
+    },
+    "down=false,east=true,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpynzpzcore"
+    },
+    "down=false,east=true,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpynzpzcore"
+    },
+    "down=true,east=false,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pyny"
+    },
+    "down=true,east=false,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_nxnycore"
+    },
+    "down=true,east=false,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pyny"
+    },
+    "down=true,east=false,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpynycore"
+    },
+    "down=true,east=false,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_nynzcore"
+    },
+    "down=true,east=false,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_nxnynzcore"
+    },
+    "down=true,east=false,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pynynzcore"
+    },
+    "down=true,east=false,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpynynzcore"
+    },
+    "down=true,east=false,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_nypzcore"
+    },
+    "down=true,east=false,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_nxnypzcore"
+    },
+    "down=true,east=false,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pynypzcore"
+    },
+    "down=true,east=false,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpynypzcore"
+    },
+    "down=true,east=false,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_nynzpzcore"
+    },
+    "down=true,east=false,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_nxnynzpzcore"
+    },
+    "down=true,east=false,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pynynzpzcore"
+    },
+    "down=true,east=false,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_nxpynynzpzcore"
+    },
+    "down=true,east=true,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxnycore"
+    },
+    "down=true,east=true,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnxnycore"
+    },
+    "down=true,east=true,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpynycore"
+    },
+    "down=true,east=true,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpynycore"
+    },
+    "down=true,east=true,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxnynzcore"
+    },
+    "down=true,east=true,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnxnynzcore"
+    },
+    "down=true,east=true,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpynynzcore"
+    },
+    "down=true,east=true,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpynynzcore"
+    },
+    "down=true,east=true,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxnypzcore"
+    },
+    "down=true,east=true,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnxnypzcore"
+    },
+    "down=true,east=true,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpynypzcore"
+    },
+    "down=true,east=true,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpynypzcore"
+    },
+    "down=true,east=true,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/amat_duct_pxnynzpzcore"
+    },
+    "down=true,east=true,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/amat_duct_pxnxnynzpzcore"
+    },
+    "down=true,east=true,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/amat_duct_pxpynynzpzcore"
+    },
+    "down=true,east=true,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/amat_duct_pxnxpynynzpzcore"
+    }
+  }
+}

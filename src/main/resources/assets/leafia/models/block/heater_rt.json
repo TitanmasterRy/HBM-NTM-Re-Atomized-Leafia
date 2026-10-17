@@ -1,0 +1,10 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/machines/oilburner.obj",
+  "textures": {
+    "0": "leafia:block/heater_rt",
+    "particle": "leafia:block/heater_rt"
+  }
+}

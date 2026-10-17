@@ -1,0 +1,13 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_knob_control.obj",
+  "textures": {
+    "0": "leafia:block/ccp/knob_control",
+    "particle": "leafia:block/ccp/knob_control"
+  },
+  "visibility": {
+    "base": false
+  }
+}

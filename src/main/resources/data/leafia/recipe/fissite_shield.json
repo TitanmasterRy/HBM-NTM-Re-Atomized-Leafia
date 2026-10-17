@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:fissite_shield"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IAI",
+    "III",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "c:ingots/any_hard_plastic"
+    },
+    "A": {
+      "tag": "c:ingots/fissite"
+    }
+  },
+  "result": {
+    "id": "leafia:fissite_shield",
+    "count": 1
+  }
+}

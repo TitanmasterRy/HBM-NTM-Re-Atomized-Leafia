@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0421,
+        0.0421,
+        0.0421
+      ],
+      "translation": [
+        -2.568,
+        5.984,
+        -1.358
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0421,
+        0.0421,
+        0.0421
+      ],
+      "translation": [
+        -2.568,
+        5.984,
+        -1.358
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1033,
+        0.1033,
+        0.1033
+      ],
+      "translation": [
+        0.827,
+        -4.133,
+        0.827
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.0533,
+        0.0533,
+        0.0533
+      ],
+      "translation": [
+        0.427,
+        0.867,
+        0.427
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.1122,
+        0.1122,
+        0.1122
+      ],
+      "translation": [
+        -1.27,
+        -3.888,
+        -2.245
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0596,
+        0.0596,
+        0.0596
+      ],
+      "translation": [
+        0.675,
+        1.883,
+        -2.304
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0596,
+        0.0596,
+        0.0596
+      ],
+      "translation": [
+        0.675,
+        1.883,
+        -2.304
+      ]
+    }
+  },
+  "parent": "leafia:block/ams_emitter"
+}

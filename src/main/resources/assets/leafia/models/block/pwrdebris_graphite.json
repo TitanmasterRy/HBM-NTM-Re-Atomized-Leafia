@@ -1,0 +1,10 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/projectiles/deb_graphite.obj",
+  "textures": {
+    "0": "hbm:block/brick_concrete",
+    "particle": "hbm:block/brick_concrete"
+  }
+}

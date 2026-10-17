@@ -1,0 +1,12 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/msr_control_extension.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "leafia:block/leafia/msr/msr_control_extension",
+    "side": "leafia:block/leafia/msr/msr_control_extension",
+    "top": "leafia:block/leafia/msr/msr_control_top"
+  }
+}

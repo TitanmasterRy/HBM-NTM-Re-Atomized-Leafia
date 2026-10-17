@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:grenade_cloud"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:grenade_pink_cloud"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "ECE",
+    " E "
+  ],
+  "key": {
+    "S": {
+      "item": "hbm:powder_spark_mix"
+    },
+    "E": {
+      "item": "hbm:powder_magic"
+    },
+    "C": {
+      "item": "leafia:grenade_cloud"
+    }
+  },
+  "result": {
+    "id": "leafia:grenade_pink_cloud",
+    "count": 1
+  }
+}

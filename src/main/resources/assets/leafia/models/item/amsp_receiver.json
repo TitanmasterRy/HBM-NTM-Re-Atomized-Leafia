@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0365,
+        0.0365,
+        0.0365
+      ],
+      "translation": [
+        -2.626,
+        6.471,
+        -0.567
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0365,
+        0.0365,
+        0.0365
+      ],
+      "translation": [
+        -2.626,
+        6.471,
+        -0.567
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        0.0853,
+        0.0853,
+        0.0853
+      ],
+      "translation": [
+        0.682,
+        -0.682,
+        -1.766
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.044,
+        0.044,
+        0.044
+      ],
+      "translation": [
+        0.352,
+        2.089,
+        0.352
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.0953,
+        0.0953,
+        0.0953
+      ],
+      "translation": [
+        -1.079,
+        -1.709,
+        -0.987
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0461,
+        0.0461,
+        0.0461
+      ],
+      "translation": [
+        0.521,
+        2.253,
+        -0.921
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0461,
+        0.0461,
+        0.0461
+      ],
+      "translation": [
+        0.521,
+        2.253,
+        -0.921
+      ]
+    }
+  },
+  "parent": "leafia:block/amsp_receiver"
+}

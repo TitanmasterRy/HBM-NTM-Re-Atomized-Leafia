@@ -1,0 +1,15 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/weapons/detonator_laser.obj",
+  "mtl_override": "hbm:models/none.mtl",
+  "textures": {
+    "0": "hbm:models/weapons/detonator_laser",
+    "particle": "hbm:models/weapons/detonator_laser"
+  },
+  "visibility": {
+    "Lights": false,
+    "Main": true
+  }
+}

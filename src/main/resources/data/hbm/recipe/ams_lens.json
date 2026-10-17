@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "leafia:feature",
+        "feature": "dfcOverhaul"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "G": {
+      "item": "hbm:reinforced_glass"
+    },
+    "P": {
+      "item": "hbm:plate_dineutronium"
+    }
+  },
+  "pattern": [
+    "PDP",
+    "GDG",
+    "PDP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:ams_lens"
+  }
+}

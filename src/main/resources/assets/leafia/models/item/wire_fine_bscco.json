@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "leafia:item/autogen/wire_fine_bscco"
+  }
+}

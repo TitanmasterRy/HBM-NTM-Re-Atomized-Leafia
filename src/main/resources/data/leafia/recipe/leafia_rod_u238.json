@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod_u238"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "item": "hbm:billet_u238"
+    }
+  ],
+  "result": {
+    "id": "leafia:leafia_rod_u238",
+    "count": 1
+  }
+}

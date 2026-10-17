@@ -1,0 +1,31 @@
+{
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        135,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "leafia:block/leafia/msr/msr_fuel_hatch",
+    "east": "leafia:block/leafia/msr/msr_element_side",
+    "north": "leafia:block/leafia/msr/msr_fuel_inserter",
+    "particle": "leafia:block/leafia/msr/msr_fuel_inserter",
+    "south": "leafia:block/leafia/msr/msr_element_side",
+    "up": "leafia:block/leafia/msr/msr_element",
+    "west": "leafia:block/leafia/msr/msr_element_side"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "leafia:block/fluid_duct_valve_mdl_rs_particle"
+    }
+  }
+}

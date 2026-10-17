@@ -1,0 +1,51 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "leafia:feature",
+      "feature": "coriumOres"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "resourceItems"
+    }
+  ],
+  "parent": "hbm:achievement/bismuth",
+  "display": {
+    "icon": {
+      "id": "leafia:ore_corium_zetalite"
+    },
+    "title": {
+      "translate": "advancement.leafia.zetalite"
+    },
+    "description": {
+      "translate": "advancement.leafia.zetalite.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "crafting_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "leafia:ingot_nc279"
+          },
+          {
+            "items": "leafia:ingot_taintium"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "crafting_table"
+    ]
+  ],
+  "rewards": {
+    "experience": 30
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:waste_sand_red",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_sand",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_gravel",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_dirt",
+      "required": false
+    },
+    {
+      "id": "leafia:scorched_earth",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_snow",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_snow_block",
+      "required": false
+    },
+    {
+      "id": "leafia:ash_balefire",
+      "required": false
+    }
+  ]
+}

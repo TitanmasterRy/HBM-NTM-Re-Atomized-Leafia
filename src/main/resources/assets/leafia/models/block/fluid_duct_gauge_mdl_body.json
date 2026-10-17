@@ -1,0 +1,14 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/gauge.obj",
+  "textures": {
+    "0": "leafia:block/gauge",
+    "particle": "leafia:block/gauge"
+  },
+  "visibility": {
+    "needle": false,
+    "pipe": false
+  }
+}

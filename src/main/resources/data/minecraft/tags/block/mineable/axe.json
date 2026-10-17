@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:door_fuckoff",
+      "required": false
+    }
+  ]
+}

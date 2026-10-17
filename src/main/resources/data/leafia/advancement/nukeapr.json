@@ -1,0 +1,46 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "leafia:feature",
+      "feature": "apr"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "resourceItems"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "addonFluids"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "coriumOres"
+    }
+  ],
+  "parent": "leafia:zetalite",
+  "display": {
+    "icon": {
+      "id": "leafia:particle_absorption"
+    },
+    "title": {
+      "translate": "advancement.leafia.nukeapr"
+    },
+    "description": {
+      "translate": "advancement.leafia.nukeapr.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ]
+}

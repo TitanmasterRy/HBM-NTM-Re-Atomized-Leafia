@@ -1,0 +1,15 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_switch_toggle.obj",
+  "textures": {
+    "0": "leafia:block/ccp/white",
+    "particle": "leafia:block/ccp/white"
+  },
+  "visibility": {
+    "base": false,
+    "lamp_on": false,
+    "lever": false
+  }
+}

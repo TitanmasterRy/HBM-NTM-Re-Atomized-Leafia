@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:dna_felid"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod_catsmilium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "item": "leafia:dna_felid"
+    },
+    {
+      "item": "hbm:heart_piece"
+    }
+  ],
+  "result": {
+    "id": "leafia:leafia_rod_catsmilium",
+    "count": 1
+  }
+}

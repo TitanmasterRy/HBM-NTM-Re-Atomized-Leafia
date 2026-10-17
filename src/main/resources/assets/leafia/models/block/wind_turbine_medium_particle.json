@@ -1,0 +1,6 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "leafia:block/wind_turbine_medium"
+  }
+}

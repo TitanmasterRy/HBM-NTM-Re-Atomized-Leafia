@@ -1,0 +1,29 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_s6.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "leafia:block/elevator_s6_ind_6",
+    "particle": "leafia:block/elevator_s6_ind_6"
+  },
+  "visibility": {
+    "ArrowDn": false,
+    "ArrowUp": false,
+    "Ceiling": false,
+    "CeilingSide": false,
+    "Digit0": false,
+    "DoorFloor": false,
+    "DoorFrame": false,
+    "DoorL": false,
+    "DoorR": false,
+    "Floor": false,
+    "FloorSide": false,
+    "Frames": false,
+    "Logo": false,
+    "Plane": false,
+    "WallFrames": false,
+    "WallIn": false,
+    "WallOut": false
+  }
+}

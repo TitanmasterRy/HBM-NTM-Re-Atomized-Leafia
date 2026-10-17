@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "leafia:block/slop_reactor"
+    },
+    "facing=south": {
+      "model": "leafia:block/slop_reactor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "leafia:block/slop_reactor",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "leafia:block/slop_reactor",
+      "y": 90
+    }
+  }
+}

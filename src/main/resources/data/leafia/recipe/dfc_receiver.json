@@ -1,0 +1,59 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:dfcsh_beam"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:dfcsh_cable"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:dfcsh_core"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:dfcsh_corner"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:dfcsh_front"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:dfcsh_beam"
+    },
+    {
+      "item": "leafia:dfcsh_cable"
+    },
+    {
+      "item": "leafia:dfcsh_corner"
+    },
+    {
+      "item": "leafia:dfcsh_core"
+    },
+    {
+      "tag": "c:barrel_heavies/steel"
+    },
+    {
+      "item": "leafia:dfcsh_front"
+    },
+    {
+      "item": "leafia:dfcsh_corner"
+    },
+    {
+      "item": "leafia:dfcsh_beam"
+    },
+    {
+      "item": "leafia:dfcsh_beam"
+    }
+  ],
+  "result": {
+    "id": "hbm:dfc_receiver",
+    "count": 1
+  }
+}

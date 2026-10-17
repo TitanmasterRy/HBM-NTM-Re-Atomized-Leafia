@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "leafia:block/contamination/sand/waste_sand_1"
+  }
+}

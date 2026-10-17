@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:billet_chydalium"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ingot_chydalium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:billet_chydalium"
+    },
+    {
+      "item": "leafia:billet_chydalium"
+    },
+    {
+      "item": "leafia:billet_chydalium"
+    }
+  ],
+  "result": {
+    "id": "leafia:ingot_chydalium",
+    "count": 2
+  }
+}

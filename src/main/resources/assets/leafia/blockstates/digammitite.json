@@ -1,0 +1,76 @@
+{
+  "variants": {
+    "meta=0": [
+      {
+        "model": "leafia:block/digammitite_0_0"
+      },
+      {
+        "model": "leafia:block/digammitite_0_1",
+        "weight": 2
+      },
+      {
+        "model": "leafia:block/digammitite_0_3"
+      }
+    ],
+    "meta=1": [
+      {
+        "model": "leafia:block/digammitite_1_0"
+      },
+      {
+        "model": "leafia:block/digammitite_1_1",
+        "weight": 2
+      },
+      {
+        "model": "leafia:block/digammitite_1_3"
+      }
+    ],
+    "meta=2": [
+      {
+        "model": "leafia:block/digammitite_2_0"
+      },
+      {
+        "model": "leafia:block/digammitite_2_1",
+        "weight": 2
+      },
+      {
+        "model": "leafia:block/digammitite_2_3"
+      }
+    ],
+    "meta=3": [
+      {
+        "model": "leafia:block/digammitite_3_0"
+      },
+      {
+        "model": "leafia:block/digammitite_3_1",
+        "weight": 2
+      },
+      {
+        "model": "leafia:block/digammitite_3_3"
+      }
+    ],
+    "meta=4": [
+      {
+        "model": "leafia:block/digammitite_4_0"
+      },
+      {
+        "model": "leafia:block/digammitite_4_1",
+        "weight": 2
+      },
+      {
+        "model": "leafia:block/digammitite_4_3"
+      }
+    ],
+    "meta=5": [
+      {
+        "model": "leafia:block/digammitite_5_0"
+      },
+      {
+        "model": "leafia:block/digammitite_5_1",
+        "weight": 2
+      },
+      {
+        "model": "leafia:block/digammitite_5_3"
+      }
+    ]
+  }
+}

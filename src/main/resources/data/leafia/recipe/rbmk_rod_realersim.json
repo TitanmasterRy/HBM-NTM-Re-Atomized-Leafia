@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:rbmk_rod_realersim"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ZCZ",
+    "ZRZ",
+    "ZCZ"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:shells/steel"
+    },
+    "R": {
+      "item": "hbm:rbmk_blank"
+    },
+    "Z": {
+      "tag": "c:nuggets/zirconium"
+    }
+  },
+  "result": {
+    "id": "leafia:rbmk_rod_realersim",
+    "count": 1
+  }
+}

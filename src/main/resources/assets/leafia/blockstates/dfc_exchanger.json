@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/dfc_exchanger"
+    },
+    "facing=east": {
+      "model": "leafia:block/dfc_exchanger"
+    },
+    "facing=north": {
+      "model": "leafia:block/dfc_exchanger"
+    },
+    "facing=south": {
+      "model": "leafia:block/dfc_exchanger"
+    },
+    "facing=up": {
+      "model": "leafia:block/dfc_exchanger"
+    },
+    "facing=west": {
+      "model": "leafia:block/dfc_exchanger"
+    }
+  }
+}

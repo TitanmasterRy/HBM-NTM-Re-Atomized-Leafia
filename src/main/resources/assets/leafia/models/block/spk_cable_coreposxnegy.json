@@ -1,0 +1,20 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/cable_spk.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/cable_spk",
+    "particle": "leafia:block/cable_spk"
+  },
+  "visibility": {
+    "CX": false,
+    "CY": false,
+    "CZ": false,
+    "negX": false,
+    "negZ": false,
+    "posY": false,
+    "posZ": false
+  }
+}

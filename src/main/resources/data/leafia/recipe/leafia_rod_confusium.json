@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:dna_canid"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod_confusium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "item": "leafia:dna_canid"
+    }
+  ],
+  "result": {
+    "id": "leafia:leafia_rod_confusium",
+    "count": 1
+  }
+}

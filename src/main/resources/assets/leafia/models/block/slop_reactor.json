@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "leafia:block/slop_reactor_casing",
+    "front": "leafia:block/slop_reactor",
+    "side": "leafia:block/slop_reactor_casing"
+  }
+}

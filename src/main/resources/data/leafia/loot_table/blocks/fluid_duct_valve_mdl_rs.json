@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "item": "leafia:fluid_duct_valve_mdl_rs",
+      "type": "neoforge:item_exists"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:fluid_duct_valve_mdl_rs",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "type": "minecraft:block"
+}

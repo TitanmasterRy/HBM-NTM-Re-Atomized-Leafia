@@ -1,0 +1,16 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_large_switch.obj",
+  "textures": {
+    "0": "leafia:block/ccp/largeswitch_palette",
+    "particle": "leafia:block/ccp/largeswitch_palette"
+  },
+  "visibility": {
+    "Cube": false,
+    "Plane.001": false,
+    "Plane.002": false,
+    "Switch": false
+  }
+}

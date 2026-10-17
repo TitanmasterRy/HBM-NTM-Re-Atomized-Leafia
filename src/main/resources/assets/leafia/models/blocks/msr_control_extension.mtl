@@ -1,0 +1,7 @@
+# Generated: upstream's two materials, by texture slot.
+
+newmtl TopMTL
+map_Kd #top
+
+newmtl SideMTL
+map_Kd #side

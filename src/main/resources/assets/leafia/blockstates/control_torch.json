@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "leafia:block/control_torch_wall_lit"
+    },
+    "facing=north": {
+      "model": "leafia:block/control_torch_wall_lit",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "leafia:block/control_torch_wall_lit",
+      "y": 90
+    },
+    "facing=up": {
+      "model": "leafia:block/control_torch_lit"
+    },
+    "facing=west": {
+      "model": "leafia:block/control_torch_wall_lit",
+      "y": 180
+    }
+  }
+}

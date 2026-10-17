@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "leafia:feature",
+      "feature": "rods"
+    }
+  ],
+  "parent": "hbm:achievement/omega12",
+  "display": {
+    "icon": {
+      "id": "leafia:leafia_rod_dgomega"
+    },
+    "title": {
+      "translate": "advancement.leafia.dgomega"
+    },
+    "description": {
+      "translate": "advancement.leafia.dgomega.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  }
+}

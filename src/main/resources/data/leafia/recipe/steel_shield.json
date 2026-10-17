@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:steel_shield"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IAI",
+    "III",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "c:ingots/steel"
+    },
+    "A": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "result": {
+    "id": "leafia:steel_shield",
+    "count": 1
+  }
+}

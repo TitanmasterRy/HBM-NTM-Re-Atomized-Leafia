@@ -1,0 +1,90 @@
+{
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "scale": [
+        0.08496000000000001,
+        0.08496000000000001,
+        0.08496000000000001
+      ],
+      "translation": [
+        0,
+        -1.92,
+        0
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1062,
+        0.1062,
+        0.1062
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.0531,
+        0.0531,
+        0.0531
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.1062,
+        0.1062,
+        0.1062
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0531,
+        0.0531,
+        0.0531
+      ],
+      "translation": [
+        0,
+        0.5800000000000001,
+        0
+      ]
+    }
+  },
+  "parent": "leafia:block/hp_boiler"
+}

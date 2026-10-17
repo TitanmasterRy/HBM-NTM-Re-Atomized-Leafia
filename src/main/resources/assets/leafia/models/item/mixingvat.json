@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0854,
+        0.0854,
+        0.0854
+      ],
+      "translation": [
+        -2.002,
+        6.258,
+        -0.558
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0854,
+        0.0854,
+        0.0854
+      ],
+      "translation": [
+        -2.002,
+        6.258,
+        -0.558
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.2067,
+        0.2067,
+        0.2067
+      ],
+      "translation": [
+        1.653,
+        -2.067,
+        -1.967
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1422,
+        0.1422,
+        0.1422
+      ],
+      "translation": [
+        1.354,
+        1.578,
+        1.138
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.259,
+        0.259,
+        0.259
+      ],
+      "translation": [
+        -3.209,
+        -2.382,
+        -1.054
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.1212,
+        0.1212,
+        0.1212
+      ],
+      "translation": [
+        1.501,
+        2.312,
+        -1.204
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.1212,
+        0.1212,
+        0.1212
+      ],
+      "translation": [
+        1.501,
+        2.312,
+        -1.204
+      ]
+    }
+  },
+  "parent": "leafia:block/mixingvat_item"
+}

@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ams_limiter.obj",
+  "textures": {
+    "0": "leafia:block/ams_limiter_balefire",
+    "particle": "leafia:block/ams_limiter_balefire"
+  },
+  "visibility": {}
+}

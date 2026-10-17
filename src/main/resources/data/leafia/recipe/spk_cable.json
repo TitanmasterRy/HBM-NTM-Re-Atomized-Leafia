@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:spk_cable"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " W ",
+    "RRR",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "item": "hbm:plate_dineutronium"
+    },
+    "R": {
+      "tag": "c:wire_fines/magnetized_tungsten"
+    }
+  },
+  "result": {
+    "id": "leafia:spk_cable",
+    "count": 16
+  }
+}

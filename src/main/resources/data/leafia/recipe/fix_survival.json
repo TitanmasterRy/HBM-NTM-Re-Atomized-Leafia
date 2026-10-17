@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:fix_survival"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " O ",
+    "OTO",
+    " O "
+  ],
+  "key": {
+    "O": {
+      "item": "hbm:ingot_osmiridium"
+    },
+    "T": {
+      "item": "hbm:crystal_trixite"
+    }
+  },
+  "result": {
+    "id": "leafia:fix_survival",
+    "count": 1
+  }
+}

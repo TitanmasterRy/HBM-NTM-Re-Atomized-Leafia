@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ams_emitter.obj",
+  "textures": {
+    "0": "leafia:block/ams_emitter_balefire",
+    "particle": "leafia:block/ams_emitter_balefire"
+  },
+  "visibility": {}
+}

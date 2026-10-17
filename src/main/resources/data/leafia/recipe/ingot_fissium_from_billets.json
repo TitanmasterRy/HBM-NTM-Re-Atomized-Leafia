@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:billet_fissium"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ingot_fissium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:billet_fissium"
+    },
+    {
+      "item": "leafia:billet_fissium"
+    },
+    {
+      "item": "leafia:billet_fissium"
+    }
+  ],
+  "result": {
+    "id": "leafia:ingot_fissium",
+    "count": 2
+  }
+}

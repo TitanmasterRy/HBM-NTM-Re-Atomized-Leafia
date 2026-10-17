@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/dfc_cemitter"
+    },
+    "facing=east": {
+      "model": "leafia:block/dfc_cemitter"
+    },
+    "facing=north": {
+      "model": "leafia:block/dfc_cemitter"
+    },
+    "facing=south": {
+      "model": "leafia:block/dfc_cemitter"
+    },
+    "facing=up": {
+      "model": "leafia:block/dfc_cemitter"
+    },
+    "facing=west": {
+      "model": "leafia:block/dfc_cemitter"
+    }
+  }
+}

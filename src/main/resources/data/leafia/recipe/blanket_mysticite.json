@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:blanket_mysticite"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:blanket_mysticite_bundle"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:blanket_mysticite_bundle"
+    }
+  ],
+  "result": {
+    "id": "leafia:blanket_mysticite",
+    "count": 16
+  }
+}

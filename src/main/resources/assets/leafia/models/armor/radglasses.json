@@ -1,0 +1,10 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/armor/goggles.obj",
+  "textures": {
+    "0": "leafia:block/goggle_rad",
+    "particle": "leafia:block/goggle_rad"
+  }
+}

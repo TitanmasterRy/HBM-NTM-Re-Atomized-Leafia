@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:upgrade_control"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CIC",
+    "ITI",
+    "CIC"
+  ],
+  "key": {
+    "C": {
+      "item": "hbm:circuit_capacitor"
+    },
+    "I": {
+      "item": "hbm:circuit_basic"
+    },
+    "T": {
+      "item": "hbm:upgrade_template"
+    }
+  },
+  "result": {
+    "id": "leafia:upgrade_control",
+    "count": 1
+  }
+}

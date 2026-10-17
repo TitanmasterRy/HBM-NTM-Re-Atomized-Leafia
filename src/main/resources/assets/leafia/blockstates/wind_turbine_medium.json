@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "leafia:block/wind_turbine_medium_particle"
+    }
+  }
+}

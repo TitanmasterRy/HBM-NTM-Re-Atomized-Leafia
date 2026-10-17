@@ -1,0 +1,19 @@
+{
+  "children": {
+    "body": {
+      "parent": "leafia:block/fluid_duct_gauge_mdl_body"
+    },
+    "needle": {
+      "parent": "leafia:block/fluid_duct_gauge_mdl_needle"
+    },
+    "pipe": {
+      "parent": "leafia:block/fluid_duct_gauge_mdl_pipe"
+    }
+  },
+  "item_render_order": [
+    "pipe",
+    "body",
+    "needle"
+  ],
+  "loader": "neoforge:composite"
+}

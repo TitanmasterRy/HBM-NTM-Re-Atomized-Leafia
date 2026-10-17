@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stacked=false": {
+      "model": "leafia:block/lwr_control"
+    },
+    "stacked=true": {
+      "model": "leafia:block/lwr_control"
+    }
+  }
+}

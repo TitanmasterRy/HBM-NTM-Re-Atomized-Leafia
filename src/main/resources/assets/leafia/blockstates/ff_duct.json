@@ -1,0 +1,2290 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_px"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "endpos": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endpos": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "east": "true",
+            "material": "neo"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "south": "true"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_nx"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "endneg": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endneg": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "material": "neo",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "west": "true"
+          },
+          {
+            "material": "neo",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "material": "neo",
+            "north": "true",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_py"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "false",
+            "endpos": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endpos": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "up": "true"
+          },
+          {
+            "material": "neo",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "material": "neo",
+            "south": "true",
+            "up": "true"
+          },
+          {
+            "material": "neo",
+            "north": "true",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_ny"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "false",
+            "endneg": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endneg": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "true",
+            "material": "neo"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "south": "true"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_pz"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "true",
+            "material": "neo",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "true",
+            "material": "neo",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "north": "true"
+          },
+          {
+            "material": "neo",
+            "north": "true",
+            "west": "true"
+          },
+          {
+            "material": "neo",
+            "north": "true",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_nz"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "true",
+            "material": "neo",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "true",
+            "material": "neo",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "south": "true"
+          },
+          {
+            "material": "neo",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "material": "neo",
+            "south": "true",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "south": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_pxf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "endpos": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endpos": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_nxf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "endneg": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endneg": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_pyf"
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "endpos": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endpos": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_nyf"
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "endneg": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endneg": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_pzf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "false",
+            "material": "neo",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "false",
+            "material": "neo",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_nzf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "false",
+            "material": "neo",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "false",
+            "material": "neo",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_nnn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "material": "neo",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_nnp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "material": "neo",
+            "north": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_npn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "true",
+            "material": "neo",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_npp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "true",
+            "material": "neo",
+            "north": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_pnn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_pnp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_ppn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "false",
+            "material": "neo",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "false",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "material": "neo",
+            "north": "true",
+            "south": "false",
+            "up": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_neo_ppp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "material": "neo",
+            "north": "false",
+            "south": "true",
+            "up": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_px"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "endpos": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endpos": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "east": "true",
+            "material": "silver"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "south": "true"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_nx"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "endneg": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endneg": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "material": "silver",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "west": "true"
+          },
+          {
+            "material": "silver",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "material": "silver",
+            "north": "true",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_py"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "false",
+            "endpos": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endpos": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "up": "true"
+          },
+          {
+            "material": "silver",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "material": "silver",
+            "south": "true",
+            "up": "true"
+          },
+          {
+            "material": "silver",
+            "north": "true",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_ny"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "false",
+            "endneg": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endneg": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "true",
+            "material": "silver"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "south": "true"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_pz"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "true",
+            "material": "silver",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "true",
+            "material": "silver",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "north": "true"
+          },
+          {
+            "material": "silver",
+            "north": "true",
+            "west": "true"
+          },
+          {
+            "material": "silver",
+            "north": "true",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_nz"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "true",
+            "material": "silver",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "true",
+            "material": "silver",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "south": "true"
+          },
+          {
+            "material": "silver",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "material": "silver",
+            "south": "true",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "south": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_pxf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "endpos": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endpos": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_nxf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "endneg": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endneg": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_pyf"
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "endpos": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endpos": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_nyf"
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "endneg": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endneg": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_pzf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "false",
+            "material": "silver",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "false",
+            "material": "silver",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_nzf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "false",
+            "material": "silver",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "false",
+            "material": "silver",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_nnn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "material": "silver",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_nnp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "material": "silver",
+            "north": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_npn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "true",
+            "material": "silver",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_npp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "true",
+            "material": "silver",
+            "north": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_pnn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_pnp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_ppn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "false",
+            "material": "silver",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "false",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "material": "silver",
+            "north": "true",
+            "south": "false",
+            "up": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_silver_ppp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "material": "silver",
+            "north": "false",
+            "south": "true",
+            "up": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_px"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "endpos": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endpos": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "east": "true",
+            "material": "colored"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "south": "true"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_nx"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "endneg": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endneg": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "material": "colored",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "west": "true"
+          },
+          {
+            "material": "colored",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "material": "colored",
+            "north": "true",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_py"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "false",
+            "endpos": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endpos": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "up": "true"
+          },
+          {
+            "material": "colored",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "material": "colored",
+            "south": "true",
+            "up": "true"
+          },
+          {
+            "material": "colored",
+            "north": "true",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_ny"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "false",
+            "endneg": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endneg": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "true",
+            "material": "colored"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "south": "true"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_pz"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "true",
+            "material": "colored",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "true",
+            "material": "colored",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "north": "true"
+          },
+          {
+            "material": "colored",
+            "north": "true",
+            "west": "true"
+          },
+          {
+            "material": "colored",
+            "north": "true",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "north": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_nz"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "true",
+            "material": "colored",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "true",
+            "material": "colored",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "south": "true"
+          },
+          {
+            "material": "colored",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "material": "colored",
+            "south": "true",
+            "up": "true"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "south": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_pxf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "endpos": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endpos": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_nxf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "endneg": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false"
+          },
+          {
+            "down": "false",
+            "endneg": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_pyf"
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "endpos": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endpos": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_nyf"
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "endneg": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "endneg": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_pzf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "false",
+            "material": "colored",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endneg": "false",
+            "material": "colored",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_nzf"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "false",
+            "material": "colored",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "endpos": "false",
+            "material": "colored",
+            "north": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_nnn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "material": "colored",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_nnp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "true",
+            "material": "colored",
+            "north": "false",
+            "up": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "west": "false"
+          },
+          {
+            "down": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_npn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "true",
+            "material": "colored",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_npp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "true",
+            "material": "colored",
+            "north": "false",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "east": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          {
+            "down": "true",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_pnn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_pnp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "up": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "up": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_ppn"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "false",
+            "material": "colored",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "false",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "material": "colored",
+            "north": "true",
+            "south": "false",
+            "up": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "leafia:block/ff_duct_colored_ppp"
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "true",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "down": "true",
+            "east": "false",
+            "material": "colored",
+            "north": "false",
+            "south": "true",
+            "up": "false"
+          }
+        ]
+      }
+    }
+  ]
+}

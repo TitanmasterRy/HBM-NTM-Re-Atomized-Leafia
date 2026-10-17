@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:grenade_filling_leafia_sol"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CUB",
+    "USU",
+    "BUT"
+  ],
+  "key": {
+    "B": {
+      "tag": "c:ingots/cmbsteel"
+    },
+    "C": {
+      "item": "hbm:circuit_controller"
+    },
+    "T": {
+      "item": "hbm:solinium_igniter"
+    },
+    "U": {
+      "item": "hbm:solinium_propellant"
+    },
+    "S": {
+      "item": "hbm:solinium_core"
+    }
+  },
+  "result": {
+    "id": "leafia:grenade_filling_leafia_sol",
+    "count": 1
+  }
+}

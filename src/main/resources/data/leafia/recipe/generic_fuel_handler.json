@@ -1,0 +1,10 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod"
+    }
+  ],
+  "type": "leafia:generic_fuel_handler",
+  "category": "misc"
+}

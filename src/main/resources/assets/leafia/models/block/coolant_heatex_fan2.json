@@ -1,0 +1,15 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/coolant_heatex.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/coolant_heatex",
+    "particle": "leafia:block/coolant_heatex"
+  },
+  "visibility": {
+    "Condenser": false,
+    "Fan1": false
+  }
+}

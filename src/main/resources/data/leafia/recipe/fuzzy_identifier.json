@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:fuzzy_identifier"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "=  ",
+    "@CS",
+    "@MP"
+  ],
+  "key": {
+    "@": {
+      "tag": "c:wire_fines/gold"
+    },
+    "P": {
+      "tag": "c:ingots/any_plastic"
+    },
+    "=": {
+      "item": "hbm:circuit_basic"
+    },
+    "M": {
+      "item": "hbm:motor_desh"
+    },
+    "C": {
+      "item": "hbm:coil_gold"
+    },
+    "S": {
+      "item": "hbm:screwdriver_desh"
+    }
+  },
+  "result": {
+    "id": "leafia:fuzzy_identifier",
+    "count": 1
+  }
+}

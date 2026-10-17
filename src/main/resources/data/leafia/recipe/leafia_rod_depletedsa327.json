@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:leafia_rod_depletedsa327"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:waste_sol"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:leafia_rod"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "leafia:waste_sol",
+      "components": {
+        "minecraft:custom_data": {
+          "cooling": true
+        }
+      }
+    }
+  ],
+  "result": {
+    "id": "leafia:leafia_rod_depletedsa327",
+    "count": 1
+  }
+}

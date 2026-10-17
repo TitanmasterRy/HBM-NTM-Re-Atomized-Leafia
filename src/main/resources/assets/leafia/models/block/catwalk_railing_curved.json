@@ -1,0 +1,6 @@
+{
+  "loader": "leafia:catwalk_railing",
+  "textures": {
+    "particle": "leafia:block/catwalk_railing_curved"
+  }
+}

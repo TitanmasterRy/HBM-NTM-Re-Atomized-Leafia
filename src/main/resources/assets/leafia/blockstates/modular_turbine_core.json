@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "dir=down": {
+      "model": "leafia:block/modular_turbine_core"
+    },
+    "dir=east": {
+      "model": "leafia:block/modular_turbine_core",
+      "y": 270
+    },
+    "dir=north": {
+      "model": "leafia:block/modular_turbine_core",
+      "y": 180
+    },
+    "dir=south": {
+      "model": "leafia:block/modular_turbine_core"
+    },
+    "dir=up": {
+      "model": "leafia:block/modular_turbine_core"
+    },
+    "dir=west": {
+      "model": "leafia:block/modular_turbine_core",
+      "y": 90
+    }
+  }
+}

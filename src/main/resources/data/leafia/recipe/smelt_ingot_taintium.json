@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ingot_taintium"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:powder_taintium"
+    }
+  ],
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "leafia:powder_taintium"
+  },
+  "result": {
+    "id": "leafia:ingot_taintium"
+  },
+  "experience": 5.0,
+  "cookingtime": 200
+}

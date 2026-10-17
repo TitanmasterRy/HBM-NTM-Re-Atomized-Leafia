@@ -1,0 +1,31 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_skylift.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "leafia:block/elevator_skylift_ind_3",
+    "particle": "leafia:block/elevator_skylift_ind_3"
+  },
+  "visibility": {
+    "ArrowDn": false,
+    "ArrowUp": false,
+    "Ceiling": false,
+    "CeilingSide": false,
+    "Digit10": false,
+    "DoorFloor": false,
+    "DoorFrame": false,
+    "DoorL": false,
+    "DoorR": false,
+    "Floor": false,
+    "FloorSide": false,
+    "Frames": false,
+    "Logo": false,
+    "Name": false,
+    "Plane": false,
+    "Skylift": false,
+    "WallFrames": false,
+    "WallIn": false,
+    "WallOut": false
+  }
+}

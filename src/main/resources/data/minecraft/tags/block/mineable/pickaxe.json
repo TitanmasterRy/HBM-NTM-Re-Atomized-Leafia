@@ -1,0 +1,445 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:ore_coal_oil",
+      "required": false
+    },
+    {
+      "id": "leafia:ore_coal_oil_burning",
+      "required": false
+    },
+    {
+      "id": "leafia:block_welded_osmiridium",
+      "required": false
+    },
+    {
+      "id": "leafia:block_xanaxium",
+      "required": false
+    },
+    {
+      "id": "leafia:test_fluid_voider",
+      "required": false
+    },
+    {
+      "id": "leafia:test_boom",
+      "required": false
+    },
+    {
+      "id": "leafia:test_rbmk_jet",
+      "required": false
+    },
+    {
+      "id": "leafia:test_blackhole_render",
+      "required": false
+    },
+    {
+      "id": "leafia:test_render",
+      "required": false
+    },
+    {
+      "id": "leafia:test_tom",
+      "required": false
+    },
+    {
+      "id": "leafia:test_circle",
+      "required": false
+    },
+    {
+      "id": "leafia:elevator_shaft",
+      "required": false
+    },
+    {
+      "id": "leafia:catwalk_railing_curved",
+      "required": false
+    },
+    {
+      "id": "leafia:amat_duct_charger",
+      "required": false
+    },
+    {
+      "id": "leafia:ff_duct",
+      "required": false
+    },
+    {
+      "id": "leafia:ff_duct_solid_shielded",
+      "required": false
+    },
+    {
+      "id": "leafia:ff_pump",
+      "required": false
+    },
+    {
+      "id": "leafia:ff_converter",
+      "required": false
+    },
+    {
+      "id": "leafia:ff_filter",
+      "required": false
+    },
+    {
+      "id": "leafia:apr_component",
+      "required": false
+    },
+    {
+      "id": "leafia:apr_port",
+      "required": false
+    },
+    {
+      "id": "leafia:apr_outlet",
+      "required": false
+    },
+    {
+      "id": "leafia:msr_element",
+      "required": false
+    },
+    {
+      "id": "leafia:msr_plug",
+      "required": false
+    },
+    {
+      "id": "leafia:msr_control",
+      "required": false
+    },
+    {
+      "id": "leafia:msr_control_extension",
+      "required": false
+    },
+    {
+      "id": "leafia:msr_arbitrary",
+      "required": false
+    },
+    {
+      "id": "leafia:msr_ejector",
+      "required": false
+    },
+    {
+      "id": "leafia:deco_turbine",
+      "required": false
+    },
+    {
+      "id": "leafia:rbmk_rod_realersim",
+      "required": false
+    },
+    {
+      "id": "leafia:rbmk_rod_realersim_mod",
+      "required": false
+    },
+    {
+      "id": "leafia:slop_reactor_casing",
+      "required": false
+    },
+    {
+      "id": "leafia:ore_corium_chernobylite",
+      "required": false
+    },
+    {
+      "id": "leafia:ore_corium_zetalite",
+      "required": false
+    },
+    {
+      "id": "leafia:brick_concrete_dark",
+      "required": false
+    },
+    {
+      "id": "leafia:brick_concrete_dark_mossy",
+      "required": false
+    },
+    {
+      "id": "leafia:brick_concrete_dark_cracked",
+      "required": false
+    },
+    {
+      "id": "leafia:brick_concrete_dark_broken",
+      "required": false
+    },
+    {
+      "id": "leafia:reactor_door",
+      "required": false
+    },
+    {
+      "id": "leafia:crimson_door_small",
+      "required": false
+    },
+    {
+      "id": "leafia:crimson_door_large",
+      "required": false
+    },
+    {
+      "id": "leafia:regex_filter",
+      "required": false
+    },
+    {
+      "id": "leafia:baleonite",
+      "required": false
+    },
+    {
+      "id": "leafia:digammitite",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_terracotta",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_sandstone",
+      "required": false
+    },
+    {
+      "id": "leafia:waste_red_sandstone",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_casing",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_reflector",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_element",
+      "required": false
+    },
+    {
+      "id": "leafia:reactor_element",
+      "required": false
+    },
+    {
+      "id": "leafia:reactor_element_blank",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_control",
+      "required": false
+    },
+    {
+      "id": "leafia:reactor_control",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_channel",
+      "required": false
+    },
+    {
+      "id": "leafia:reactor_conductor",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_exchanger",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_port",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_signal",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_occs_in",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_occs_out",
+      "required": false
+    },
+    {
+      "id": "leafia:dfc_pulser",
+      "required": false
+    },
+    {
+      "id": "leafia:dfc_reinforced",
+      "required": false
+    },
+    {
+      "id": "leafia:dfc_exchanger",
+      "required": false
+    },
+    {
+      "id": "leafia:dfc_cemitter",
+      "required": false
+    },
+    {
+      "id": "leafia:pribris_smoke",
+      "required": false
+    },
+    {
+      "id": "leafia:lwr_terminal",
+      "required": false
+    },
+    {
+      "id": "leafia:reactor_hatch",
+      "required": false
+    },
+    {
+      "id": "leafia:reactor_hatch_alt",
+      "required": false
+    },
+    {
+      "id": "leafia:lwrwreck_stone",
+      "required": false
+    },
+    {
+      "id": "leafia:lwrwreck_metal",
+      "required": false
+    },
+    {
+      "id": "leafia:meteor_diverter",
+      "required": false
+    },
+    {
+      "id": "leafia:meteor_diverter_unlit",
+      "required": false
+    },
+    {
+      "id": "leafia:nuke_chud",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_0",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_1",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_2",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_3",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_4",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_5",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_6",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_7",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_8",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_9",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_a",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_b",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_c",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_d",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_e",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_f",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_g",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_h",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_i",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_j",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_k",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_l",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_m",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_n",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_o",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_p",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_q",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_r",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_s",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_t",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_u",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_v",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_w",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_x",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_y",
+      "required": false
+    },
+    {
+      "id": "leafia:letter_sign_z",
+      "required": false
+    }
+  ]
+}

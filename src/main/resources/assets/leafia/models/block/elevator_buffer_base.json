@@ -1,0 +1,14 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_buffer.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "leafia:block/elevator_buffer",
+    "particle": "leafia:block/elevator_buffer"
+  },
+  "visibility": {
+    "Move": false,
+    "Scale": false
+  }
+}

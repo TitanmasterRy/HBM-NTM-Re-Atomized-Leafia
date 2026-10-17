@@ -1,0 +1,9 @@
+# The mixing vat's three materials, one per texture slot.
+newmtl Vat
+map_Kd #0
+
+newmtl Blade
+map_Kd #1
+
+newmtl Fluid
+map_Kd #2

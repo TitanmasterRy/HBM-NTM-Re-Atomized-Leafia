@@ -1,0 +1,139 @@
+{
+  "automatic_culling": false,
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        225,
+        0
+      ],
+      "scale": [
+        0.018390805,
+        0.018390805,
+        0.018390805
+      ],
+      "translation": [
+        0.23407672,
+        0.13793103,
+        0.026008576
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "scale": [
+        0.018390805,
+        0.018390805,
+        0.018390805
+      ],
+      "translation": [
+        -0.026008539,
+        0.13793103,
+        -0.23407672
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        270,
+        0
+      ],
+      "scale": [
+        0.04597701,
+        0.04597701,
+        0.04597701
+      ],
+      "translation": [
+        0.4597701,
+        0.3448276,
+        0.3678161
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        270,
+        0
+      ],
+      "scale": [
+        0.022988506,
+        0.022988506,
+        0.022988506
+      ],
+      "translation": [
+        0.22988506,
+        3.1724138,
+        0.18390805
+      ]
+    },
+    "gui": {
+      "rotation": [
+        -18.881721,
+        -41.641144,
+        -27.236313
+      ],
+      "scale": [
+        0.049655173,
+        0.049655173,
+        0.049655173
+      ],
+      "translation": [
+        0.7212654,
+        0.13379529,
+        -0.07022303
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.01724138,
+        0.01724138,
+        0.01724138
+      ],
+      "translation": [
+        -0.21944693,
+        2.5570202,
+        0.11859342
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.01724138,
+        0.01724138,
+        0.01724138
+      ],
+      "translation": [
+        -0.024383016,
+        2.7454374,
+        0.06810715
+      ]
+    }
+  },
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/weapons/am_rifle.obj",
+  "textures": {
+    "las": "hbm:models/weapons/lasrifle",
+    "particle": "leafia:models/weapons/am_rifle",
+    "rifle": "leafia:models/weapons/am_rifle"
+  },
+  "transform": {
+    "translation": [
+      0,
+      0.5,
+      -1.5
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "leafia:item/rod_confusium",
+    "layer1": "leafia:item/rod_leafia_overlay"
+  }
+}

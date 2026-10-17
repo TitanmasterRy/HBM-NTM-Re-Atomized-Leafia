@@ -1,0 +1,6 @@
+{
+  "parent": "leafia:block/ccp_torch",
+  "textures": {
+    "torch": "leafia:block/control_torch_on"
+  }
+}

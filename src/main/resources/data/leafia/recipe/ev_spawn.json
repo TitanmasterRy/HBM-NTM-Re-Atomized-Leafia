@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ev_spawn"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GGG",
+    "ICI",
+    "GGG"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:dusts/any_smokeless"
+    },
+    "G": {
+      "item": "hbm:steel_grate"
+    },
+    "I": {
+      "item": "hbm:steel_beam"
+    }
+  },
+  "result": {
+    "id": "leafia:ev_spawn",
+    "count": 1
+  }
+}

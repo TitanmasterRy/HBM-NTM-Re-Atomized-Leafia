@@ -1,0 +1,140 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "wallframes": {
+      "parent": "leafia:block/elevator_s6_wallframes"
+    },
+    "wallin_wall": {
+      "parent": "leafia:block/elevator_s6_wallin_wall"
+    },
+    "wallout_wall": {
+      "parent": "leafia:block/elevator_s6_wallout_wall"
+    }
+  },
+  "item_render_order": [
+    "wallframes",
+    "wallin_wall",
+    "wallout_wall"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -7.143,
+        -0.811,
+        -4.717
+      ],
+      "scale": [
+        0.3061,
+        0.3061,
+        0.3061
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0.975,
+        1.781,
+        3.048
+      ],
+      "scale": [
+        0.1219,
+        0.1219,
+        0.1219
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        1.89,
+        -2.362,
+        5.905
+      ],
+      "scale": [
+        0.2362,
+        0.2362,
+        0.2362
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        4.719,
+        -0.372,
+        -1.324
+      ],
+      "scale": [
+        0.2022,
+        0.2022,
+        0.2022
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        4.719,
+        -0.372,
+        -1.324
+      ],
+      "scale": [
+        0.2022,
+        0.2022,
+        0.2022
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -0.504,
+        3.431,
+        0.267
+      ],
+      "scale": [
+        0.1554,
+        0.1554,
+        0.1554
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -0.504,
+        3.431,
+        0.267
+      ],
+      "scale": [
+        0.1554,
+        0.1554,
+        0.1554
+      ]
+    }
+  }
+}

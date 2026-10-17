@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:letter_sign_p"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:letter_sign_p"
+    }
+  ],
+  "result": {
+    "id": "hbm:plate_iron",
+    "count": 1
+  }
+}

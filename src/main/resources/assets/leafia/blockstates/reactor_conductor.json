@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "leafia:block/reactor_conductor"
+    }
+  }
+}

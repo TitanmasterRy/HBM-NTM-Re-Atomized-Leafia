@@ -1,0 +1,14 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/light.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/light_item_base",
+    "particle": "leafia:block/light_item_base"
+  },
+  "visibility": {
+    "Bulb": false
+  }
+}

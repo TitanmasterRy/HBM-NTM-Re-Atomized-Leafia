@@ -1,0 +1,21 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/modular_turbine_flywheel.obj",
+  "textures": {
+    "0": "leafia:block/modular_turbine_solid",
+    "particle": "leafia:block/modular_turbine_solid"
+  },
+  "visibility": {
+    "Flywheel2x2": false,
+    "Flywheel2x2.001": false,
+    "Flywheel3x3": false,
+    "Flywheel3x3.001": false,
+    "Flywheel5x5.001": false,
+    "Flywheel7x7": false,
+    "Flywheel7x7.001": false,
+    "Flywheel9x9": false,
+    "Flywheel9x9.001": false
+  }
+}

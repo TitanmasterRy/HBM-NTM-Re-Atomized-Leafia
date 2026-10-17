@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_duct_neo"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_duct_solid_shielded"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SAS",
+    "ADA",
+    "SAS"
+  ],
+  "key": {
+    "S": {
+      "item": "hbm:brick_compound"
+    },
+    "A": {
+      "item": "leafia:ff_duct_neo"
+    },
+    "D": {
+      "item": "hbm:ducttape"
+    }
+  },
+  "result": {
+    "id": "leafia:ff_duct_solid_shielded",
+    "count": 8
+  }
+}

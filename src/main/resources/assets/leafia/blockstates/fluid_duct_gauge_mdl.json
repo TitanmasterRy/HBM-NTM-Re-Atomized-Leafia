@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "leafia:block/fluid_duct_gauge_mdl_particle"
+    }
+  }
+}

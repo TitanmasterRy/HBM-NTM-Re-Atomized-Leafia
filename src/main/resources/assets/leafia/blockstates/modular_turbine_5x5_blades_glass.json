@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "leafia:block/modular_turbine_part"
+    }
+  }
+}

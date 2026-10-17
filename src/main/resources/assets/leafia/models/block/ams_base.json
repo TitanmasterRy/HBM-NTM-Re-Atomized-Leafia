@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ams_base.obj",
+  "textures": {
+    "0": "leafia:block/ams_base",
+    "particle": "leafia:block/ams_base"
+  },
+  "visibility": {}
+}

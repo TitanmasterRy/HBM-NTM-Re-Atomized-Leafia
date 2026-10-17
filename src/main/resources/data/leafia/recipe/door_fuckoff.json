@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:door_fuckoff"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "WW",
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "hbm:pink_planks"
+    }
+  },
+  "result": {
+    "id": "leafia:door_fuckoff",
+    "count": 3
+  }
+}

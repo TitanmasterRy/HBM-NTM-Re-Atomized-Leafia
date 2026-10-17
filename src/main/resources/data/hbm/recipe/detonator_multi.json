@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "leafia:feature",
+        "feature": "recipeOverhaul"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:detonator"
+    },
+    {
+      "item": "hbm:circuit_advanced"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:detonator_multi"
+  }
+}

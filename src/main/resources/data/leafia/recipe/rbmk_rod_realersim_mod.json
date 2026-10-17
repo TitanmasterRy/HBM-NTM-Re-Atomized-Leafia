@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:rbmk_rod_realersim"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:rbmk_rod_realersim_mod"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BGB",
+    "GRG",
+    "BGB"
+  ],
+  "key": {
+    "G": {
+      "tag": "c:storage_blocks/graphite"
+    },
+    "R": {
+      "item": "leafia:rbmk_rod_realersim"
+    },
+    "B": {
+      "tag": "c:ingots/graphite"
+    }
+  },
+  "result": {
+    "id": "leafia:rbmk_rod_realersim_mod",
+    "count": 1
+  }
+}

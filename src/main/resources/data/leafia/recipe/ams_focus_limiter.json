@@ -1,0 +1,41 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_blank"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_limiter"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "dfcOverhaul"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PFP",
+    "GEG",
+    "PFP"
+  ],
+  "key": {
+    "P": {
+      "item": "hbm:rune_isa"
+    },
+    "G": {
+      "item": "leafia:ams_focus_blank"
+    },
+    "E": {
+      "item": "hbm:upgrade_power_3"
+    },
+    "F": {
+      "item": "hbm:inf_water_mk2"
+    }
+  },
+  "result": {
+    "id": "leafia:ams_focus_limiter",
+    "count": 1
+  }
+}

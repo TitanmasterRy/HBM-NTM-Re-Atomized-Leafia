@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/dfc_shrapnel_beam.obj",
+  "textures": {
+    "0": "leafia:block/dfc_shrapnel",
+    "particle": "leafia:block/dfc_shrapnel"
+  },
+  "visibility": {}
+}

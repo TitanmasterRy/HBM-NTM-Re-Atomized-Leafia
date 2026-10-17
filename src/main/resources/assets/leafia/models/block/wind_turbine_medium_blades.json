@@ -1,0 +1,13 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/wind_turbine_medium.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "leafia:block/wind_turbine_medium",
+    "particle": "leafia:block/wind_turbine_medium"
+  },
+  "visibility": {
+    "Base": false
+  }
+}

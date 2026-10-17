@@ -1,0 +1,16 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_button_encased_push.obj",
+  "textures": {
+    "0": "leafia:block/ccp/button_encased_push",
+    "particle": "leafia:block/ccp/button_encased_push"
+  },
+  "visibility": {
+    "base": false,
+    "btn_top": false,
+    "btn_top_top": false,
+    "cover": false
+  }
+}

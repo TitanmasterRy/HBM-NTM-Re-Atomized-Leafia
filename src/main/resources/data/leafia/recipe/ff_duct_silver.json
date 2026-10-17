@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_duct_silver"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "D"
+  ],
+  "key": {
+    "D": {
+      "item": "hbm:fluid_duct_neo_silver"
+    }
+  },
+  "result": {
+    "id": "leafia:ff_duct_silver",
+    "count": 3
+  }
+}

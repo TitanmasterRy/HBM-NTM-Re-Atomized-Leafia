@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:weight_spawn"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BIB",
+    "BIB",
+    "BIB"
+  ],
+  "key": {
+    "B": {
+      "tag": "c:storage_blocks/steel"
+    },
+    "I": {
+      "item": "hbm:steel_beam"
+    }
+  },
+  "result": {
+    "id": "leafia:weight_spawn",
+    "count": 1
+  }
+}

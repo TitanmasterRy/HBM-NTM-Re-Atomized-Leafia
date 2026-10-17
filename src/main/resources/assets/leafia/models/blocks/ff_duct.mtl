@@ -1,0 +1,11 @@
+# Generated - do not edit by hand.
+#
+# Upstream's FFDuctBakedModel picks both sprites in Java and stamps tint index 1 on the overlay
+# quads; these two materials are that code where 1.21.1 wants it (D-1022's translation, D-3012).
+
+newmtl base
+map_Kd #0
+
+newmtl overlay
+map_Kd #overlay
+neoforge_TintIndex 1

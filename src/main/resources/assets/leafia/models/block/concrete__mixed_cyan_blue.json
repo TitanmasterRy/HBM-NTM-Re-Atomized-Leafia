@@ -1,0 +1,78 @@
+{
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#a"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#a"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#a"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#a"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#a"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#b"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#b"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#b"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#b"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#b"
+        }
+      },
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "parent": "block/block",
+  "textures": {
+    "a": "hbm:block/concrete_cyan",
+    "b": "hbm:block/concrete_blue",
+    "particle": "hbm:block/concrete_cyan"
+  }
+}

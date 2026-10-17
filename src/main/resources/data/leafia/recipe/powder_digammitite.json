@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:powder_digammitite"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:powder_digammitite_tiny"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    }
+  ],
+  "result": {
+    "id": "leafia:powder_digammitite",
+    "count": 1
+  }
+}

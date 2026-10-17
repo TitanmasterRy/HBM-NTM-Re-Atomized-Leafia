@@ -1,0 +1,17 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/weapons/am_rifle.obj",
+  "mtl_override": "hbm:models/none.mtl",
+  "textures": {
+    "0": "hbm:models/weapons/debug_gun",
+    "particle": "hbm:models/weapons/debug_gun"
+  },
+  "visibility": {
+    "Barrel": false,
+    "BarrelBase": false,
+    "Fan": false,
+    "Gun": false
+  }
+}

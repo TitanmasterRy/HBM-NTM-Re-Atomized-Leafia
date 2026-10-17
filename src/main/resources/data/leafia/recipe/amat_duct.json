@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:amat_duct"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "DDD",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:wire_fines/bscco"
+    },
+    "D": {
+      "item": "hbm:fluid_duct_neo_neo"
+    }
+  },
+  "result": {
+    "id": "leafia:amat_duct",
+    "count": 3
+  }
+}

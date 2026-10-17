@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "leafia:block/msr_control_extension",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "leafia:block/msr_control_extension"
+    },
+    "axis=z": {
+      "model": "leafia:block/msr_control_extension",
+      "x": 90
+    }
+  }
+}

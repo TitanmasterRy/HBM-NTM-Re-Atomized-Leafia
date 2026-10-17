@@ -1,0 +1,112 @@
+{
+  "variants": {
+    "dir=down,lit=false,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=down,lit=false,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=down,lit=false,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=down,lit=true,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=down,lit=true,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=down,lit=true,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=east,lit=false,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=east,lit=false,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=east,lit=false,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=east,lit=true,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=east,lit=true,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=east,lit=true,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=north,lit=false,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=north,lit=false,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=north,lit=false,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=north,lit=true,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=north,lit=true,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=north,lit=true,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=south,lit=false,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=south,lit=false,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=south,lit=false,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=south,lit=true,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=south,lit=true,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=south,lit=true,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=up,lit=false,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=up,lit=false,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=up,lit=false,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=up,lit=true,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=up,lit=true,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=up,lit=true,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=west,lit=false,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=west,lit=false,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=west,lit=false,part=extra": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=west,lit=true,part=core": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=west,lit=true,part=dummy": {
+      "model": "leafia:block/light_unlit"
+    },
+    "dir=west,lit=true,part=extra": {
+      "model": "leafia:block/light_unlit"
+    }
+  }
+}

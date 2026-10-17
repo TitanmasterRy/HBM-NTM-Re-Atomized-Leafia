@@ -1,0 +1,51 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+
+license="${addon_license}"
+
+[[mods]]
+modId="${addon_id}"
+version="${addon_version}"
+displayName="${addon_name}"
+# The two grenade fillings appended to the base mod's EnumGrenadeFilling (D-2205's seam, D-3028).
+enumExtensions="META-INF/enumextensions.json"
+authors="${addon_authors}"
+credits="${addon_credits}"
+description='''
+An optional addon for this port of Hbm's Nuclear Tech Mod, porting Leafia's Cursed Addon
+(NTM Cursed, Addon Edition) from Minecraft 1.12.2.
+
+Adds the DFC rework, an RBMK-like pressurised water reactor, the LFTR, elevators, an
+electromagnetic fluid duct, modular turbines and more. Every feature can be switched off in
+leafia-features.toml, and switching one off registers nothing at all - installing this jar
+gives you the addon's content, not a silent rewrite of machines you already use.
+
+Originally written by ntmleafia and movblock and dual-licensed GPL-3.0 / LGPL-3.0; this port
+is taken under LGPL-3.0, matching the mod it extends. It is not affiliated with the original.
+'''
+
+# The addon's mixins into vanilla (never into the base mod, D-1001). Firestorm's fire hook is the first.
+[[mixins]]
+config="leafia.mixins.json"
+
+# The whole point of the second jar. Without hbm there is nothing to add to.
+[[dependencies.${addon_id}]]
+modId="${mod_id}"
+type="required"
+versionRange="[${mod_version},)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.${addon_id}]]
+modId="neoforge"
+type="required"
+versionRange="[${neo_version},)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${addon_id}]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"

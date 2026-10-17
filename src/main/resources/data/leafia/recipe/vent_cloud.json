@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:grenade_cloud"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IGI",
+    "ICI",
+    "IDI"
+  ],
+  "key": {
+    "I": {
+      "tag": "c:plates/iron"
+    },
+    "G": {
+      "item": "minecraft:iron_bars"
+    },
+    "C": {
+      "item": "leafia:grenade_cloud"
+    },
+    "D": {
+      "item": "minecraft:dispenser"
+    }
+  },
+  "result": {
+    "id": "hbm:vent_cloud",
+    "count": 1
+  }
+}

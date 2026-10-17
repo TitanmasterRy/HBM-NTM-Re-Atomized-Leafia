@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/bombs/fat_man.obj",
+  "mtl_override": "hbm:models/none.mtl",
+  "textures": {
+    "0": "leafia:block/nuke_chud",
+    "particle": "leafia:block/nuke_chud"
+  }
+}

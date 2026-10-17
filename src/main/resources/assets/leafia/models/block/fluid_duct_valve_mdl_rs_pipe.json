@@ -1,0 +1,13 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/valve_rs.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "hbm:block/pipe_silver",
+    "particle": "hbm:block/pipe_silver"
+  },
+  "visibility": {
+    "body": false
+  }
+}

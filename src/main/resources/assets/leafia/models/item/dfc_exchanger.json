@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.2072,
+        0.2072,
+        0.2072
+      ],
+      "translation": [
+        -0.786,
+        6.76,
+        2.053
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.2072,
+        0.2072,
+        0.2072
+      ],
+      "translation": [
+        -0.786,
+        6.76,
+        2.053
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        0.5362,
+        0.5362,
+        0.5362
+      ],
+      "translation": [
+        4.29,
+        -4.96,
+        4.29
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.32,
+        0.32,
+        0.32
+      ],
+      "translation": [
+        2.56,
+        5.56,
+        2.96
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.6018,
+        0.6018,
+        0.6018
+      ],
+      "translation": [
+        -7.341,
+        4.436,
+        1.947
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.2888,
+        0.2888,
+        0.2888
+      ],
+      "translation": [
+        3.522,
+        2.851,
+        2.297
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.2888,
+        0.2888,
+        0.2888
+      ],
+      "translation": [
+        3.522,
+        2.851,
+        2.297
+      ]
+    }
+  },
+  "parent": "leafia:block/dfc_exchanger_item"
+}

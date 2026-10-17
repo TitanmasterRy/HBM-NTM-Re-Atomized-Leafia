@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:pu238_shield"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IXI",
+    "PIP",
+    " P "
+  ],
+  "key": {
+    "I": {
+      "item": "hbm:plate_polymer"
+    },
+    "P": {
+      "tag": "c:ingots/polymer"
+    },
+    "X": {
+      "tag": "c:ingots/pu238"
+    }
+  },
+  "result": {
+    "id": "leafia:pu238_shield",
+    "count": 1
+  }
+}

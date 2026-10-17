@@ -1,0 +1,138 @@
+{
+  "hinge": [
+    0.6875,
+    0.0625
+  ],
+  "body": [
+    "base",
+    "hingeBase",
+    "screen",
+    "logo",
+    "solar"
+  ],
+  "cover": [
+    "cover",
+    "hingeCover",
+    "antenna",
+    "instrument",
+    "speakers",
+    "speakersIn",
+    "hta"
+  ],
+  "models": {
+    "advisor_base": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "base",
+      "texture": "panel",
+      "cover": false
+    },
+    "advisor_hingebase": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "hingeBase",
+      "texture": "hinge",
+      "cover": false
+    },
+    "advisor_screen": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "screen",
+      "texture": "black",
+      "cover": false
+    },
+    "advisor_logo": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "logo",
+      "texture": "logo",
+      "cover": false
+    },
+    "advisor_solar": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "solar",
+      "texture": "solar",
+      "cover": false
+    },
+    "advisor_cover": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "cover",
+      "texture": "panel",
+      "cover": true
+    },
+    "advisor_hingecover": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "hingeCover",
+      "texture": "hinge",
+      "cover": true
+    },
+    "advisor_antenna": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "antenna",
+      "texture": "black",
+      "cover": true
+    },
+    "advisor_instrument": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "instrument",
+      "texture": "instrument",
+      "cover": true
+    },
+    "advisor_speakers": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "speakers",
+      "texture": "speaker",
+      "cover": true
+    },
+    "advisor_speakersin": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "speakersIn",
+      "texture": "speaker",
+      "cover": true
+    },
+    "advisor_hta": {
+      "obj": "models/blocks/advisor.obj",
+      "visible": "hta",
+      "texture": "hta",
+      "cover": true
+    },
+    "advisor_open_cover": {
+      "obj": "models/blocks/advisor_open.obj",
+      "visible": "cover",
+      "texture": "panel",
+      "cover": true
+    },
+    "advisor_open_hingecover": {
+      "obj": "models/blocks/advisor_open.obj",
+      "visible": "hingeCover",
+      "texture": "hinge",
+      "cover": true
+    },
+    "advisor_open_antenna": {
+      "obj": "models/blocks/advisor_open.obj",
+      "visible": "antenna",
+      "texture": "black",
+      "cover": true
+    },
+    "advisor_open_instrument": {
+      "obj": "models/blocks/advisor_open.obj",
+      "visible": "instrument",
+      "texture": "instrument",
+      "cover": true
+    },
+    "advisor_open_speakers": {
+      "obj": "models/blocks/advisor_open.obj",
+      "visible": "speakers",
+      "texture": "speaker",
+      "cover": true
+    },
+    "advisor_open_speakersin": {
+      "obj": "models/blocks/advisor_open.obj",
+      "visible": "speakersIn",
+      "texture": "speaker",
+      "cover": true
+    },
+    "advisor_open_hta": {
+      "obj": "models/blocks/advisor_open.obj",
+      "visible": "hta",
+      "texture": "hta",
+      "cover": true
+    }
+  }
+}

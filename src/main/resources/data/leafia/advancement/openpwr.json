@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "leafia:feature",
+      "feature": "rods"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "pwrBlocks"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "addonFluids"
+    }
+  ],
+  "parent": "leafia:genericfuel",
+  "display": {
+    "icon": {
+      "id": "leafia:lwr_terminal"
+    },
+    "title": {
+      "translate": "advancement.leafia.openpwr"
+    },
+    "description": {
+      "translate": "advancement.leafia.openpwr.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ]
+}

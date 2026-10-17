@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "hbm:block_corium",
+      "required": false
+    },
+    {
+      "id": "hbm:block_corium_cobble",
+      "required": false
+    }
+  ]
+}

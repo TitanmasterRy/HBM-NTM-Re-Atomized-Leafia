@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:meteor_diverter_unlit"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:protection_charm"
+    },
+    {
+      "item": "minecraft:torch"
+    }
+  ],
+  "result": {
+    "id": "leafia:meteor_diverter_unlit",
+    "count": 1
+  }
+}

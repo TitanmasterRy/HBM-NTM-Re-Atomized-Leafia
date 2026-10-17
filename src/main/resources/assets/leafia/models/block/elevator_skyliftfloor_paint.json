@@ -1,0 +1,6 @@
+{
+  "loader": "leafia:ev_floor_paint",
+  "textures": {
+    "particle": "hbm:block/block_steel"
+  }
+}

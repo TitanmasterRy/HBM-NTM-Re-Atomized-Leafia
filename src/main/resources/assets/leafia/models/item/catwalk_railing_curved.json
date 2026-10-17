@@ -1,0 +1,160 @@
+{
+  "children": {
+    "curve_nxnz": {
+      "parent": "leafia:block/catwalk_railing_curved_curve_nxnz"
+    },
+    "curve_nxpz": {
+      "parent": "leafia:block/catwalk_railing_curved_curve_nxpz"
+    },
+    "curve_pxnz": {
+      "parent": "leafia:block/catwalk_railing_curved_curve_pxnz"
+    },
+    "curve_pxpz": {
+      "parent": "leafia:block/catwalk_railing_curved_curve_pxpz"
+    },
+    "post_nx": {
+      "parent": "leafia:block/catwalk_railing_curved_post_nx"
+    },
+    "post_nz": {
+      "parent": "leafia:block/catwalk_railing_curved_post_nz"
+    },
+    "post_px": {
+      "parent": "leafia:block/catwalk_railing_curved_post_px"
+    },
+    "post_pz": {
+      "parent": "leafia:block/catwalk_railing_curved_post_pz"
+    }
+  },
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        200,
+        0
+      ],
+      "scale": [
+        0.2104,
+        0.2104,
+        0.2104
+      ],
+      "translation": [
+        -5.158,
+        7.924,
+        -0.412
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        200,
+        0
+      ],
+      "scale": [
+        0.2104,
+        0.2104,
+        0.2104
+      ],
+      "translation": [
+        -5.158,
+        7.924,
+        -0.412
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        0.5835,
+        0.5835,
+        0.5835
+      ],
+      "translation": [
+        -4.668,
+        0.292,
+        -4.668
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        0.3012,
+        0.3012,
+        0.3012
+      ],
+      "translation": [
+        -2.409,
+        3.151,
+        -2.409
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        405,
+        0
+      ],
+      "scale": [
+        0.5863,
+        0.5863,
+        0.5863
+      ],
+      "translation": [
+        6.633,
+        0.254,
+        0.147
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "scale": [
+        0.2896,
+        0.2896,
+        0.2896
+      ],
+      "translation": [
+        -3.277,
+        2.537,
+        0.14
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        225,
+        0
+      ],
+      "scale": [
+        0.2896,
+        0.2896,
+        0.2896
+      ],
+      "translation": [
+        -3.277,
+        2.537,
+        0.14
+      ]
+    }
+  },
+  "item_render_order": [
+    "curve_nxnz",
+    "curve_nxpz",
+    "curve_pxnz",
+    "curve_pxpz",
+    "post_nx",
+    "post_nz",
+    "post_px",
+    "post_pz"
+  ],
+  "loader": "neoforge:composite"
+}

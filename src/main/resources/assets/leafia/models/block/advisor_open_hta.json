@@ -1,0 +1,24 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/advisor_open.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:item/advisor_hta",
+    "particle": "leafia:item/advisor_hta"
+  },
+  "visibility": {
+    "antenna": false,
+    "base": false,
+    "cover": false,
+    "hingeBase": false,
+    "hingeCover": false,
+    "instrument": false,
+    "logo": false,
+    "screen": false,
+    "solar": false,
+    "speakers": false,
+    "speakersIn": false
+  }
+}

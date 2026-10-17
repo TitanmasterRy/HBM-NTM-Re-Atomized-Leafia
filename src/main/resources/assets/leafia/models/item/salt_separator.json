@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0547,
+        0.0547,
+        0.0547
+      ],
+      "translation": [
+        -2.439,
+        5.57,
+        -1.954
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0547,
+        0.0547,
+        0.0547
+      ],
+      "translation": [
+        -2.439,
+        5.57,
+        -1.954
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.0954,
+        0.0954,
+        0.0954
+      ],
+      "translation": [
+        0.763,
+        -4.197,
+        0.763
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.0492,
+        0.0492,
+        0.0492
+      ],
+      "translation": [
+        0.394,
+        0.834,
+        0.394
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.1264,
+        0.1264,
+        0.1264
+      ],
+      "translation": [
+        -1.431,
+        -4.818,
+        -2.782
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0865,
+        0.0865,
+        0.0865
+      ],
+      "translation": [
+        0.979,
+        1.515,
+        -3.676
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0865,
+        0.0865,
+        0.0865
+      ],
+      "translation": [
+        0.979,
+        1.515,
+        -3.676
+      ]
+    }
+  },
+  "parent": "leafia:block/salt_separator"
+}

@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ingot_xanaxium"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:powder_xanaxium"
+    }
+  ],
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "leafia:powder_xanaxium"
+  },
+  "result": {
+    "id": "leafia:ingot_xanaxium"
+  },
+  "experience": 5.0,
+  "cookingtime": 200
+}

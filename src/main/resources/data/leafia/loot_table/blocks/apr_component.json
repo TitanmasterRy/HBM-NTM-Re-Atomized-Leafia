@@ -1,0 +1,225 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "support"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_support",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "hull"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_hull",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "hull_assembled"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_hull",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "hull_assembled"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "hbm:bolt_steel",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "hull_assembled"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:blanket_mysticite",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "plating"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_plating",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "plating_dark"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_plating_dark",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "blades"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_blades",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "mechanical"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_mechanical",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "leafia:apr_component",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "variant": "coil"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "name": "leafia:apr_component_coil",
+          "type": "minecraft:item"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "type": "minecraft:block"
+}

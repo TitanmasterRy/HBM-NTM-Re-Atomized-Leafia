@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "leafia:block/ash_balefire_1"
+    },
+    "layers=2": {
+      "model": "leafia:block/ash_balefire_2"
+    },
+    "layers=3": {
+      "model": "leafia:block/ash_balefire_3"
+    },
+    "layers=4": {
+      "model": "leafia:block/ash_balefire_4"
+    },
+    "layers=5": {
+      "model": "leafia:block/ash_balefire_5"
+    },
+    "layers=6": {
+      "model": "leafia:block/ash_balefire_6"
+    },
+    "layers=7": {
+      "model": "leafia:block/ash_balefire_7"
+    },
+    "layers=8": {
+      "model": "leafia:block/ash_balefire_8"
+    }
+  }
+}

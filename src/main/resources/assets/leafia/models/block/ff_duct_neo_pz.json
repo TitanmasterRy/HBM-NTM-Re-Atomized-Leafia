@@ -1,0 +1,41 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ff_duct.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "hbm:block/pipe_neo",
+    "overlay": "hbm:block/pipe_neo_overlay",
+    "particle": "hbm:block/pipe_neo"
+  },
+  "transform": {
+    "translation": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "visibility": {
+    "nX": false,
+    "nXf": false,
+    "nY": false,
+    "nYf": false,
+    "nZ": false,
+    "nZf": false,
+    "nnn": false,
+    "nnp": false,
+    "npn": false,
+    "npp": false,
+    "pX": false,
+    "pXf": false,
+    "pY": false,
+    "pYf": false,
+    "pZ": true,
+    "pZf": false,
+    "pnn": false,
+    "pnp": false,
+    "ppn": false,
+    "ppp": false
+  }
+}

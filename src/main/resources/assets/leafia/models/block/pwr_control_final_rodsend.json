@@ -1,0 +1,20 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/pwr_control_final.obj",
+  "textures": {
+    "0": "leafia:block/pwr/pwr_control_top",
+    "particle": "leafia:block/pwr/pwr_control_top"
+  },
+  "visibility": {
+    "FrameEnd": false,
+    "FrameEndBtm": false,
+    "FrameEndTop": false,
+    "FrameSide": false,
+    "RodsEnd": true,
+    "RodsEndBtm": false,
+    "RodsEndTop": false,
+    "RodsSide": false
+  }
+}

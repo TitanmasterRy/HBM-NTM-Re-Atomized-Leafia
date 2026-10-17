@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:pill_meltdown"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dusts/coal"
+    },
+    {
+      "tag": "c:dusts/uranium"
+    },
+    {
+      "tag": "c:dusts/fluorite"
+    },
+    {
+      "item": "hbm:powder_magic"
+    }
+  ],
+  "result": {
+    "id": "leafia:pill_meltdown",
+    "count": 1
+  }
+}

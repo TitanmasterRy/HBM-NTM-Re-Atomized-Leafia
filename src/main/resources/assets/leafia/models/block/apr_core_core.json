@@ -1,0 +1,15 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/apr_core.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/apr/apr_core",
+    "particle": "leafia:block/apr/apr_core"
+  },
+  "visibility": {
+    "Core": true,
+    "Funnel": false
+  }
+}

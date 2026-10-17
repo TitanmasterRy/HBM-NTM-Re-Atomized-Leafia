@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "hbm:powder_magic",
+      "required": false
+    }
+  ]
+}

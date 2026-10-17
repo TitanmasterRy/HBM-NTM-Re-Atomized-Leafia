@@ -1,0 +1,164 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "doorframe": {
+      "parent": "leafia:block/elevator_s6_doorframe"
+    },
+    "doorl": {
+      "parent": "leafia:block/elevator_s6_doorl"
+    },
+    "doorr": {
+      "parent": "leafia:block/elevator_s6_doorr"
+    },
+    "arrowup_off": {
+      "parent": "leafia:block/elevator_s6_arrowup_off"
+    },
+    "arrowdn_off": {
+      "parent": "leafia:block/elevator_s6_arrowdn_off"
+    },
+    "doorfloor": {
+      "parent": "leafia:block/elevator_s6_doorfloor"
+    },
+    "logo": {
+      "parent": "leafia:block/elevator_s6_logo"
+    },
+    "digit10_off": {
+      "parent": "leafia:block/elevator_s6_digit10_off"
+    },
+    "digit0_1": {
+      "parent": "leafia:block/elevator_s6_digit0_1"
+    }
+  },
+  "item_render_order": [
+    "doorframe",
+    "doorl",
+    "doorr",
+    "arrowup_off",
+    "arrowdn_off",
+    "doorfloor",
+    "logo",
+    "digit10_off",
+    "digit0_1"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -7.228,
+        -0.723,
+        -4.806
+      ],
+      "scale": [
+        0.3029,
+        0.3029,
+        0.3029
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0.975,
+        1.781,
+        3.138
+      ],
+      "scale": [
+        0.1219,
+        0.1219,
+        0.1219
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        1.89,
+        -2.362,
+        6.08
+      ],
+      "scale": [
+        0.2362,
+        0.2362,
+        0.2362
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        4.702,
+        -0.398,
+        -1.264
+      ],
+      "scale": [
+        0.1971,
+        0.1971,
+        0.1971
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        4.702,
+        -0.398,
+        -1.264
+      ],
+      "scale": [
+        0.1971,
+        0.1971,
+        0.1971
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -0.499,
+        3.387,
+        0.317
+      ],
+      "scale": [
+        0.1532,
+        0.1532,
+        0.1532
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -0.499,
+        3.387,
+        0.317
+      ],
+      "scale": [
+        0.1532,
+        0.1532,
+        0.1532
+      ]
+    }
+  }
+}

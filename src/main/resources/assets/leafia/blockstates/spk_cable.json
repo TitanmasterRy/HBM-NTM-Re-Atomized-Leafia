@@ -1,0 +1,196 @@
+{
+  "variants": {
+    "down=false,east=false,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_core"
+    },
+    "down=false,east=false,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegx"
+    },
+    "down=false,east=false,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposy"
+    },
+    "down=false,east=false,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposy"
+    },
+    "down=false,east=false,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_corenegz"
+    },
+    "down=false,east=false,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegxnegz"
+    },
+    "down=false,east=false,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposynegz"
+    },
+    "down=false,east=false,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposynegz"
+    },
+    "down=false,east=false,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposz"
+    },
+    "down=false,east=false,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposz"
+    },
+    "down=false,east=false,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposyposz"
+    },
+    "down=false,east=false,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposyposz"
+    },
+    "down=false,east=false,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_cz"
+    },
+    "down=false,east=false,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegxnegzposz"
+    },
+    "down=false,east=false,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposynegzposz"
+    },
+    "down=false,east=false,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposynegzposz"
+    },
+    "down=false,east=true,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposx"
+    },
+    "down=false,east=true,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_cx"
+    },
+    "down=false,east=true,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposy"
+    },
+    "down=false,east=true,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposy"
+    },
+    "down=false,east=true,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposxnegz"
+    },
+    "down=false,east=true,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxnegz"
+    },
+    "down=false,east=true,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposynegz"
+    },
+    "down=false,east=true,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposynegz"
+    },
+    "down=false,east=true,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposz"
+    },
+    "down=false,east=true,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposz"
+    },
+    "down=false,east=true,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposyposz"
+    },
+    "down=false,east=true,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposyposz"
+    },
+    "down=false,east=true,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposxnegzposz"
+    },
+    "down=false,east=true,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxnegzposz"
+    },
+    "down=false,east=true,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposynegzposz"
+    },
+    "down=false,east=true,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposynegzposz"
+    },
+    "down=true,east=false,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_corenegy"
+    },
+    "down=true,east=false,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegxnegy"
+    },
+    "down=true,east=false,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_cy"
+    },
+    "down=true,east=false,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposynegy"
+    },
+    "down=true,east=false,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_corenegynegz"
+    },
+    "down=true,east=false,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegxnegynegz"
+    },
+    "down=true,east=false,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposynegynegz"
+    },
+    "down=true,east=false,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposynegynegz"
+    },
+    "down=true,east=false,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_corenegyposz"
+    },
+    "down=true,east=false,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegxnegyposz"
+    },
+    "down=true,east=false,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposynegyposz"
+    },
+    "down=true,east=false,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposynegyposz"
+    },
+    "down=true,east=false,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_corenegynegzposz"
+    },
+    "down=true,east=false,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_corenegxnegynegzposz"
+    },
+    "down=true,east=false,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposynegynegzposz"
+    },
+    "down=true,east=false,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_corenegxposynegynegzposz"
+    },
+    "down=true,east=true,north=false,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposxnegy"
+    },
+    "down=true,east=true,north=false,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxnegy"
+    },
+    "down=true,east=true,north=false,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposynegy"
+    },
+    "down=true,east=true,north=false,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposynegy"
+    },
+    "down=true,east=true,north=false,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposxnegynegz"
+    },
+    "down=true,east=true,north=false,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxnegynegz"
+    },
+    "down=true,east=true,north=false,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposynegynegz"
+    },
+    "down=true,east=true,north=false,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposynegynegz"
+    },
+    "down=true,east=true,north=true,south=false,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposxnegyposz"
+    },
+    "down=true,east=true,north=true,south=false,up=false,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxnegyposz"
+    },
+    "down=true,east=true,north=true,south=false,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposynegyposz"
+    },
+    "down=true,east=true,north=true,south=false,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposynegyposz"
+    },
+    "down=true,east=true,north=true,south=true,up=false,west=false": {
+      "model": "leafia:block/spk_cable_coreposxnegynegzposz"
+    },
+    "down=true,east=true,north=true,south=true,up=false,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxnegynegzposz"
+    },
+    "down=true,east=true,north=true,south=true,up=true,west=false": {
+      "model": "leafia:block/spk_cable_coreposxposynegynegzposz"
+    },
+    "down=true,east=true,north=true,south=true,up=true,west=true": {
+      "model": "leafia:block/spk_cable_coreposxnegxposynegynegzposz"
+    }
+  }
+}

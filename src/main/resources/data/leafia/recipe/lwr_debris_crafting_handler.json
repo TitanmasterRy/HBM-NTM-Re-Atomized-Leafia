@@ -1,0 +1,10 @@
+{
+  "category": "misc",
+  "neoforge:conditions": [
+    {
+      "item": "leafia:lwr_piece",
+      "type": "neoforge:item_exists"
+    }
+  ],
+  "type": "leafia:lwr_debris_crafting_handler"
+}

@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:slop_reactor_glass"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IGI",
+    "GCG",
+    "IGI"
+  ],
+  "key": {
+    "G": {
+      "item": "hbm:reinforced_glass"
+    },
+    "I": {
+      "tag": "c:ingots/steel"
+    },
+    "C": {
+      "item": "hbm:circuit_analog"
+    }
+  },
+  "result": {
+    "id": "leafia:slop_reactor_glass",
+    "count": 1
+  }
+}

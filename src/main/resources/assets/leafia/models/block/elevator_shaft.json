@@ -1,0 +1,11 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_shaft.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "0": "leafia:block/elevator_shaft",
+    "particle": "leafia:block/elevator_shaft"
+  }
+}

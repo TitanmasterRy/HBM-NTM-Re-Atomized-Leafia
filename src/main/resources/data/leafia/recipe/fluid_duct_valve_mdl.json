@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:fluid_duct_valve_mdl"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:fluid_duct_neo_colored"
+    },
+    {
+      "tag": "c:plates/aluminum"
+    }
+  ],
+  "result": {
+    "id": "leafia:fluid_duct_valve_mdl",
+    "count": 1
+  }
+}

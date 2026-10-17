@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:grenade_filling_leafia_null"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "A",
+    "G",
+    "A"
+  ],
+  "key": {
+    "A": {
+      "item": "hbm:undefined"
+    },
+    "G": {
+      "tag": "c:ingots/saturnite"
+    }
+  },
+  "result": {
+    "id": "leafia:grenade_filling_leafia_null",
+    "count": 4
+  }
+}

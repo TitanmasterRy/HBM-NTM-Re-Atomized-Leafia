@@ -1,0 +1,176 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "advisor_base": {
+      "parent": "leafia:block/advisor_base"
+    },
+    "advisor_hingebase": {
+      "parent": "leafia:block/advisor_hingebase"
+    },
+    "advisor_screen": {
+      "parent": "leafia:block/advisor_screen"
+    },
+    "advisor_logo": {
+      "parent": "leafia:block/advisor_logo"
+    },
+    "advisor_solar": {
+      "parent": "leafia:block/advisor_solar"
+    },
+    "advisor_open_cover": {
+      "parent": "leafia:block/advisor_open_cover"
+    },
+    "advisor_open_hingecover": {
+      "parent": "leafia:block/advisor_open_hingecover"
+    },
+    "advisor_open_antenna": {
+      "parent": "leafia:block/advisor_open_antenna"
+    },
+    "advisor_open_instrument": {
+      "parent": "leafia:block/advisor_open_instrument"
+    },
+    "advisor_open_speakers": {
+      "parent": "leafia:block/advisor_open_speakers"
+    },
+    "advisor_open_speakersin": {
+      "parent": "leafia:block/advisor_open_speakersin"
+    },
+    "advisor_open_hta": {
+      "parent": "leafia:block/advisor_open_hta"
+    }
+  },
+  "item_render_order": [
+    "advisor_base",
+    "advisor_hingebase",
+    "advisor_screen",
+    "advisor_logo",
+    "advisor_solar",
+    "advisor_open_cover",
+    "advisor_open_hingecover",
+    "advisor_open_antenna",
+    "advisor_open_instrument",
+    "advisor_open_speakers",
+    "advisor_open_speakersin",
+    "advisor_open_hta"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -13.917,
+        13.932,
+        -8.371
+      ],
+      "scale": [
+        1.1271,
+        1.1271,
+        1.1271
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        -0.151,
+        8.615,
+        14.175
+      ],
+      "scale": [
+        0.8031,
+        0.8031,
+        0.8031
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        -0.14,
+        -13.165,
+        5.215
+      ],
+      "scale": [
+        0.7459,
+        0.7459,
+        0.7459
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        7.076,
+        -3.445,
+        5.741
+      ],
+      "scale": [
+        0.5731,
+        0.5731,
+        0.5731
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        7.076,
+        -3.445,
+        5.741
+      ],
+      "scale": [
+        0.5731,
+        0.5731,
+        0.5731
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -0.54,
+        2.414,
+        6.037
+      ],
+      "scale": [
+        0.4198,
+        0.4198,
+        0.4198
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -0.54,
+        2.414,
+        6.037
+      ],
+      "scale": [
+        0.4198,
+        0.4198,
+        0.4198
+      ]
+    }
+  }
+}

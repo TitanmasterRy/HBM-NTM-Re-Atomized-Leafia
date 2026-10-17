@@ -1,0 +1,43 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:block_welded_osmiridium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    },
+    {
+      "item": "hbm:plate_welded_osmiridium"
+    }
+  ],
+  "result": {
+    "id": "leafia:block_welded_osmiridium",
+    "count": 1
+  }
+}

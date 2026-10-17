@@ -1,0 +1,46 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:cells_mysticite_filled"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:gun_leafia_amrifle"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SC ",
+    "BRA",
+    "MG "
+  ],
+  "key": {
+    "S": {
+      "tag": "c:crystals/schraranium"
+    },
+    "C": {
+      "item": "hbm:circuit_bismoid"
+    },
+    "B": {
+      "tag": "c:barrel_lights/any_bismoid_bronze"
+    },
+    "R": {
+      "tag": "c:receiver_lights/any_ultra_alloy"
+    },
+    "A": {
+      "item": "leafia:cells_mysticite_filled"
+    },
+    "M": {
+      "tag": "c:gun_mechanisms/saturnite"
+    },
+    "G": {
+      "tag": "c:grips/any_hard_plastic"
+    }
+  },
+  "result": {
+    "id": "leafia:gun_leafia_amrifle",
+    "count": 1
+  }
+}

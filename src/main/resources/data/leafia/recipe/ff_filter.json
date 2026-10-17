@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_duct_colored"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_filter"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:ff_duct_colored"
+    },
+    {
+      "item": "minecraft:hopper"
+    },
+    {
+      "item": "hbm:circuit_basic"
+    }
+  ],
+  "result": {
+    "id": "leafia:ff_filter",
+    "count": 1
+  }
+}

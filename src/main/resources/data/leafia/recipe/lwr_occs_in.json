@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:lwr_occs_in"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:lwr_port"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:lwr_port"
+    }
+  ],
+  "result": {
+    "id": "leafia:lwr_occs_in",
+    "count": 1
+  }
+}

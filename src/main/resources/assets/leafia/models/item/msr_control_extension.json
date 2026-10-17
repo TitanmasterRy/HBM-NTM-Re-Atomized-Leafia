@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.2702,
+        0.2702,
+        0.2702
+      ],
+      "translation": [
+        -3.0,
+        7.0,
+        0.0
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.2702,
+        0.2702,
+        0.2702
+      ],
+      "translation": [
+        -3.0,
+        7.0,
+        0.0
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.62,
+        0.62,
+        0.62
+      ],
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.32,
+        0.32,
+        0.32
+      ],
+      "translation": [
+        0.0,
+        3.0,
+        0.0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.7018,
+        0.7018,
+        0.7018
+      ],
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.3896,
+        0.3896,
+        0.3896
+      ],
+      "translation": [
+        0.0,
+        2.5,
+        0.0
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.3896,
+        0.3896,
+        0.3896
+      ],
+      "translation": [
+        0.0,
+        2.5,
+        0.0
+      ]
+    }
+  },
+  "parent": "leafia:block/msr_control_extension"
+}

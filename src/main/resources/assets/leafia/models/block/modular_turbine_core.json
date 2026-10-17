@@ -1,0 +1,10 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/modular_turbine_core.obj",
+  "textures": {
+    "0": "leafia:block/modular_turbine_core",
+    "particle": "leafia:block/modular_turbine_core"
+  }
+}

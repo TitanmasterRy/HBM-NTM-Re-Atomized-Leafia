@@ -1,0 +1,13 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/light.obj",
+  "textures": {
+    "0": "leafia:block/solid_emissive",
+    "particle": "leafia:block/solid_emissive"
+  },
+  "visibility": {
+    "Base": false
+  }
+}

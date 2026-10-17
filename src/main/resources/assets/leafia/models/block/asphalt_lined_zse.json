@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "hbm:block/asphalt",
+    "particle": "hbm:block/asphalt",
+    "side": "hbm:block/asphalt",
+    "top": "leafia:block/asphalt_lined_zse"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_terracotta_0",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_terracotta",
+              "properties": {
+                "meta": "0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_terracotta_1",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_terracotta",
+              "properties": {
+                "meta": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_terracotta_2",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_terracotta",
+              "properties": {
+                "meta": "2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_terracotta_3",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_terracotta",
+              "properties": {
+                "meta": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_terracotta_4",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_terracotta",
+              "properties": {
+                "meta": "4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_terracotta_5",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_terracotta",
+              "properties": {
+                "meta": "5"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "leafia:waste_terracotta_6",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "leafia:waste_terracotta",
+              "properties": {
+                "meta": "6"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "pipe": {
+      "parent": "leafia:block/fluid_duct_valve_mdl_rs_pipe"
+    },
+    "body": {
+      "parent": "leafia:block/fluid_duct_valve_mdl_rs_body"
+    }
+  },
+  "item_render_order": [
+    "pipe",
+    "body"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:nugget_schraranium"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "leafia:nugget_schraranium"
+    }
+  },
+  "result": {
+    "id": "hbm:ingot_schraranium",
+    "count": 1
+  }
+}

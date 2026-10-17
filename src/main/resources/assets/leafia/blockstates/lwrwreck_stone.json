@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/lwrwreck_stone"
+    },
+    "facing=east": {
+      "model": "leafia:block/lwrwreck_stone"
+    },
+    "facing=north": {
+      "model": "leafia:block/lwrwreck_stone"
+    },
+    "facing=south": {
+      "model": "leafia:block/lwrwreck_stone"
+    },
+    "facing=up": {
+      "model": "leafia:block/lwrwreck_stone"
+    },
+    "facing=west": {
+      "model": "leafia:block/lwrwreck_stone"
+    }
+  }
+}

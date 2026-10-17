@@ -1,0 +1,468 @@
+{
+  "models": {
+    "elevator_buffer_base": {
+      "obj": "models/blocks/elevator_buffer.obj",
+      "visible": "Base"
+    },
+    "elevator_buffer_move": {
+      "obj": "models/blocks/elevator_buffer.obj",
+      "visible": "Move"
+    },
+    "elevator_buffer_scale": {
+      "obj": "models/blocks/elevator_buffer.obj",
+      "visible": "Scale"
+    },
+    "elevator_landing_doorl_s6": {
+      "obj": "models/blocks/elevator_landing.obj",
+      "visible": "DoorL"
+    },
+    "elevator_landing_doorl_skylift": {
+      "obj": "models/blocks/elevator_landing.obj",
+      "visible": "DoorL"
+    },
+    "elevator_landing_doorr_s6": {
+      "obj": "models/blocks/elevator_landing.obj",
+      "visible": "DoorR"
+    },
+    "elevator_landing_doorr_skylift": {
+      "obj": "models/blocks/elevator_landing.obj",
+      "visible": "DoorR"
+    },
+    "elevator_landing_frames_s6": {
+      "obj": "models/blocks/elevator_landing.obj",
+      "visible": "Frames"
+    },
+    "elevator_landing_frames_skylift": {
+      "obj": "models/blocks/elevator_landing.obj",
+      "visible": "Frames"
+    },
+    "elevator_landing_wall": {
+      "obj": "models/blocks/elevator_landing.obj",
+      "visible": "Wall"
+    },
+    "elevator_pulley_floor": {
+      "obj": "models/blocks/elevator_pulley.obj",
+      "visible": "Floor"
+    },
+    "elevator_pulley_inlet": {
+      "obj": "models/blocks/elevator_pulley.obj",
+      "visible": "Inlet"
+    },
+    "elevator_pulley_motor": {
+      "obj": "models/blocks/elevator_pulley.obj",
+      "visible": "Motor"
+    },
+    "elevator_pulley_pulley": {
+      "obj": "models/blocks/elevator_pulley.obj",
+      "visible": "Pulley"
+    },
+    "elevator_pulley_rope": {
+      "obj": "models/blocks/elevator_pulley.obj",
+      "visible": "Rope"
+    },
+    "elevator_pulley_support": {
+      "obj": "models/blocks/elevator_pulley.obj",
+      "visible": "Support"
+    },
+    "elevator_s6_arrowdn_off": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "ArrowDn"
+    },
+    "elevator_s6_arrowdn_on": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "ArrowDn"
+    },
+    "elevator_s6_arrowup_off": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "ArrowUp"
+    },
+    "elevator_s6_arrowup_on": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "ArrowUp"
+    },
+    "elevator_s6_ceiling": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Ceiling"
+    },
+    "elevator_s6_ceilingside": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "CeilingSide"
+    },
+    "elevator_s6_digit0_0": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_1": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_2": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_3": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_4": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_5": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_6": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_7": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_8": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_9": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_b": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_dash": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_e": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_l": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_off": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit0_r": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit0"
+    },
+    "elevator_s6_digit10_0": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_1": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_2": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_3": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_4": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_5": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_6": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_7": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_8": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_9": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_b": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_dash": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_e": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_l": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_off": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_digit10_r": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Digit10"
+    },
+    "elevator_s6_doorfloor": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "DoorFloor"
+    },
+    "elevator_s6_doorframe": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "DoorFrame"
+    },
+    "elevator_s6_doorl": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "DoorL"
+    },
+    "elevator_s6_doorr": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "DoorR"
+    },
+    "elevator_s6_floor": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Floor"
+    },
+    "elevator_s6_floorside": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "FloorSide"
+    },
+    "elevator_s6_frames": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Frames"
+    },
+    "elevator_s6_logo": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "Logo"
+    },
+    "elevator_s6_wallframes": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "WallFrames"
+    },
+    "elevator_s6_wallin_wall": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "WallIn"
+    },
+    "elevator_s6_wallin_window": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "WallIn"
+    },
+    "elevator_s6_wallout_frame": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "WallOut"
+    },
+    "elevator_s6_wallout_wall": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "WallOut"
+    },
+    "elevator_s6_wallout_window": {
+      "obj": "models/blocks/elevator_s6.obj",
+      "visible": "WallOut"
+    },
+    "elevator_skylift_arrowdn_off": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "ArrowDn"
+    },
+    "elevator_skylift_arrowdn_on": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "ArrowDn"
+    },
+    "elevator_skylift_arrowup_off": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "ArrowUp"
+    },
+    "elevator_skylift_arrowup_on": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "ArrowUp"
+    },
+    "elevator_skylift_digit0_0": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_1": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_2": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_3": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_4": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_5": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_6": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_7": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_8": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_9": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_b": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_dash": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_e": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_l": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_off": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit0_r": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit0"
+    },
+    "elevator_skylift_digit10_0": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_1": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_2": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_3": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_4": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_5": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_6": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_7": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_8": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_9": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_b": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_dash": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_e": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_l": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_off": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_digit10_r": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Digit10"
+    },
+    "elevator_skylift_doorfloor": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "DoorFloor"
+    },
+    "elevator_skylift_doorframe": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "DoorFrame"
+    },
+    "elevator_skylift_doorl": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "DoorL"
+    },
+    "elevator_skylift_doorr": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "DoorR"
+    },
+    "elevator_skylift_logo": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Logo"
+    },
+    "elevator_skylift_name": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Name"
+    },
+    "elevator_skylift_skylift": {
+      "obj": "models/blocks/elevator_skylift.obj",
+      "visible": "Skylift"
+    },
+    "elevator_weight_weight": {
+      "obj": "models/blocks/elevator_weight.obj",
+      "visible": "Weight"
+    }
+  },
+  "undrawn": {
+    "models/blocks/elevator_s6.obj": [
+      "Plane"
+    ],
+    "models/blocks/elevator_skylift.obj": [
+      "Ceiling",
+      "CeilingSide",
+      "Floor",
+      "FloorSide",
+      "Frames",
+      "Plane",
+      "WallFrames",
+      "WallIn",
+      "WallOut"
+    ]
+  }
+}

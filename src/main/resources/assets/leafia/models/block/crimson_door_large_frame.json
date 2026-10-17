@@ -1,0 +1,15 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/crimdoorlarge.obj",
+  "textures": {
+    "0": "leafia:block/crimdoor",
+    "particle": "leafia:block/crimdoor"
+  },
+  "visibility": {
+    "DoorLeft": false,
+    "DoorRight": false,
+    "Light": false
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0435,
+        0.0435,
+        0.0435
+      ],
+      "translation": [
+        -2.554,
+        6.472,
+        -0.498
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0435,
+        0.0435,
+        0.0435
+      ],
+      "translation": [
+        -2.554,
+        6.472,
+        -0.498
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        0.0886,
+        0.0886,
+        0.0886
+      ],
+      "translation": [
+        0.709,
+        -0.709,
+        -1.417
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.0985,
+        0.0985,
+        0.0985
+      ],
+      "translation": [
+        0.788,
+        1.425,
+        0.788
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.1352,
+        0.1352,
+        0.1352
+      ],
+      "translation": [
+        -1.53,
+        -1.874,
+        -1.082
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0638,
+        0.0638,
+        0.0638
+      ],
+      "translation": [
+        0.721,
+        2.236,
+        -0.985
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0638,
+        0.0638,
+        0.0638
+      ],
+      "translation": [
+        0.721,
+        2.236,
+        -0.985
+      ]
+    }
+  },
+  "parent": "leafia:block/coolant_heatex_whole"
+}

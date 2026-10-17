@@ -1,0 +1,19 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_slider_vertical.obj",
+  "textures": {
+    "0": "leafia:block/ccp/white",
+    "particle": "leafia:block/ccp/white"
+  },
+  "visibility": {
+    "base": false,
+    "light0": false,
+    "light1": false,
+    "light2": false,
+    "light3": false,
+    "light5": false,
+    "slider": false
+  }
+}

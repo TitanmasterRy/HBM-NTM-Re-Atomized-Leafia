@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:cells_fissite"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "---",
+    "# #",
+    "---"
+  ],
+  "key": {
+    "-": {
+      "tag": "c:plates/fissite"
+    },
+    "#": {
+      "tag": "c:ingots/fissite"
+    }
+  },
+  "result": {
+    "id": "leafia:cells_fissite",
+    "count": 1
+  }
+}

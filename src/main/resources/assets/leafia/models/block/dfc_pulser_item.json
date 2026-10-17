@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/dfc_pulser.obj",
+  "textures": {
+    "0": "leafia:block/dfc_pulser",
+    "particle": "leafia:block/dfc_pulser"
+  },
+  "visibility": {}
+}

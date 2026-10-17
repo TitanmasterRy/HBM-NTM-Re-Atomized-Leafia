@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:elec_shield"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IAI",
+    "IAI",
+    "IAI"
+  ],
+  "key": {
+    "I": {
+      "tag": "c:ingots/polymer"
+    },
+    "A": {
+      "tag": "c:glass_panes/colorless"
+    }
+  },
+  "result": {
+    "id": "leafia:elec_shield",
+    "count": 1
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "entries": [
+    {
+      "enum": "com/hbm/items/weapon/grenade/ItemGrenadeFilling$EnumGrenadeFilling",
+      "name": "LEAFIA_NULL",
+      "constructor": "(Ljava/util/function/Consumer;II[Lcom/hbm/items/weapon/grenade/ItemGrenadeShell$EnumGrenadeShell;)V",
+      "parameters": {
+        "class": "com/leafia/overwrite_contents/LeafiaGrenadeFillings",
+        "field": "LEAFIA_NULL_PROXY"
+      }
+    },
+    {
+      "enum": "com/hbm/items/weapon/grenade/ItemGrenadeFilling$EnumGrenadeFilling",
+      "name": "LEAFIA_SOL",
+      "constructor": "(Ljava/util/function/Consumer;II[Lcom/hbm/items/weapon/grenade/ItemGrenadeShell$EnumGrenadeShell;)V",
+      "parameters": {
+        "class": "com/leafia/overwrite_contents/LeafiaGrenadeFillings",
+        "field": "LEAFIA_SOL_PROXY"
+      }
+    },
+    {
+      "enum": "com/hbm/blocks/generic/BlockBobble$BobbleType",
+      "name": "LEAFIA_LEAFIA",
+      "constructor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLcom/hbm/items/special/ItemPlasticScrap$ScrapType;)V",
+      "parameters": {
+        "class": "com/leafia/overwrite_contents/LeafiaBobbleheads",
+        "field": "LEAFIA_PROXY"
+      }
+    }
+  ]
+}

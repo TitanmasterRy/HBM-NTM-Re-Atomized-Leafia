@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "leafia:block/waste_terracotta_0"
+    },
+    "meta=1": {
+      "model": "leafia:block/waste_terracotta_1"
+    },
+    "meta=2": {
+      "model": "leafia:block/waste_terracotta_2"
+    },
+    "meta=3": {
+      "model": "leafia:block/waste_terracotta_3"
+    },
+    "meta=4": {
+      "model": "leafia:block/waste_terracotta_4"
+    },
+    "meta=5": {
+      "model": "leafia:block/waste_terracotta_5"
+    },
+    "meta=6": {
+      "model": "leafia:block/waste_terracotta_6"
+    }
+  }
+}

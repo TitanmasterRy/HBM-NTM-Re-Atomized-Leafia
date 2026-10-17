@@ -1,0 +1,135 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.144'
+    id 'idea'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = addon_version
+group = addon_group_id
+
+base {
+    archivesName = addon_id
+}
+
+// Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+// The base mod, HBM's Nuclear Tech Re-Atomized, as a built jar. The addon compiles against it and
+// every run loads it as a mod beside the addon; it is never bundled into the addon's own jar.
+def hbmJar = files("libs/hbm-${hbm_version}.jar")
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        // Every run loads BOTH mods, because the addon is meaningless without the base mod - it
+        // declares hbm as a required dependency.
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', addon_id
+
+            if (project.hasProperty('quickPlay')) {
+                programArguments.addAll '--quickPlaySingleplayer', project.quickPlay
+            }
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', addon_id
+        }
+
+        // Runs the addon's GameTests headless and exits.
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', addon_id
+            // Lets com.leafia.gametest.LeafiaGameTestFixtures register the few blocks that exist
+            // only so a test has something to point at (an SPK provider and receiver, D-3008).
+            // A real game never sets it, so a real game never sees them.
+            systemProperty 'leafia.gametest.fixtures', 'true'
+        }
+    }
+
+    mods {
+        "${addon_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    // JEI (optional integration).
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+        content { includeGroup "mezz.jei" }
+    }
+}
+
+// Sets up a dependency configuration called 'localRuntime': on the run classpaths and never in
+// anything published.
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    // The base mod. One-way, and it must stay that way: the addon requires the base mod, and the
+    // base mod does not know the addon exists (D-1001).
+    compileOnly hbmJar
+    localRuntime hbmJar
+
+    // JEI is optional, exactly as in the base mod: the API is compile-time only, and only
+    // com.leafia.jei.AddonJeiPlugin and AddonJeiCategory name a JEI type (AddonJeiTests pins it), so
+    // the jar loads and passes its GameTests with JEI absent. The full JEI jar is localRuntime.
+    // -Paddon_no_jei leaves it off, which is how "without JEI" is checked.
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    if (!project.hasProperty('addon_no_jei')) {
+        localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    }
+}
+
+// Expand gradle.properties into the mods.toml template, so the version and the dependency ranges
+// are declared in exactly one place.
+var generateAddonModMetadata = tasks.register("generateAddonModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : hbm_mod_id,
+            mod_version            : hbm_version,
+            addon_id               : addon_id,
+            addon_name             : addon_name,
+            addon_license          : addon_license,
+            addon_version          : addon_version,
+            addon_authors          : addon_authors,
+            addon_credits          : addon_credits,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateAddonModMetadata
+neoForge.ideSyncTask generateAddonModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

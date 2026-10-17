@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/concrete__mixed_white_magenta",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "leafia:block/concrete__mixed_white_magenta",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "leafia:block/concrete__mixed_white_magenta"
+    },
+    "facing=south": {
+      "model": "leafia:block/concrete__mixed_white_magenta",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "leafia:block/concrete__mixed_white_magenta",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "leafia:block/concrete__mixed_white_magenta",
+      "y": 270
+    }
+  }
+}

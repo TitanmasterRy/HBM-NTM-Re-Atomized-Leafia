@@ -1,0 +1,10 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_control_panel_front.obj",
+  "textures": {
+    "0": "leafia:block/ccp/panel_front",
+    "particle": "leafia:block/ccp/panel_front"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "variant=blades": {
+      "model": "leafia:block/apr_component_blades"
+    },
+    "variant=coil": {
+      "model": "leafia:block/apr_component_coil"
+    },
+    "variant=hull": {
+      "model": "leafia:block/apr_component_hull"
+    },
+    "variant=hull_assembled": {
+      "model": "leafia:block/apr_component_hull_assembled"
+    },
+    "variant=mechanical": {
+      "model": "leafia:block/apr_component_mechanical"
+    },
+    "variant=plating": {
+      "model": "leafia:block/apr_component_plating"
+    },
+    "variant=plating_dark": {
+      "model": "leafia:block/apr_component_plating_dark"
+    },
+    "variant=support": {
+      "model": "leafia:block/apr_component_support"
+    }
+  }
+}

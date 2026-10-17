@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "leafia:block/pwr/pwr_fuel_top",
+    "side": "leafia:block/pwr/pwr_fuel_side"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0997,
+        0.0997,
+        0.0997
+      ],
+      "translation": [
+        -2.586,
+        6.196,
+        0.004
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0997,
+        0.0997,
+        0.0997
+      ],
+      "translation": [
+        -2.586,
+        6.196,
+        0.004
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.1905,
+        0.1905,
+        0.1905
+      ],
+      "translation": [
+        0.287,
+        -0.762,
+        1.524
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.0983,
+        0.0983,
+        0.0983
+      ],
+      "translation": [
+        0.148,
+        2.607,
+        0.787
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.2849,
+        0.2849,
+        0.2849
+      ],
+      "translation": [
+        -1.915,
+        -0.333,
+        -1.703
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.1331,
+        0.1331,
+        0.1331
+      ],
+      "translation": [
+        0.895,
+        1.772,
+        -0.356
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.1331,
+        0.1331,
+        0.1331
+      ],
+      "translation": [
+        0.895,
+        1.772,
+        -0.356
+      ]
+    }
+  },
+  "parent": "leafia:block/nuke_chud"
+}

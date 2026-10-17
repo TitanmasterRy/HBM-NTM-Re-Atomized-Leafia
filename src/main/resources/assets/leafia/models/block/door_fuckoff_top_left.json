@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "leafia:block/door_fuckoff_bottom",
+    "top": "leafia:block/door_fuckoff_top"
+  }
+}

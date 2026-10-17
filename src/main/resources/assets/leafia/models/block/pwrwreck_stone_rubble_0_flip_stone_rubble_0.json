@@ -1,0 +1,13 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/pwrwreck_stone_rubble_0_flip.obj",
+  "textures": {
+    "0": "hbm:block/brick_concrete",
+    "particle": "hbm:block/brick_concrete"
+  },
+  "visibility": {
+    "stone_rubble_0": true
+  }
+}

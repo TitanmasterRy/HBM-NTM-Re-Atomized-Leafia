@@ -1,0 +1,6 @@
+{
+  "parent": "leafia:block/leafia_radio_torch",
+  "textures": {
+    "torch": "leafia:block/diverter_on"
+  }
+}

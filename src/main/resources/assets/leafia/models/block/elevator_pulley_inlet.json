@@ -1,0 +1,17 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/elevator_pulley.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "leafia:block/elevator_cable",
+    "particle": "leafia:block/elevator_cable"
+  },
+  "visibility": {
+    "Floor": false,
+    "Motor": false,
+    "Pulley": false,
+    "Rope": false,
+    "Support": false
+  }
+}

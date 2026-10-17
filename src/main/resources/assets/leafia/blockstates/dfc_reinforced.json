@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/dfc_reinforced"
+    },
+    "facing=east": {
+      "model": "leafia:block/dfc_reinforced"
+    },
+    "facing=north": {
+      "model": "leafia:block/dfc_reinforced"
+    },
+    "facing=south": {
+      "model": "leafia:block/dfc_reinforced"
+    },
+    "facing=up": {
+      "model": "leafia:block/dfc_reinforced"
+    },
+    "facing=west": {
+      "model": "leafia:block/dfc_reinforced"
+    }
+  }
+}

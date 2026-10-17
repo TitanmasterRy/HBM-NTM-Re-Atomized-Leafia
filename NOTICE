@@ -1,0 +1,79 @@
+Leafia's Cursed Addon — 1.21.1 / NeoForge port
+==============================================
+
+This mod is a from-scratch port of **NTM Cursed (Addon Edition)** to Minecraft 1.21.1 /
+NeoForge. The original is:
+
+    NTM-Cursed-Addon
+    https://github.com/ntmleafia/NTM-Cursed-Addon
+    Copyright (c) ntmleafia and contributors
+
+    Created by ntmleafia, with movblock, who helped kickstart it.
+
+The original targets Minecraft 1.12.2 and NTM Community Edition, and is **dual-licensed
+GPL-3.0 and LGPL-3.0**. This port is taken under the **LGPL-3.0** limb of that dual licence,
+which matches the licence of the mod it extends; see LICENSE.LESSER in the repository root.
+
+Attribution here is an obligation of that licence, not a courtesy. Where a file in this
+mod is adapted from a specific upstream file, its class documentation names the upstream
+path, in the same way the base mod's ported files name theirs.
+
+This port is not affiliated with, and is not endorsed by, the authors of the original addon.
+
+Balance note
+------------
+
+The original reads many of its constants from NTM Community Edition 1.12.2, which is a
+different fork of Hbm's Nuclear Tech Mod from the 1.7.10 sources this port is built against.
+Where the two disagree, this port keeps the 1.7.10 value and records the difference
+(D-1000).
+
+The Custom Control Panel (NTM-CE)
+---------------------------------
+
+The Custom Control Panel under `com.leafia.contents.machines.controlpanel.core` is adapted
+from the control panel of NTM Community Edition (the 1.12.2 fork of Hbm's Nuclear Tech Mod
+that the original addon extends):
+
+    Hbm's Nuclear Tech Mod - Community Edition
+    https://github.com/MisterNorwood/Hbm-s-Nuclear-Tech-CE
+    Copyright (c) HbmMods and the NTM Community Edition contributors
+
+    Source package: com.hbm.inventory.control_panel, with the panel block, block entity,
+    update packet and renderer that exist only for it.
+
+NTM Community Edition is licensed under the GPL-3.0 and the LGPL-3.0; this port is taken
+under the **LGPL-3.0** limb, as the rest of the addon is. Neither the 1.7.10 original nor the NEO
+Edition port has a control panel, so for this subsystem alone NTM-CE is the reference for the
+core and the original addon's source for its extensions (D-3060). Each adapted class names its upstream path in its
+class documentation. Leafia's own panel code (the instruments, nodes and the IC10 interpreter)
+is credited above.
+
+Assets that arrive with the rendering batches (the panel and instrument models and textures)
+are listed here when they are copied. Copied so far:
+
+    assets/hbm/textures/blocks/control_panel0.png  ->  assets/leafia/textures/block/control_panel0.png
+        (the placeholder face of the panel block until its renderer lands; CE batch CCP-PANEL, D-3063)
+
+    CCP-DRAW (D-3065), converted by script:
+    assets/hbm/models/control_panel/*.obj (13)  ->  assets/leafia/models/blocks/ccp_*.obj
+        (the desk's OBJ also shifted to the middle of a block as ccp_item_control_panel_custom.obj)
+    assets/hbm/textures/models/control_panel/<control>.png (the 10 control textures, not the *_gui.png icons)
+                                                ->  assets/leafia/textures/block/ccp/<control>.png
+    assets/hbm/textures/models/misc/control_panel.png                 ->  assets/leafia/textures/block/ccp/panel.png
+    assets/hbm/textures/models/control_panel/control_panel_front.png  ->  assets/leafia/textures/block/ccp/panel_front.png
+        (all from NTM Community Edition; the generator also writes ccp/white.png and one model JSON per OBJ object)
+
+    assets/hbm/textures/gui/control_panel/{gui_base,gui_placement_back,gui_placement_front,
+        placement_grid,gui_resize_grid,resize_grids,gui_linker_add_element}.png
+        ->  assets/leafia/textures/gui/control_panel/  (the editor's backgrounds; CCP-EDITOR, D-3066)
+
+    assets/hbm/textures/gui/control_panel/{grid,node,gui_variable_list_front}.png
+        ->  assets/leafia/textures/gui/control_panel/  (the node canvas' grid, the node sprite sheet and the
+        variable list's background; CCP-NODE-EDITOR, D-3067)
+
+    CCP-IC10 (D-3073), from Leafia's Cursed Addon (NTM-Cursed-Addon), converted by script:
+    src/main/java/com/leafia/contents/machines/controlpanel/ic10/IC10.java  ->  ic10/IC10.java, ic10/IC10Examples.java
+        (the instruction table and the example programs, generated from Leafia's source; the interpreter and the editor pages are adapted)
+    assets/leafia/textures/gui/control_panel/{gui_ic10_editor,gui_ic10_funcs,gui_ic10_funcs_extra}.png
+        ->  assets/leafia/textures/gui/control_panel/  (the IC10 editor and the instruction reference)

@@ -1,0 +1,6 @@
+# The one material every addon OBJ without its own library uses. See
+# D-1062: texture slot #0, which every addon model
+# JSON sets.
+
+newmtl Default
+map_Kd #0

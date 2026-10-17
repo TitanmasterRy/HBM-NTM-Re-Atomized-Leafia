@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:titanium_shield"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IAI",
+    "III",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "c:ingots/titanium"
+    },
+    "A": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "result": {
+    "id": "leafia:titanium_shield",
+    "count": 1
+  }
+}

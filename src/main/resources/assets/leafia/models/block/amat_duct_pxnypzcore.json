@@ -1,0 +1,17 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/pipe_amat.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/pipe_amat",
+    "overlay": "leafia:block/pipe_amat_overlay",
+    "particle": "leafia:block/pipe_amat"
+  },
+  "visibility": {
+    "nX": false,
+    "nZ": false,
+    "pY": false
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "leafia:feature",
+      "feature": "rods"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "pwrBlocks"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "addonFluids"
+    }
+  ],
+  "parent": "leafia:openpwr",
+  "display": {
+    "icon": {
+      "id": "hbm:debris_metal"
+    },
+    "title": {
+      "translate": "advancement.leafia.nukepwr"
+    },
+    "description": {
+      "translate": "advancement.leafia.nukepwr.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "impossible"
+    ]
+  ]
+}

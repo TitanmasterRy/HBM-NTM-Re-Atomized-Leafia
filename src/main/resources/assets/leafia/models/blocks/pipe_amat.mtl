@@ -1,0 +1,13 @@
+# Generated - do not edit by hand.
+#
+# Upstream has no material library: AmatDuctBakedModel picks both sprites in Java and stamps
+# tint index 1 on the overlay quads itself. These two materials are that code, expressed where
+# 1.21.1 wants it. `neoforge_TintIndex 1` is what makes the colour handler apply to the overlay
+# and not to the base.
+
+newmtl base
+map_Kd #0
+
+newmtl overlay
+map_Kd #overlay
+neoforge_TintIndex 1

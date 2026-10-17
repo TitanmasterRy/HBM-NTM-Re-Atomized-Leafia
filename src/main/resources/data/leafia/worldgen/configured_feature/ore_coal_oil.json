@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ore_coal_oil"
+    }
+  ],
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.0,
+    "size": 48,
+    "targets": [
+      {
+        "state": {
+          "Name": "leafia:ore_coal_oil"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:base_stone_overworld"
+        }
+      }
+    ]
+  }
+}

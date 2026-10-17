@@ -1,0 +1,14 @@
+{
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/valve.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "textures": {
+    "0": "leafia:block/valve",
+    "particle": "leafia:block/valve"
+  },
+  "visibility": {
+    "pipe": false,
+    "valve": false
+  }
+}

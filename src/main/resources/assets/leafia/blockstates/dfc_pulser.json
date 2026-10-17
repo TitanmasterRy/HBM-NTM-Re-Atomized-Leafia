@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/dfc_pulser"
+    },
+    "facing=east": {
+      "model": "leafia:block/dfc_pulser"
+    },
+    "facing=north": {
+      "model": "leafia:block/dfc_pulser"
+    },
+    "facing=south": {
+      "model": "leafia:block/dfc_pulser"
+    },
+    "facing=up": {
+      "model": "leafia:block/dfc_pulser"
+    },
+    "facing=west": {
+      "model": "leafia:block/dfc_pulser"
+    }
+  }
+}

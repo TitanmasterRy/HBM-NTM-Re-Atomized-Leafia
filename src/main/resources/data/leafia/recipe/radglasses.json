@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:radglasses"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "radGlasses"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "I I",
+    "GPG",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "hbm:circuit_advanced"
+    },
+    "I": {
+      "tag": "c:ingots/any_rubber"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "P": {
+      "tag": "c:ingots/any_plastic"
+    }
+  },
+  "result": {
+    "id": "leafia:radglasses",
+    "count": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/sellacity_rack.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/sellacity_rack",
+    "particle": "leafia:block/sellacity_rack"
+  },
+  "visibility": {
+    "palletLower": false,
+    "palletUpper": false
+  }
+}

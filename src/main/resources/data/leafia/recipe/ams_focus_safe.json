@@ -1,0 +1,45 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_limiter"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_safe"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:supercooler"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "dfcOverhaul"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PFP",
+    "GEG",
+    "PFP"
+  ],
+  "key": {
+    "P": {
+      "item": "hbm:rune_isa"
+    },
+    "G": {
+      "item": "leafia:ams_focus_limiter"
+    },
+    "E": {
+      "item": "hbm:upgrade_effect_3"
+    },
+    "F": {
+      "item": "leafia:supercooler"
+    }
+  },
+  "result": {
+    "id": "leafia:ams_focus_safe",
+    "count": 1
+  }
+}

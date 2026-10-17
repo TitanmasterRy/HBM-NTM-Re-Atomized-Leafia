@@ -1,0 +1,7 @@
+{
+  "gui_light": "front",
+  "parent": "minecraft:builtin/entity",
+  "textures": {
+    "particle": "hbm:item/dust"
+  }
+}

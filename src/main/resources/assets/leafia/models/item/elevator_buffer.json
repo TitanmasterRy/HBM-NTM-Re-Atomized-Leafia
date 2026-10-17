@@ -1,0 +1,140 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "base": {
+      "parent": "leafia:block/elevator_buffer_base"
+    },
+    "move": {
+      "parent": "leafia:block/elevator_buffer_move"
+    },
+    "scale": {
+      "parent": "leafia:block/elevator_buffer_scale"
+    }
+  },
+  "item_render_order": [
+    "base",
+    "move",
+    "scale"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -1.373,
+        -6.034,
+        -3.436
+      ],
+      "scale": [
+        0.1177,
+        0.1177,
+        0.1177
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0.325,
+        0.746,
+        0.306
+      ],
+      "scale": [
+        0.0382,
+        0.0382,
+        0.0382
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0.629,
+        -4.368,
+        0.592
+      ],
+      "scale": [
+        0.074,
+        0.074,
+        0.074
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        1.375,
+        0.74,
+        -6.728
+      ],
+      "scale": [
+        0.1179,
+        0.1179,
+        0.1179
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        1.375,
+        0.74,
+        -6.728
+      ],
+      "scale": [
+        0.1179,
+        0.1179,
+        0.1179
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -2.318,
+        4.868,
+        -3.105
+      ],
+      "scale": [
+        0.0636,
+        0.0636,
+        0.0636
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -2.318,
+        4.868,
+        -3.105
+      ],
+      "scale": [
+        0.0636,
+        0.0636,
+        0.0636
+      ]
+    }
+  }
+}

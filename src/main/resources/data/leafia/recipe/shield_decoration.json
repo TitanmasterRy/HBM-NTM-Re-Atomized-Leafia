@@ -1,0 +1,10 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:steel_shield"
+    }
+  ],
+  "type": "leafia:shield_decoration",
+  "category": "misc"
+}

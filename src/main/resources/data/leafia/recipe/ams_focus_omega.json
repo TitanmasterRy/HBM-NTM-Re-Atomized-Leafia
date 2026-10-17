@@ -1,0 +1,48 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_booster"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_limiter"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ams_focus_omega"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "dfcOverhaul"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PFP",
+    "REG",
+    "PFP"
+  ],
+  "key": {
+    "P": {
+      "item": "hbm:dfc_stabilizer"
+    },
+    "R": {
+      "item": "leafia:ams_focus_limiter"
+    },
+    "G": {
+      "item": "leafia:ams_focus_booster"
+    },
+    "E": {
+      "item": "hbm:laser_crystal_digamma"
+    },
+    "F": {
+      "item": "hbm:block_euphemium_cluster"
+    }
+  },
+  "result": {
+    "id": "leafia:ams_focus_omega",
+    "count": 1
+  }
+}

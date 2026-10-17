@@ -1,0 +1,11 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/chem_destroyed.obj",
+  "textures": {
+    "0": "hbm:models/machines/chemical_plant",
+    "particle": "hbm:models/machines/chemical_plant"
+  },
+  "visibility": {}
+}

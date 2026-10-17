@@ -1,0 +1,13 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ccp_text_indicator.obj",
+  "textures": {
+    "0": "leafia:block/ccp/textindicator_light",
+    "particle": "leafia:block/ccp/textindicator_light"
+  },
+  "visibility": {
+    "Plane": false
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:cells_mysticite"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:cells_mysticite_filled"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:cells_mysticite"
+    },
+    {
+      "item": "hbm:battery_sc_au198"
+    },
+    {
+      "tag": "c:ingots/euphemium"
+    },
+    {
+      "tag": "c:ingots/euphemium"
+    },
+    {
+      "tag": "c:ingots/euphemium"
+    },
+    {
+      "tag": "c:ingots/euphemium"
+    }
+  ],
+  "result": {
+    "id": "leafia:cells_mysticite_filled",
+    "count": 1
+  }
+}

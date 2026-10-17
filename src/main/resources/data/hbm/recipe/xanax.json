@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "leafia:feature",
+        "feature": "recipeOverhaul"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dusts/coal"
+    },
+    {
+      "tag": "c:dusts/saltpeter"
+    },
+    {
+      "tag": "c:dusts/bromine"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:xanax"
+  }
+}

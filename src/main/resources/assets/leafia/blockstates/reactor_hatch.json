@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "leafia:block/reactor_hatch",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "leafia:block/reactor_hatch"
+    },
+    "facing=south": {
+      "model": "leafia:block/reactor_hatch",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "leafia:block/reactor_hatch",
+      "y": 270
+    }
+  }
+}

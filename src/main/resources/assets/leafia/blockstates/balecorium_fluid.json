@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "leafia:block/balecorium_fluid_1"
+    },
+    "level=1": {
+      "model": "leafia:block/balecorium_fluid_2"
+    },
+    "level=10": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=11": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=12": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=13": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=14": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=15": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=2": {
+      "model": "leafia:block/balecorium_fluid_3"
+    },
+    "level=3": {
+      "model": "leafia:block/balecorium_fluid_4"
+    },
+    "level=4": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=5": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=6": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=7": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=8": {
+      "model": "leafia:block/balecorium_fluid_5"
+    },
+    "level=9": {
+      "model": "leafia:block/balecorium_fluid_5"
+    }
+  }
+}

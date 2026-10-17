@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:ff_duct_colored"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:ff_duct_colored"
+    }
+  ],
+  "result": {
+    "id": "hbm:fluid_duct_neo_colored",
+    "count": 1
+  }
+}

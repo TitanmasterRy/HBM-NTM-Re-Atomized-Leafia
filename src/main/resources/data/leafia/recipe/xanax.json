@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:powder_digammitite_tiny"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "recipeOverhaul"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dusts/coal"
+    },
+    {
+      "tag": "c:dusts/saltpeter"
+    },
+    {
+      "tag": "c:dusts/bromine"
+    },
+    {
+      "item": "leafia:powder_digammitite_tiny"
+    }
+  ],
+  "result": {
+    "id": "hbm:xanax",
+    "count": 1
+  }
+}

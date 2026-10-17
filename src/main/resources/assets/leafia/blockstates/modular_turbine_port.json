@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/modular_turbine_port",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "leafia:block/modular_turbine_port",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "leafia:block/modular_turbine_port",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "leafia:block/modular_turbine_port",
+      "x": 270
+    },
+    "facing=up": {
+      "model": "leafia:block/modular_turbine_port"
+    },
+    "facing=west": {
+      "model": "leafia:block/modular_turbine_port",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

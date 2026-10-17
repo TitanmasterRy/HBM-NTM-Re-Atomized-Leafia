@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#still"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#flowing"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#flowing"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#flowing"
+        },
+        "up": {
+          "texture": "#still"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#flowing"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        3,
+        16
+      ]
+    }
+  ],
+  "textures": {
+    "flowing": "leafia:block/forgefluid/corium_bale_flow",
+    "particle": "leafia:block/forgefluid/corium_bale_still",
+    "still": "leafia:block/forgefluid/corium_bale_still"
+  }
+}

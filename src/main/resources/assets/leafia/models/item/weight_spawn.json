@@ -1,0 +1,132 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "weight": {
+      "parent": "leafia:block/elevator_weight_weight"
+    }
+  },
+  "item_render_order": [
+    "weight"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -3.413,
+        -4.31,
+        -2.489
+      ],
+      "scale": [
+        0.3016,
+        0.3016,
+        0.3016
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0.836,
+        1.276,
+        0.836
+      ],
+      "scale": [
+        0.1045,
+        0.1045,
+        0.1045
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "translation": [
+        1.62,
+        -3.34,
+        -1.62
+      ],
+      "scale": [
+        0.2024,
+        0.2024,
+        0.2024
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.908,
+        1.402,
+        -4.097
+      ],
+      "scale": [
+        0.257,
+        0.257,
+        0.257
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.908,
+        1.402,
+        -4.097
+      ],
+      "scale": [
+        0.257,
+        0.257,
+        0.257
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.685,
+        5.411,
+        -1.526
+      ],
+      "scale": [
+        0.1282,
+        0.1282,
+        0.1282
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.685,
+        5.411,
+        -1.526
+      ],
+      "scale": [
+        0.1282,
+        0.1282,
+        0.1282
+      ]
+    }
+  }
+}

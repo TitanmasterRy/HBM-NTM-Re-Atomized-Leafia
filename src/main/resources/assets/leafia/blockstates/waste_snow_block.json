@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "leafia:block/waste_snow_block_0"
+    },
+    "meta=1": {
+      "model": "leafia:block/waste_snow_block_1"
+    },
+    "meta=2": {
+      "model": "leafia:block/waste_snow_block_2"
+    },
+    "meta=3": {
+      "model": "leafia:block/waste_snow_block_3"
+    },
+    "meta=4": {
+      "model": "leafia:block/waste_snow_block_4"
+    },
+    "meta=5": {
+      "model": "leafia:block/waste_snow_block_5"
+    },
+    "meta=6": {
+      "model": "leafia:block/waste_snow_block_6"
+    }
+  }
+}

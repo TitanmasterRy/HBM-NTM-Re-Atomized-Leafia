@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:part_receiver_light_mysticite",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "parent": "leafia:block/fluid_duct_valve_mdl_item",
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -8.877,
+        5.536,
+        4.217
+      ],
+      "scale": [
+        0.8628,
+        0.8628,
+        0.8628
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        2.56,
+        5.56,
+        2.096
+      ],
+      "scale": [
+        0.32,
+        0.32,
+        0.32
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        4.96,
+        -4.061,
+        4.96
+      ],
+      "scale": [
+        0.62,
+        0.62,
+        0.62
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        4.262,
+        3.768,
+        3.091
+      ],
+      "scale": [
+        0.4142,
+        0.4142,
+        0.4142
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        4.262,
+        3.768,
+        3.091
+      ],
+      "scale": [
+        0.4142,
+        0.4142,
+        0.4142
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        0.062,
+        7.326,
+        2.711
+      ],
+      "scale": [
+        0.3139,
+        0.3139,
+        0.3139
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        0.062,
+        7.326,
+        2.711
+      ],
+      "scale": [
+        0.3139,
+        0.3139,
+        0.3139
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+# Generated - do not edit by hand.
+#
+# Upstream's FFDuctUtilityRender binds a texture and sets a colour before each object; these
+# materials are that code where 1.21.1 wants it (D-3019).
+
+newmtl pipe
+map_Kd #pipe
+neoforge_TintIndex 1
+
+newmtl ntmf
+map_Kd #ntmf
+neoforge_TintIndex 1
+
+newmtl box
+map_Kd #box
+neoforge_TintIndex 2
+
+newmtl arrow
+map_Kd #arrow

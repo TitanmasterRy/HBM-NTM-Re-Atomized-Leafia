@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:ingot_chydalium",
+      "required": false
+    }
+  ]
+}

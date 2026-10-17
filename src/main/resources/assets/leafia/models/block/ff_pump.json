@@ -1,0 +1,20 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/ff_pump.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "arrow": "leafia:block/ff_duct/pipe_converter_arrow",
+    "box": "leafia:block/ff_duct/pipe_converter",
+    "particle": "leafia:block/ff_duct/pipe_silver",
+    "pipe": "leafia:block/ff_duct/pipe_silver"
+  },
+  "transform": {
+    "translation": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  }
+}

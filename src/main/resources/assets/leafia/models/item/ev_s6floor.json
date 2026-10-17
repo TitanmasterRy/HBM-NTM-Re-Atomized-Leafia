@@ -1,0 +1,136 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "floorside": {
+      "parent": "leafia:block/elevator_s6_floorside"
+    },
+    "floor": {
+      "parent": "leafia:block/elevator_s6_floor"
+    }
+  },
+  "item_render_order": [
+    "floorside",
+    "floor"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -4.181,
+        3.041,
+        1.756
+      ],
+      "scale": [
+        0.3696,
+        0.3696,
+        0.3696
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        1.365,
+        4.621,
+        1.365
+      ],
+      "scale": [
+        0.1707,
+        0.1707,
+        0.1707
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        2.645,
+        -2.645,
+        3.141
+      ],
+      "scale": [
+        0.3307,
+        0.3307,
+        0.3307
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.133,
+        2.964,
+        1.73
+      ],
+      "scale": [
+        0.1886,
+        0.1886,
+        0.1886
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.133,
+        2.964,
+        1.73
+      ],
+      "scale": [
+        0.1886,
+        0.1886,
+        0.1886
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.464,
+        7.091,
+        1.591
+      ],
+      "scale": [
+        0.1498,
+        0.1498,
+        0.1498
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.464,
+        7.091,
+        1.591
+      ],
+      "scale": [
+        0.1498,
+        0.1498,
+        0.1498
+      ]
+    }
+  }
+}

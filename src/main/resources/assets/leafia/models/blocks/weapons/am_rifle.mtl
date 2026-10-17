@@ -1,0 +1,7 @@
+# The anti-mass rifle's two textures (D-3028): its own skin, and the laser rifle's.
+
+newmtl Rifle
+map_Kd #rifle
+
+newmtl Las
+map_Kd #las

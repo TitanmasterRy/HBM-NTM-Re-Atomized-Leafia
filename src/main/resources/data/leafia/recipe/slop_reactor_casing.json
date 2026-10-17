@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:slop_reactor_casing"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "#I#",
+    "ICI",
+    "#I#"
+  ],
+  "key": {
+    "#": {
+      "item": "hbm:deco_steel"
+    },
+    "I": {
+      "tag": "c:ingots/steel"
+    },
+    "C": {
+      "item": "hbm:circuit_analog"
+    }
+  },
+  "result": {
+    "id": "leafia:slop_reactor_casing",
+    "count": 1
+  }
+}

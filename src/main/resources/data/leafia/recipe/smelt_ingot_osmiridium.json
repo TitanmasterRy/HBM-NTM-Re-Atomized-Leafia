@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "hbm:ingot_osmiridium"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:powder_osmiridium"
+    }
+  ],
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "leafia:powder_osmiridium"
+  },
+  "result": {
+    "id": "hbm:ingot_osmiridium"
+  },
+  "experience": 5.0,
+  "cookingtime": 200
+}

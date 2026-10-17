@@ -1,0 +1,469 @@
+{
+  "children": {
+    "core": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "visibility": {
+        "Core": true,
+        "Funnel": false
+      }
+    },
+    "funnel0": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 45
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel1": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 75
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel10": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 345
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel11": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 375
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel2": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 105
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel3": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 135
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel4": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 165
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel5": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 195
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel6": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 225
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel7": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 255
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel8": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 285
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    },
+    "funnel9": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "leafia:models/blocks/apr_core.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "0": "leafia:block/apr/apr_core",
+        "particle": "leafia:block/apr/apr_core"
+      },
+      "transform": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          {
+            "y": 315
+          }
+        ]
+      },
+      "visibility": {
+        "Core": false,
+        "Funnel": true
+      }
+    }
+  },
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0539,
+        0.0539,
+        0.0539
+      ],
+      "translation": [
+        -2.447,
+        6.615,
+        -0.151
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "scale": [
+        0.0539,
+        0.0539,
+        0.0539
+      ],
+      "translation": [
+        -2.447,
+        6.615,
+        -0.151
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        0.124,
+        0.124,
+        0.124
+      ],
+      "translation": [
+        0.992,
+        -0.992,
+        -0.744
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.064,
+        0.064,
+        0.064
+      ],
+      "translation": [
+        0.512,
+        2.616,
+        0.512
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "scale": [
+        0.1386,
+        0.1386,
+        0.1386
+      ],
+      "translation": [
+        -1.568,
+        -0.72,
+        -0.416
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0675,
+        0.0675,
+        0.0675
+      ],
+      "translation": [
+        0.763,
+        2.395,
+        -0.391
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "scale": [
+        0.0675,
+        0.0675,
+        0.0675
+      ],
+      "translation": [
+        0.763,
+        2.395,
+        -0.391
+      ]
+    }
+  },
+  "loader": "neoforge:composite",
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "leafia:block/apr/apr_core"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:billet_nc279"
+    },
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:pellet_rtg_nc279"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "leafia:billet_nc279"
+    },
+    {
+      "item": "leafia:billet_nc279"
+    },
+    {
+      "item": "leafia:billet_nc279"
+    },
+    {
+      "tag": "c:plates/iron"
+    }
+  ],
+  "result": {
+    "id": "leafia:pellet_rtg_nc279",
+    "count": 1
+  }
+}

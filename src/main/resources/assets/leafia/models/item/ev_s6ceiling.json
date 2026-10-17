@@ -1,0 +1,136 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "ceilingside": {
+      "parent": "leafia:block/elevator_s6_ceilingside"
+    },
+    "ceiling": {
+      "parent": "leafia:block/elevator_s6_ceiling"
+    }
+  },
+  "item_render_order": [
+    "ceilingside",
+    "ceiling"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -4.181,
+        -9.442,
+        -5.451
+      ],
+      "scale": [
+        0.3696,
+        0.3696,
+        0.3696
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        1.365,
+        -2.035,
+        1.365
+      ],
+      "scale": [
+        0.1707,
+        0.1707,
+        0.1707
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        2.645,
+        -2.645,
+        -9.755
+      ],
+      "scale": [
+        0.3307,
+        0.3307,
+        0.3307
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.133,
+        1.06,
+        -5.373
+      ],
+      "scale": [
+        0.1886,
+        0.1886,
+        0.1886
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        2.133,
+        1.06,
+        -5.373
+      ],
+      "scale": [
+        0.1886,
+        0.1886,
+        0.1886
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.464,
+        4.17,
+        -3.469
+      ],
+      "scale": [
+        0.1498,
+        0.1498,
+        0.1498
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.464,
+        4.17,
+        -3.469
+      ],
+      "scale": [
+        0.1498,
+        0.1498,
+        0.1498
+      ]
+    }
+  }
+}

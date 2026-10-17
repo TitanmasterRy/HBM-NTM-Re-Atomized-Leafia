@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "leafia:powder_digammitite"
+    },
+    {
+      "type": "leafia:feature",
+      "feature": "recipeOverhaul"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dusts/coal"
+    },
+    {
+      "tag": "c:dusts/euphemium"
+    },
+    {
+      "item": "hbm:canteen_vodka"
+    },
+    {
+      "item": "leafia:powder_digammitite"
+    }
+  ],
+  "result": {
+    "id": "hbm:five_htp",
+    "count": 1
+  }
+}

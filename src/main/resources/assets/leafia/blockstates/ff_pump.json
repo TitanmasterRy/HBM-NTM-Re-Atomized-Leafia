@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/ff_pump",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "leafia:block/ff_pump",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "leafia:block/ff_pump"
+    },
+    "facing=south": {
+      "model": "leafia:block/ff_pump",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "leafia:block/ff_pump",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "leafia:block/ff_pump",
+      "y": 270
+    }
+  }
+}

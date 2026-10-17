@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "leafia:block/apr/apr_outlet",
+    "side": "leafia:block/apr/apr_plating_dark"
+  }
+}

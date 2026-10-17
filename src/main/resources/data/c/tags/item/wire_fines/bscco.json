@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "leafia:wire_fine_bscco",
+      "required": false
+    }
+  ]
+}

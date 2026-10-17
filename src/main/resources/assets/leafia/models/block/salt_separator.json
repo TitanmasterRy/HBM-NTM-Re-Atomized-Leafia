@@ -1,0 +1,12 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/salt_separator.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "0": "leafia:block/salt_separator",
+    "particle": "leafia:block/salt_separator"
+  },
+  "visibility": {}
+}

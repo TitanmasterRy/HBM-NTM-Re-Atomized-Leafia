@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "leafia:block/regex_filter"
+    },
+    "facing=up": {
+      "model": "leafia:block/regex_filter",
+      "x": 180
+    },
+    "facing=west": {
+      "model": "leafia:block/regex_filter",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east": {
+      "model": "leafia:block/regex_filter",
+      "x": 90,
+      "y": 270
+    },
+    "facing=north": {
+      "model": "leafia:block/regex_filter",
+      "x": 270
+    },
+    "facing=south": {
+      "model": "leafia:block/regex_filter",
+      "x": 90
+    }
+  }
+}

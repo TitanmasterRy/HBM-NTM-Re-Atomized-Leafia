@@ -1,0 +1,14 @@
+{
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "leafia:models/blocks/pwrdebris_control_rod.obj",
+  "textures": {
+    "0": "hbm:block/brick_concrete",
+    "particle": "hbm:block/brick_concrete"
+  },
+  "visibility": {
+    "SIDE": false,
+    "TOP": true
+  }
+}

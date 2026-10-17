@@ -1,0 +1,6 @@
+# The older mixing vat's two materials, one per texture slot.
+newmtl Vat
+map_Kd #0
+
+newmtl Fluid
+map_Kd #1

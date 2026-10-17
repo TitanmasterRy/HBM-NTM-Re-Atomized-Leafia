@@ -1,0 +1,144 @@
+{
+  "loader": "neoforge:composite",
+  "children": {
+    "wall": {
+      "parent": "leafia:block/elevator_landing_wall"
+    },
+    "frames_skylift": {
+      "parent": "leafia:block/elevator_landing_frames_skylift"
+    },
+    "doorl_skylift": {
+      "parent": "leafia:block/elevator_landing_doorl_skylift"
+    },
+    "doorr_skylift": {
+      "parent": "leafia:block/elevator_landing_doorr_skylift"
+    }
+  },
+  "item_render_order": [
+    "wall",
+    "frames_skylift",
+    "doorl_skylift",
+    "doorr_skylift"
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        -1.808,
+        -4.214,
+        -1.095
+      ],
+      "scale": [
+        0.2623,
+        0.2623,
+        0.2623
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0.853,
+        1.293,
+        0.187
+      ],
+      "scale": [
+        0.1067,
+        0.1067,
+        0.1067
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        1.653,
+        -3.307,
+        0.362
+      ],
+      "scale": [
+        0.2067,
+        0.2067,
+        0.2067
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        1.159,
+        2.521,
+        -2.79
+      ],
+      "scale": [
+        0.1681,
+        0.1681,
+        0.1681
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        75,
+        45,
+        0
+      ],
+      "translation": [
+        1.159,
+        2.521,
+        -2.79
+      ],
+      "scale": [
+        0.1681,
+        0.1681,
+        0.1681
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.99,
+        6.122,
+        -1.792
+      ],
+      "scale": [
+        0.1244,
+        0.1244,
+        0.1244
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        60,
+        20,
+        0
+      ],
+      "translation": [
+        -1.99,
+        6.122,
+        -1.792
+      ],
+      "scale": [
+        0.1244,
+        0.1244,
+        0.1244
+      ]
+    }
+  }
+}

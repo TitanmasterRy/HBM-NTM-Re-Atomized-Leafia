@@ -1,0 +1,31 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "leafia:feature",
+        "feature": "recipeOverhaul"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:rangefinder"
+    },
+    {
+      "item": "hbm:circuit_advanced"
+    },
+    {
+      "tag": "c:ingots/rubber"
+    },
+    {
+      "tag": "c:wire_denses/gold"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:detonator_laser"
+  }
+}
