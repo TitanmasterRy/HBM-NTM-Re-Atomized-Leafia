@@ -216,8 +216,9 @@ public class LeafiaCoolantHeatexTests {
 		if(!on()) { helper.succeed(); return; }
 		CoolantHeatexTE heatex = core(helper);
 
-		// D-3076: the base table gives COOLANT no boiler efficiency (upstream's too), so the cold side's default mode is given
-		// a virtual boiler trait on the fluid's own first step, as air and water are.
+		// D-3077: the base table gives COOLANT a boiler efficiency of its own since D-2291, and the cold side's default mode boils on the
+		// fluid's own first step either way (the addon's virtual trait only stands in where a table lacks one).
+		helper.assertTrue(Fluids.COOLANT.getTrait(FT_Heatable.class).getEfficiency(HeatingType.BOILER) > 0, "the base table lets a boiler take the default coolant");
 		var step = Fluids.COOLANT.getTrait(FT_Heatable.class).getFirstStep();
 		heatex.ntmfInputB.setFill(10_000);
 		heatex.heatEnergy = 100_000;

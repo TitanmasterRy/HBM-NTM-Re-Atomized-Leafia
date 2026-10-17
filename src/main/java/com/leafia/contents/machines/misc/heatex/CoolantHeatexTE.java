@@ -379,8 +379,8 @@ public class CoolantHeatexTE extends BlockEntityMachineBase implements LeafiaPac
 			return virtualWater;
 		}
 		if(fluid.equals(Fluids.COOLANT)) {
-			// D-3076: the table gives the default coolant a heat-exchanger efficiency and no boiler one (upstream's is the same), so the cold
-			// side's default mode could never boil. It boils on its own first step (300 heat, 1 mB to 1 mB of hot coolant).
+			// D-3076/D-3077: the base table now gives the default coolant a boiler efficiency itself (D-2291), so this only fills in for a
+			// table that lacks one (a pack that rewrote the traits): it boils on its own first step (300 heat, 1 mB to 1 mB of hot coolant).
 			FT_Heatable own = fluid.getTrait(FT_Heatable.class);
 			if(own != null && own.getEfficiency(HeatingType.BOILER) <= 0 && own.getFirstStep() != null) {
 				if(virtualCoolant == null || virtualCoolantOf != own) {

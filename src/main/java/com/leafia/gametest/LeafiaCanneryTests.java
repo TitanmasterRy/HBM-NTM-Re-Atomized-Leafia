@@ -292,9 +292,9 @@ public class LeafiaCanneryTests {
 			helper.assertTrue(script.actors.size() == 4, "and nothing else: " + script.actors.keySet());
 
 			forward(script, 1);
-			// scene 5: forty numbers, two blocks apart along each of the four lines, a power of two each
-			helper.assertTrue(script.actors.size() == 40, "forty numbers: " + script.actors.size());
-			for(int i = 1; i <= 10; i++) {
+			// scene 5: eight numbers (D-3077: only those over the 9x9 floor), two blocks apart along each of the four lines, a power of two each
+			helper.assertTrue(script.actors.size() == 8, "eight numbers: " + script.actors.size());
+			for(int i = 1; i <= 2; i++) {
 				String label = "1/" + (int) Math.pow(2, i);
 				int[][] expected = { { i, 4 + i * 2, 4 }, { i + 11, 4 - i * 2, 4 }, { i + 22, 4, 4 + i * 2 }, { i + 33, 4, 4 - i * 2 } };
 				for(int[] e : expected) {

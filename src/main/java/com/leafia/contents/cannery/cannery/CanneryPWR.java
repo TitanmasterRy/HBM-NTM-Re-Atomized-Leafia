@@ -65,6 +65,7 @@ public class CanneryPWR extends CanneryBase {
 		WorldInAJar world = new WorldInAJar(9, 5, 9);
 		JarScript script = new JarScript(world);
 		int center = 4;
+		final int FLUX_LABELS = center / 2;
 
 		var concrete = ModBlocks.concrete_smooth.get();
 		var port = LeafiaBlocks.lwr_port.get();
@@ -239,16 +240,16 @@ public class CanneryPWR extends CanneryBase {
 			script.addScene(scene);
 		}
 		{
-			// LINEAR FLUX
+			// LINEAR FLUX: a number every two blocks, as far as the 9x9 floor reaches (D-3077; the labels used to run on to 20 blocks, in the air)
 			JarScene scene = new JarScene(script);
-			for(int i = 1; i <= 10; i++) {
+			for(int i = 1; i <= FLUX_LABELS; i++) {
 				scene.add(new ActionCreateActor(i, new ActorVisText(script, center + i * 2, 1, center, 0xFFFFFF, 1.5f, false, "1/" + (int) Math.pow(2, i))));
 				scene.add(new ActionCreateActor(i + 11, new ActorVisText(script, center - i * 2, 1, center, 0xFFFFFF, 1.5f, false, "1/" + (int) Math.pow(2, i))));
 				scene.add(new ActionCreateActor(i + 22, new ActorVisText(script, center, 1, center + i * 2, 0xFFFFFF, 1.5f, false, "1/" + (int) Math.pow(2, i))));
 				scene.add(new ActionCreateActor(i + 33, new ActorVisText(script, center, 1, center - i * 2, 0xFFFFFF, 1.5f, false, "1/" + (int) Math.pow(2, i))));
 			}
 			scene.add(new ActionWait(20 * 3));
-			for(int i = 1; i <= 10; i++) {
+			for(int i = 1; i <= FLUX_LABELS; i++) {
 				scene.add(new ActionRemoveActor(i));
 				scene.add(new ActionRemoveActor(i + 11));
 				scene.add(new ActionRemoveActor(i + 22));
